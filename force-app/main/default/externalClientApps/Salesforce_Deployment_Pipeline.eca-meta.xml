@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExternalClientApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>leandevtools@outlook.com</contactEmail>
+    <contactPhone>4444444444</contactPhone>
+    <distributionState>Local</distributionState>
+    <iconUrl>https://test.salesforce.com/logos/Salesforce/Salesforce/icon.png</iconUrl>
+    <isProtected>false</isProtected>
+    <label>Salesforce Deployment Pipeline</label>
+    <logoUrl>https://test.salesforce.com/logos/Salesforce/Salesforce/logo.png</logoUrl>
+    <orgScopedExternalApp>00DHy000000Ysrm:Salesforce_Deployment_Pipeline</orgScopedExternalApp>
+</ExternalClientApplication>
