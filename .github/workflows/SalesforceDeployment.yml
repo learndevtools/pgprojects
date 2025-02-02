@@ -20,14 +20,14 @@ jobs:
     name: Salesforce App Build
     runs-on: ubuntu-latest
     steps:
-      name: PgProject Repository
-      uses: actions/checkout@v4
-      with:
-        persist-credentials: false
-        fetch-depth: 0
-      name: Install Salesforce CLI Command
-      run: |
-        echo "Installing Salesforce CLI - npm install -g @salesforce/cli"
-        apt-get update
-        npm install -g @salesforce/cli
-        sf update
+      - name: PgProject Repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Install Salesforce CLI Command
+        run: |
+          echo "Installing Salesforce CLI - npm install -g @salesforce/cli"
+          apt-get update
+          npm install -g @salesforce/cli
+          sf update
