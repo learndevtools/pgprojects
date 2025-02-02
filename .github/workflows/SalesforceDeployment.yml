@@ -18,9 +18,7 @@ on:
 jobs:
   build:
     name: Salesforce App Build
-    runs-on: |
-      echo "Installing ubuntu-latest command"
-      ubuntu-latest: '20.04'
+    runs-on: ubuntu-latest
     steps:
       name: PgProject Repository
       uses: actions/checkout@v4
