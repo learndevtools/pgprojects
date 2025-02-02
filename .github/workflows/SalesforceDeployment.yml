@@ -16,9 +16,9 @@ on:
       - PreProd
       - '*feature/**'
 jobs:
-  environment:
-    name: ${{ github.event_name }} - ${{ github.ref }}
+  
   PreInstallations:
+    environment: ${{ github.event_name }} - ${{ github.ref }}
     name: Install Pre-Requiste Salesforce CLI and Code Analyzer Tool
     runs-on: ubuntu-latest
     steps:
