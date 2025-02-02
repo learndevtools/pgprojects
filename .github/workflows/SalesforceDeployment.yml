@@ -16,8 +16,10 @@ on:
       - PreProd
       - '*feature/**'
 jobs:
+  environment:
+    name: ${{ github.event_name }} - ${{ github.ref }}
   PreInstallations:
-    name: Salesforce App Build
+    name: Install Pre-Requiste Salesforce CLI and Code Analyzer Tool
     runs-on: ubuntu-latest
     steps:
       - name: PgProject Repository
@@ -38,4 +40,24 @@ jobs:
       - name: Upgrade Salesforce Anyalzer Tool to Latest Version
         run: |
           echo "Upgrading Salesforce Code Analyzer Tool - npm update -g @salesforce/sfdx-scanner"
-          sf plugins update @salesforce/sfdx-scanner
+          sf plugins update -v
+          echo  ${{ github.event_name }} - ${{ github.ref }}
+  Build:
+    name: Build Salesforce PgProject Application
+    runs-on: ubuntu-latest
+    steps:
+      - name: PgProject Repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Install Salesforce CLI Command
+        run: |
+          echo "Installing Salesforce CLI - npm install -g @salesforce/cli"
+          sudo apt-get update
+          npm install -g @salesforce/cli
+          sf update
+      - name: Decrypt JWT Token for Salesforce Org
+        run: |
+          echo "Decrypting JWT Token for Salesforce Org"
+          openssl aes-256-cbc -K ${{ secrets.DECRYPTED_KEY_VALUE }} -iv ${{ secrets.DECRYPTED_IV_VALUE }} -in ${{ secrets.ENCRYPTED_KEY_FILE_WITH_IN_PATH }} -out ${{ secreats.DECRYPTED_KEY_FILE_WITH_OUT_PATH }} -d
