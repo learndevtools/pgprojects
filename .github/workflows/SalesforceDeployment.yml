@@ -43,6 +43,7 @@ jobs:
           sf plugins update -v
           echo  ${{ github.event_name }} - ${{ github.ref }}
   Build:
+    needs: [PreInstallations]
     name: Build Salesforce PgProject Application
     runs-on: ubuntu-latest
     steps:
