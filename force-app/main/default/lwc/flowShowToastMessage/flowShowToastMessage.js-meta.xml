@@ -1,0 +1,19 @@
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<apiVersion>61.0</apiVersion>
+	<isExposed>true</isExposed>
+	<masterLabel>Show Toast Message For Flow</masterLabel>
+	<description>PGP-1003: Create LWC component to display Toast Message in Screen or Autolauch flow.</description>
+	<targets>
+		<target>lightning__FlowScreen</target>
+	</targets>
+	<targetConfigs>
+		<targetConfig targets="lightning__FlowScreen">
+			<property name="title" type="String" description="Title of the Toast Mess" label="Title" role="inputOnly" />
+			<property name="message" type="String" description="Message to display in Toast Screen" label="Message" required="true" role="inputOnly" />
+			<property name="variant" type="String" default="info" description="Changes the appearance of the notice- Info , success , warning and error" label="Variant" role="inputOnly" />
+			<property name="mode" type="String" label="Mode" role="inputOnly" />
+			<property name="recordId" type="String" label="Record Id" role="inputOnly" />
+			<property name="label" type="String" label="Label" role="inputOnly" />
+		</targetConfig>
+	</targetConfigs>
+</LightningComponentBundle>

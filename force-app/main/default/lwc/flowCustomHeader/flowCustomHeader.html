@@ -1,0 +1,23 @@
+<!--
+  @description       : 
+  @author            : salesforce
+  @group             : 
+  @last modified on  : 01-30-2025
+  @last modified by  : salesforce
+-->
+<template>
+    <lightning-quick-action-panel header={headerText}>
+        <template lwc:if={isSubHeaderBackGroundColor}>
+            <div style={subHeaderStyle} class="slds-page-header slds-page-header_record-home slds-page-header_record-home-flexipage">
+                <div lwc:if={subHeaderText} class={subHeaderCSS}>
+                    {subHeaderText}
+                </div>
+            </div>
+        </template>
+        <template lwc:else>
+            <div lwc:if={subHeaderText} class={subHeaderCSS}>
+                {subHeaderText}
+            </div>
+        </template>
+    </lightning-quick-action-panel>
+</template>
