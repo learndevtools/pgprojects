@@ -28,6 +28,6 @@ jobs:
       - name: Install Salesforce CLI Command
         run: |
           echo "Installing Salesforce CLI - npm install -g @salesforce/cli"
-          apt-get update
+          sudo apt-get update
           npm install -g @salesforce/cli
           sf update
