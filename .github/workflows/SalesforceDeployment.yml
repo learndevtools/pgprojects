@@ -18,7 +18,7 @@ on:
 jobs:
   build:
     name: Salesforce App Build
-    runs: |
+    runs-on: |
       echo "Installing ubuntu-latest command"
       ubuntu-latest: '20.04'
     steps:
