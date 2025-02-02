@@ -7,7 +7,7 @@ on:
       - dev
       - QA
       - PreProd
-      - '*feature/**'
+      - 'feature/PGP-0002'
   push:
     branches:
       - master
@@ -18,7 +18,7 @@ on:
 jobs:
   
   PreInstallations:
-    environment: Dev
+    environment: feature/PGP-0002
     name: Install Pre-Requiste Salesforce CLI and Code Analyzer Tool
     runs-on: ubuntu-latest
     steps:
@@ -43,6 +43,7 @@ jobs:
           sf plugins update -v
           echo  ${{ github.event_name }} - ${{ github.ref }}
   Build:
+    environment: feature/PGP-0002
     needs: [PreInstallations]
     name: Build Salesforce PgProject Application
     runs-on: ubuntu-latest
