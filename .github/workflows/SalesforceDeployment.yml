@@ -21,9 +21,9 @@ jobs:
     runs: |
       echo "Installing ubuntu-latest command"
       ubuntu-latest: '20.04'
-    step:
+    steps:
       name: PgProject Repository
-      uses:  actions/checkout@v4
+      uses: actions/checkout@v4
       with:
         persist-credentials: false
         fetch-depth: 0
