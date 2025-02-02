@@ -1,0 +1,23 @@
+name: Salesforce Deployment Process
+on:
+  pull_request:
+    type: [opened, synchronize, reopened]
+    branches:
+      - master
+      - dev
+      - QA
+      - PreProd
+      - '*feature/**'
+  push:
+    branches:
+      - master
+      - dev
+      - QA
+      - PreProd
+      - '*feature/**'
+jobs:
+  build:
+    name: Salesforce App Build
+    runs: |
+      echo "Installing ubuntu-latest command"
+      ubuntu-latest: '20.04'    

@@ -46,5 +46,5 @@ $RECYCLE.BIN/
 manifest/
 keys/
 server_*.key
-main.yml
+#main.yml
 
