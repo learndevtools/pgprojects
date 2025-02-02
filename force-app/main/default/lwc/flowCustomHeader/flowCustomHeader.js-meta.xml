@@ -1,0 +1,19 @@
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<apiVersion>61.0</apiVersion>
+	<isExposed>true</isExposed>
+	<masterLabel>Flow Custom Header</masterLabel>
+	<description>PGP-1003: Create a custom header for screen flow</description>
+	<targets>
+		<target>lightning__FlowScreen</target>
+	</targets>
+	<targetConfigs>
+		<targetConfig targets="lightning__FlowScreen">
+			<property name="headerText" type="String" description="Main Header Text" label="Header Text" required="true" role="inputOnly" />
+			<property name="subHeaderText" type="String" description="Sub Header of Flow Screen" label="Sub Header of Flow Screen" role="inputOnly" />
+			<property name="headerCss" type="String" default="slds-clearfix slds-text-heading_medium" label="Header CSS" role="inputOnly" />
+			<property name="subHeaderCss" type="String" default="slds-text-title slds-text-color_destructive" label="Sub Header CSS" role="inputOnly" />
+			<property name="isSubHeaderBackGroundColor" type="Boolean" label="Is sub header back ground color" role="inputOnly" />
+			<property name="subHeaderStyle" type="String" default="padding:0.5rem;background:#16325c" label="Sub Header Style" />
+		</targetConfig>
+	</targetConfigs>
+</LightningComponentBundle>
