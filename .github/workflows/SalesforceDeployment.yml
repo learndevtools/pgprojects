@@ -16,7 +16,7 @@ on:
       - PreProd
       - '*feature/**'
 jobs:
-  build:
+  PreInstallations:
     name: Salesforce App Build
     runs-on: ubuntu-latest
     steps:
@@ -31,3 +31,11 @@ jobs:
           sudo apt-get update
           npm install -g @salesforce/cli
           sf update
+      - name: Install Salesforce Code Analyzer Tool
+        run: |
+          echo "Installing Salesforce Code Analyzer Tool - npm install -g @salesforce/sfdx-scanner"
+          sf plugins install @salesforce/sfdx-scanner
+      - name: Upgrade Salesforce Anyalzer Tool to Latest Version
+        run: |
+          echo "Upgrading Salesforce Code Analyzer Tool - npm update -g @salesforce/sfdx-scanner"
+          sf plugins update @salesforce/sfdx-scanner
