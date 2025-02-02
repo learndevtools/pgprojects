@@ -62,4 +62,4 @@ jobs:
       - name: Decrypt JWT Token for Salesforce Org
         run: |
           echo "Decrypting JWT Token for Salesforce Org"
-          openssl aes-256-cbc -K ${{ secrets.DECRYPTED_KEY_VALUE }} -iv ${{ secrets.DECRYPTED_IV_VALUE }} -in ${{ secrets.ENCRYPTED_KEY_FILE_WITH_IN_PATH }} -out ${{ secrets.DECRYPTED_KEY_FILE_WITH_OUT_PATH }} -d
+          openssl enc nosalt aes-256-cbc -K ${{ secrets.DECRYPTED_KEY_VALUE }} -iv ${{ secrets.DECRYPTED_IV_VALUE }} -in ${{ secrets.ENCRYPTED_KEY_FILE_WITH_IN_PATH }} -out ${{ secrets.DECRYPTED_KEY_FILE_WITH_OUT_PATH }} -d
