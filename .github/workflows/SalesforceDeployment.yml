@@ -44,7 +44,7 @@ jobs:
           sf plugins update -v
           echo  ${{ github.event_name }} - ${{ github.ref }}
   Build:
-    environment: feature/PGP-0002
+    environment: Dev
     needs: [PreInstallations]
     name: Build Salesforce PgProject Application
     runs-on: ubuntu-latest
@@ -64,3 +64,7 @@ jobs:
         run: |
           echo "Decrypting JWT Token for Salesforce Org"
           openssl enc -nosalt -aes-256-cbc -d -in ${{ secrets.ENCRYPTED_KEY_FILE_WITH_IN_PATH }} -out ${{ secrets.DECRYPTED_KEY_FILE_WITH_OUT_PATH }} -base64 -K ${{ secrets.DECRYPTED_KEY_VALUE }} -iv ${{ secrets.DECRYPTED_IV_VALUE }}
+      - name: Authenticate Salesforce Org
+        run: |
+          echo "Authenticating Salesforce Org"
+          sf org login jwt --username ${{ secrets.SF_USERNAME }} --jwt-key-file ${{ secrets.DECRYPTED_KEY_FILE_WITH_OUT_PATH }} --client-id ${{ secrets.CONSUMERY_KEY }} --instance-url ${{ secrets.SF_INSTANCE }} --set-default --alias ${{ secrets.SF_ALIAS }}  
