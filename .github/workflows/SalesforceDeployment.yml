@@ -67,4 +67,4 @@ jobs:
       - name: Authenticate Salesforce Org
         run: |
           echo "Authenticating Salesforce Org"
-          sf org login jwt --username ${{ secrets.SF_USERNAME }} --jwt-key-file ${{ secrets.DECRYPTED_KEY_FILE_WITH_OUT_PATH }} --client-id ${{ secrets.CONSUMERY_KEY }} --instance-url ${{ secrets.SF_INSTANCE }} --set-default --alias ${{ secrets.SF_ALIAS }}  
+          sf org login jwt --username ${{ secrets.SF_USERNAME }} --jwt-key-file ${{ secrets.DECRYPTED_KEY_FILE_WITH_OUT_PATH }} --client-id ${{ secrets.CONSUMERY_KEY }} --set-default --alias ${{ secrets.SF_ALIAS }} --instance-url https://test.salesforce.com
