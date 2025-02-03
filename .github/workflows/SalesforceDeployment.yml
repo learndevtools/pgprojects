@@ -17,7 +17,7 @@ on:
       - '*feature/**'
 jobs:
   PreInstallations:
-    environment: Dev
+    environment: QA
     name: Install Pre-Requiste Salesforce CLI and Code Analyzer Tool
     runs-on: ubuntu-latest
     steps:
@@ -42,7 +42,7 @@ jobs:
           sf plugins update -v
           echo  ${{ github.event_name }} - ${{ github.ref }}
   Build:
-    environment: Dev
+    environment: QA
     needs: [PreInstallations]
     name: Build Salesforce PgProject Application
     runs-on: ubuntu-latest
