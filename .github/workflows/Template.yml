@@ -1,26 +1,55 @@
-name: Salesforce Deployment Process
+name: Deployment Template
 on:
-  workflow_dispatch:
-  #pull_request:
-  #  type: [opened, synchronize, reopened]
-  #  branches:
-  #    - master
-  #    - dev
-  #    - QA
-  #    - PreProd
-  #    - 'feature/PGP-0002'
-  #push:
-  #  branches:
-  #    - master
-  #    - dev
-  #    - QA
-  #    - PreProd
-  #    - '*feature/**'
+  workflow_call:
+    inputs:
+      envValue:
+        required: true
+        description: 'Environment value to deploy the Salesforce Application'
+        default: 'Dev'
+        type: string
+      BRANCH_NAME:
+        required: true
+        description: 'Branch Name'
+        default: 'Dev'
+        type: string
+    secrets:
+      ENCRYPTED_KEY_FILE_WITH_IN_PATH:
+        description: 'Encrypted Key File Path'
+        required: true
+      DECRYPTED_KEY_FILE_WITH_OUT_PATH:
+        description: 'Decrypted Key File Path'
+        required: true
+      DECRYPTED_KEY_VALUE:
+        description: 'Decrypted Key Value'
+        required: true
+      DECRYPTED_IV_VALUE:
+        description: 'Decrypted IV Value'
+        required: true
+      CONSUMERY_KEY:
+        description: 'Consumer Key'
+        required: true
+      SF_USERNAME:
+        description: 'Salesforce Username'
+        required: true
+      SF_ALIAS:
+        description: 'Salesforce Alias'
+        required: true
+      SF_INSTANCE:
+        description: 'Salesforce Instance'
+        required: true
+      SONAR_TOKEN:
+        description: 'Sonar Token'
+        required: false
+env:
+  ENGINES: "eslint,eslint-lwc,eslint-typescript,pmd,pmd-appexchange,retire-js,sfge,cpd,tslint,tslint-lwc"
+  CATEGOORY: "Design, Best Practices, Security, Code Coverage, Code Duplication, Code Smells, Vulnerabilities, Deprecations, Performance, Code Style"
+  OUTPUT_FILE: "scanned_reports/scan-reports.html"
+  #SF_ALIAS_VAR: "prod"
+  TEST_LEVEL: "RunLocalTests"
 jobs:
-  PreInstallations:
-    environment: Dev
-    name: Install Pre-Requiste Salesforce CLI and Code Analyzer Tool
+  build:
     runs-on: ubuntu-latest
+    environment: ${{ inputs.envValue }}
     steps:
       - name: PgProject Repository
         uses: actions/checkout@v4
@@ -42,22 +71,11 @@ jobs:
           echo "Upgrading Salesforce Code Analyzer Tool - npm update -g @salesforce/sfdx-scanner"
           sf plugins update -v
           echo  ${{ github.event_name }} - ${{ github.ref }}
-  Build:
-    environment: QA
-    needs: [PreInstallations]
-    name: Build Salesforce PgProject Application
-    runs-on: ubuntu-latest
-    steps:
-      - name: PgProject Repository
-        uses: actions/checkout@v4
-        with:
-          persist-credentials: false
-          fetch-depth: 0
-      - name: Install Salesforce CLI Command
+      - name: Install Salesforce DX GIT Delta
         run: |
-          echo "Installing Salesforce CLI - npm install -g @salesforce/cli"
+          echo "Installing Salesforce DX Git Delta CLI Command"
           sudo apt-get update
-          npm install -g @salesforce/cli
+          echo 'y' | sf plugins install sfdx-git-delta
           sf update
       - name: Decrypt JWT Token for Salesforce Org
         run: |
