@@ -1,11 +1,11 @@
 name: Salesforce Deployment Process
+run-name: ${{ github.actor }} is running the UAT Deployment
 on: 
   workflow_dispatch:
-
   pull_request:
     branches:
-      - uat
-      - UAT
+      - qa
+      - QA
     paths:
       - 'force-app/**'
     types:
