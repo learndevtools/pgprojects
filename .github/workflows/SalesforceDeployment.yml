@@ -16,7 +16,8 @@ on:
       - PreProd
       - '*feature/**'
 jobs:
-  
+
+
   PreInstallations:
     environment: Dev
     name: Install Pre-Requiste Salesforce CLI and Code Analyzer Tool
@@ -62,4 +63,4 @@ jobs:
       - name: Decrypt JWT Token for Salesforce Org
         run: |
           echo "Decrypting JWT Token for Salesforce Org"
-          openssl enc -nosalt -aes-256-cbc -d -in ${{ secrets.ENCRYPTED_KEY_FILE_WITH_IN_PATH_FEATURE }} -out ${{ secrets.DECRYPTED_KEY_FILE_WITH_OUT_PATH_FEATURE }} -base64 -K ${{ secrets.DECRYPTED_KEY_VALUE }} -iv ${{ secrets.DECRYPTED_IV_VALUE }}
+          openssl enc -nosalt -aes-256-cbc -d -in ${{ secrets.ENCRYPTED_KEY_FILE_WITH_IN_PATH }} -out ${{ secrets.DECRYPTED_KEY_FILE_WITH_OUT_PATH }} -base64 -K ${{ secrets.DECRYPTED_KEY_VALUE }} -iv ${{ secrets.DECRYPTED_IV_VALUE }}
