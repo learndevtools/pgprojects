@@ -84,8 +84,8 @@ jobs:
       - name: Authenticate Salesforce Org
         run: |
           echo "Authenticating Salesforce Org"
-          sf org login jwt --username learndevtools-hpt9@force.com.qa --jwt-key-file ./Assets/Test/server_test.key --client-id ${{ secrets.CONSUMERY_KEY }} --set-default --alias pgprojectsqa --instance-url https://test.salesforce.com
-          #sf org login jwt --username ${{ secrets.SF_USERNAME }} --jwt-key-file ${{ secrets.DECRYPTED_KEY_FILE_WITH_OUT_PATH }} --client-id ${{ secrets.CONSUMERY_KEY }} --set-default --alias ${{ secrets.SF_ALIAS }} --instance-url ${{ secrets.SF_INSTANCE }}
+          echo "Environment -" ${{ inputs.envValue }}
+          sf org login jwt --username ${{ secrets.SF_USERNAME }} --jwt-key-file ${{ secrets.DECRYPTED_KEY_FILE_WITH_OUT_PATH }} --client-id ${{ secrets.CONSUMERY_KEY }} --set-default --alias ${{ secrets.SF_ALIAS }} --instance-url ${{ secrets.SF_INSTANCE }}
       - name: Deploy PgProject Application to Salesforce Org
         run: |
           echo "Deploying PgProject Application to Salesforce Org"
