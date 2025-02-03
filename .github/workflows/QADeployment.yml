@@ -1,13 +1,17 @@
 name: Salesforce Deployment Process
-on:
+on: 
   workflow_dispatch:
+
   pull_request:
-    type: [opened, synchronize, reopened]
     branches:
-      - QA
-  push:
-    branches:
-      - QA
+      - uat
+      - UAT
+    paths:
+      - 'force-app/**'
+    types:
+      - opened
+      - synchronize
+      - closed
 jobs:
   build:
     name: Build Salesforce PgProject Application
