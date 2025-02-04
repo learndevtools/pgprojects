@@ -12,6 +12,10 @@ on:
         description: 'Branch Name'
         default: 'Dev'
         type: string
+      MESSAGE:
+        description: 'Message'
+        required: true
+        type: string
     secrets:
       ENCRYPTED_KEY_FILE_WITH_IN_PATH:
         description: 'Encrypted Key File Path'
@@ -40,9 +44,7 @@ on:
       SONAR_TOKEN:
         description: 'Sonar Token'
         required: false
-      MESSAGE:
-        description: 'Message'
-        required: true
+
 env:
   ENGINES: "eslint,eslint-lwc,eslint-typescript,pmd,pmd-appexchange,retire-js,sfge,cpd,tslint,tslint-lwc"
   CATEGOORY: "Design, Best Practices, Security, Code Coverage, Code Duplication, Code Smells, Vulnerabilities, Deprecations, Performance, Code Style"
