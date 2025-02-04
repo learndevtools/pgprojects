@@ -40,6 +40,9 @@ on:
       SONAR_TOKEN:
         description: 'Sonar Token'
         required: false
+      MESSAGE:
+        description: 'Message'
+        required: true
 env:
   ENGINES: "eslint,eslint-lwc,eslint-typescript,pmd,pmd-appexchange,retire-js,sfge,cpd,tslint,tslint-lwc"
   CATEGOORY: "Design, Best Practices, Security, Code Coverage, Code Duplication, Code Smells, Vulnerabilities, Deprecations, Performance, Code Style"
@@ -85,6 +88,7 @@ jobs:
         run: |
           echo "Authenticating Salesforce Org"
           echo "Environment -" ${{ inputs.envValue }}
+          echo "Message -" ${{ inputs.Message }}
           sf org login jwt --username ${{ secrets.SF_USERNAME }} --jwt-key-file ${{ secrets.DECRYPTED_KEY_FILE_WITH_OUT_PATH }} --client-id ${{ secrets.CONSUMERY_KEY }} --set-default --alias ${{ secrets.SF_ALIAS }} --instance-url ${{ secrets.SF_INSTANCE }}
       - name: Deploy PgProject Application to Salesforce Org
         run: |
