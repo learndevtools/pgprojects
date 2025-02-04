@@ -20,7 +20,7 @@ jobs:
     with:
       envValue: QA
       BRANCH_NAME: QA
-      MESSAGE: ${{ vars.Message }}
+      MESSAGE: ${{ vars.MESSAGE }}
       #ENCRYPTED_KEY_FILE_WITH_IN_PATH: ${{ secrets.ENCRYPTED_KEY_FILE_WITH_IN_PATH }}
       #DECRYPTED_KEY_FILE_WITH_OUT_PATH: ${{ secrets.DECRYPTED_KEY_FILE_WITH_OUT_PATH }}
       #DECRYPTED_KEY_VALUE: ${{ secrets.DECRYPTED_KEY_VALUE }}
