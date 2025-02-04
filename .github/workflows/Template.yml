@@ -5,12 +5,10 @@ on:
       envValue:
         required: true
         description: 'Environment value to deploy the Salesforce Application'
-        default: 'Dev'
         type: string
       BRANCH_NAME:
         required: true
         description: 'Branch Name'
-        default: 'Dev'
         type: string
       MESSAGE:
         description: 'Message'
