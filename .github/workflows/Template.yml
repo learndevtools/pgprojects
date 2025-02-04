@@ -12,7 +12,7 @@ on:
         type: string
       MESSAGE:
         description: 'Message'
-        required: true
+        required: false
         type: string
     secrets:
       ENCRYPTED_KEY_FILE_WITH_IN_PATH:
