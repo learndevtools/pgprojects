@@ -18,8 +18,8 @@ jobs:
     name: Build Salesforce PgProject Application
     uses: "./.github/workflows/Template.yml"
     with:
-      envValue: QA
-      BRANCH_NAME: QA
+      envValue: Dev
+      BRANCH_NAME: Dev
       MESSAGE: ${{ vars.MESSAGE }}
       #ENCRYPTED_KEY_FILE_WITH_IN_PATH: ${{ secrets.ENCRYPTED_KEY_FILE_WITH_IN_PATH }}
       #DECRYPTED_KEY_FILE_WITH_OUT_PATH: ${{ secrets.DECRYPTED_KEY_FILE_WITH_OUT_PATH }}
