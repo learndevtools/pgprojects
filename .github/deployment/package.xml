@@ -20,6 +20,10 @@
         <members>*</members>
         <name>ExtlClntAppConfigurablePolicies</name>
     </types>-->
+     <types>
+        <members>flowShowToastMessage</members>
+        <name>LightningComponentBundle</name>
+    </types>
     <types>
 		<members>Salesforce_Deployment_User</members>
 		<name>PermissionSet</name>
