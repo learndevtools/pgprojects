@@ -1,0 +1,97 @@
+name: Deployment Template
+on:
+  workflow_call:
+    inputs:
+      envValue:
+        required: true
+        description: 'Environment value to deploy the Salesforce Application'
+        type: string
+      BRANCH_NAME:
+        required: true
+        description: 'Branch Name'
+        type: string
+      MESSAGE:
+        description: 'Message'
+        required: false
+        type: string
+    secrets:
+      ENCRYPTED_KEY_FILE_WITH_IN_PATH:
+        description: 'Encrypted Key File Path'
+        required: true
+      DECRYPTED_KEY_FILE_WITH_OUT_PATH:
+        description: 'Decrypted Key File Path'
+        required: true
+      DECRYPTED_KEY_VALUE:
+        description: 'Decrypted Key Value'
+        required: true
+      DECRYPTED_IV_VALUE:
+        description: 'Decrypted IV Value'
+        required: true
+      CONSUMERY_KEY:
+        description: 'Consumer Key'
+        required: true
+      SF_USERNAME:
+        description: 'Salesforce Username'
+        required: true
+      SF_ALIAS:
+        description: 'Salesforce Alias'
+        required: true
+      SF_INSTANCE:
+        description: 'Salesforce Instance'
+        required: true
+      SONAR_TOKEN:
+        description: 'Sonar Token'
+        required: false
+
+env:
+  ENGINES: "eslint,eslint-lwc,eslint-typescript,pmd,pmd-appexchange,retire-js,sfge,cpd,tslint,tslint-lwc"
+  CATEGOORY: "Design, Best Practices, Security, Code Coverage, Code Duplication, Code Smells, Vulnerabilities, Deprecations, Performance, Code Style"
+  OUTPUT_FILE: "scanned_reports/scan-reports.html"
+  #SF_ALIAS_VAR: "prod"
+  TEST_LEVEL: "RunLocalTests"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.envValue }}
+    steps:
+      - name: PgProject Repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Install Salesforce CLI Command
+        run: |
+          echo "Installing Salesforce CLI - npm install -g @salesforce/cli"
+          sudo apt-get update
+          npm install -g @salesforce/cli
+          sf update
+      - name: Install Salesforce Code Analyzer Tool
+        run: |
+          echo "Installing Salesforce Code Analyzer Tool - npm install -g @salesforce/sfdx-scanner"
+          sf plugins install @salesforce/sfdx-scanner
+      - name: Upgrade Salesforce Anyalzer Tool to Latest Version
+        run: |
+          echo "Upgrading Salesforce Code Analyzer Tool - npm update -g @salesforce/sfdx-scanner"
+          sf plugins update -v
+          echo  ${{ github.event_name }} - ${{ github.ref }}
+      - name: Install Salesforce DX GIT Delta
+        run: |
+          echo "Installing Salesforce DX Git Delta CLI Command"
+          sudo apt-get update
+          echo 'y' | sf plugins install sfdx-git-delta
+          sf update
+      - name: Decrypt JWT Token for Salesforce Org
+        run: |
+          echo "Decrypting JWT Token for Salesforce Org"
+          openssl enc -nosalt -aes-256-cbc -d -in ${{ secrets.ENCRYPTED_KEY_FILE_WITH_IN_PATH }} -out ${{ secrets.DECRYPTED_KEY_FILE_WITH_OUT_PATH }} -base64 -K ${{ secrets.DECRYPTED_KEY_VALUE }} -iv ${{ secrets.DECRYPTED_IV_VALUE }}
+      - name: Authenticate Salesforce Org
+        run: |
+          echo "Authenticating Salesforce Org"
+          echo "Environment -" ${{ inputs.envValue }}
+          echo "Message -" ${{ inputs.MESSAGE }}
+          sf org login jwt --username ${{ secrets.SF_USERNAME }} --jwt-key-file ${{ secrets.DECRYPTED_KEY_FILE_WITH_OUT_PATH }} --client-id ${{ secrets.CONSUMERY_KEY }} --set-default --alias ${{ secrets.SF_ALIAS }} --instance-url ${{ secrets.SF_INSTANCE }}
+      - name: Deploy PgProject Application to Salesforce Org
+        run: |
+          echo "Deploying PgProject Application to Salesforce Org"
+          #sf project deploy start --target-org ${{ secrets.SF_ALIAS }} --source-dir force-app --wait 10
+          sf project deploy start --target-org ${{ secrets.SF_ALIAS }} --manifest ./.github/deployment/package.xml --ignore-conflicts --wait 10

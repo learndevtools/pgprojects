@@ -1,0 +1,74 @@
+name: Salesforce Deployment Process
+on:
+  workflow_dispatch:
+  #pull_request:
+  #  type: [opened, synchronize, reopened]
+  #  branches:
+  #    - master
+  #    - dev
+  #    - QA
+  #    - PreProd
+  #    - 'feature/PGP-0002'
+  #push:
+  #  branches:
+  #    - master
+  #    - dev
+  #    - QA
+  #    - PreProd
+  #    - '*feature/**'
+jobs:
+  PreInstallations:
+    environment: Dev
+    name: Install Pre-Requiste Salesforce CLI and Code Analyzer Tool
+    runs-on: ubuntu-latest
+    steps:
+      - name: PgProject Repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Install Salesforce CLI Command
+        run: |
+          echo "Installing Salesforce CLI - npm install -g @salesforce/cli"
+          sudo apt-get update
+          npm install -g @salesforce/cli
+          sf update
+      - name: Install Salesforce Code Analyzer Tool
+        run: |
+          echo "Installing Salesforce Code Analyzer Tool - npm install -g @salesforce/sfdx-scanner"
+          sf plugins install @salesforce/sfdx-scanner
+      - name: Upgrade Salesforce Anyalzer Tool to Latest Version
+        run: |
+          echo "Upgrading Salesforce Code Analyzer Tool - npm update -g @salesforce/sfdx-scanner"
+          sf plugins update -v
+          echo  ${{ github.event_name }} - ${{ github.ref }}
+  Build:
+    environment: QA
+    needs: [PreInstallations]
+    name: Build Salesforce PgProject Application
+    runs-on: ubuntu-latest
+    steps:
+      - name: PgProject Repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Install Salesforce CLI Command
+        run: |
+          echo "Installing Salesforce CLI - npm install -g @salesforce/cli"
+          sudo apt-get update
+          npm install -g @salesforce/cli
+          sf update
+      - name: Decrypt JWT Token for Salesforce Org
+        run: |
+          echo "Decrypting JWT Token for Salesforce Org"
+          openssl enc -nosalt -aes-256-cbc -d -in ${{ secrets.ENCRYPTED_KEY_FILE_WITH_IN_PATH }} -out ${{ secrets.DECRYPTED_KEY_FILE_WITH_OUT_PATH }} -base64 -K ${{ secrets.DECRYPTED_KEY_VALUE }} -iv ${{ secrets.DECRYPTED_IV_VALUE }}
+      - name: Authenticate Salesforce Org
+        run: |
+          echo "Authenticating Salesforce Org"
+          sf org login jwt --username learndevtools-hpt9@force.com.qa --jwt-key-file ./Assets/Test/server_test.key --client-id ${{ secrets.CONSUMERY_KEY }} --set-default --alias pgprojectsqa --instance-url https://test.salesforce.com
+          #sf org login jwt --username ${{ secrets.SF_USERNAME }} --jwt-key-file ${{ secrets.DECRYPTED_KEY_FILE_WITH_OUT_PATH }} --client-id ${{ secrets.CONSUMERY_KEY }} --set-default --alias ${{ secrets.SF_ALIAS }} --instance-url ${{ secrets.SF_INSTANCE }}
+      - name: Deploy PgProject Application to Salesforce Org
+        run: |
+          echo "Deploying PgProject Application to Salesforce Org"
+          sf project deploy start --target-org ${{ secrets.SF_ALIAS }} --source-dir force-app --wait 10

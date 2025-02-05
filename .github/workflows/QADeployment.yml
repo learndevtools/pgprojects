@@ -1,0 +1,37 @@
+name: Salesforce Deployment Process
+run-name: ${{ github.actor }} - is running the QA Deployment
+on: 
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - qa
+      - QA
+    paths:
+      - 'force-app/**'
+    types:
+      - opened
+      - synchronize
+      - closed
+jobs:
+  build:
+    name: Build Salesforce PgProject Application
+    uses: "./.github/workflows/Template.yml"
+    with:
+      envValue: QA
+      BRANCH_NAME: QA
+      #ENCRYPTED_KEY_FILE_WITH_IN_PATH: ${{ secrets.ENCRYPTED_KEY_FILE_WITH_IN_PATH }}
+      #DECRYPTED_KEY_FILE_WITH_OUT_PATH: ${{ secrets.DECRYPTED_KEY_FILE_WITH_OUT_PATH }}
+      #DECRYPTED_KEY_VALUE: ${{ secrets.DECRYPTED_KEY_VALUE }}
+      #DECRYPTED_IV_VALUE: ${{ secrets.DECRYPTED_IV_VALUE }}
+      #CONSUMERY_KEY: ${{ secrets.CONSUMERY_KEY }}
+      #SF_USERNAME: ${{ secrets.SF_USERNAME }}
+      #SF_ALIAS: ${{ secrets.SF_ALIAS }}
+      #SF_INSTANCE: ${{ secrets.SF_INSTANCE }}
+      #SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      #ENGINES: "eslint,eslint-lwc,eslint-typescript,pmd,pmd-appexchange,retire-js,sfge,cpd,tslint,tslint-lwc"
+      #CATEGOORY: "Design, Best Practices, Security, Code Coverage, Code Duplication, Code Smells, Vulnerabilities, Deprecations, Performance, Code Style"
+      #OUTPUT_FILE: "scanned_reports/scan-reports.html"
+      #SF_ALIAS_VAR: "prod"
+      #TEST_LEVEL: "RunLocalTests"
+    secrets: inherit
+      #ENCRYPTED_KEY_FILE_WITH_IN_PATH: ${{ secrets.ENCRYPTED_KEY_FILE_WITH_IN_PATH }}
