@@ -1,12 +1,11 @@
 name: Salesforce Deployment Process
-run-name: ${{ github.actor }} is running the UAT Deployment
+run-name: ${{ github.actor }} - is running the QA Deployment
 on: 
   workflow_dispatch:
   pull_request:
     branches:
       - qa
       - QA
-      - Dev
     paths:
       - 'force-app/**'
     types:
@@ -18,8 +17,8 @@ jobs:
     name: Build Salesforce PgProject Application
     uses: "./.github/workflows/Template.yml"
     with:
-      envValue: Prod
-      BRANCH_NAME: Prod
+      envValue: QA
+      BRANCH_NAME: QA
       #ENCRYPTED_KEY_FILE_WITH_IN_PATH: ${{ secrets.ENCRYPTED_KEY_FILE_WITH_IN_PATH }}
       #DECRYPTED_KEY_FILE_WITH_OUT_PATH: ${{ secrets.DECRYPTED_KEY_FILE_WITH_OUT_PATH }}
       #DECRYPTED_KEY_VALUE: ${{ secrets.DECRYPTED_KEY_VALUE }}

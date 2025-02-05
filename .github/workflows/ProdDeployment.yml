@@ -1,10 +1,11 @@
 name: Salesforce Deployment Process
-run-name: ${{ github.actor }} - is running the Dev Deployment
+run-name: ${{ github.actor }} - is running the Prod Deployment
 on: 
   workflow_dispatch:
   pull_request:
     branches:
-      - Dev
+      - qa
+      - QA
     paths:
       - 'force-app/**'
     types:
@@ -13,10 +14,10 @@ on:
       - closed
 jobs:
   build:
-    name: Build Salesforce PgProject Application - Developer Environment
+    name: Build Salesforce PgProject Application
     uses: "./.github/workflows/Template.yml"
     with:
-      envValue: Dev
-      BRANCH_NAME: Dev
+      envValue: Prod
+      BRANCH_NAME: Prod
     secrets: inherit
       #ENCRYPTED_KEY_FILE_WITH_IN_PATH: ${{ secrets.ENCRYPTED_KEY_FILE_WITH_IN_PATH }}
