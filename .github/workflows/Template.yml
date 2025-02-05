@@ -93,4 +93,5 @@ jobs:
       - name: Deploy PgProject Application to Salesforce Org
         run: |
           echo "Deploying PgProject Application to Salesforce Org"
-          sf project deploy start --target-org ${{ secrets.SF_ALIAS }} --source-dir force-app --wait 10
+          #sf project deploy start --target-org ${{ secrets.SF_ALIAS }} --source-dir force-app --wait 10
+          sf project deploy start --target-org ${{ secrets.SF_ALIAS }} --manifest ./.github/deployment/package.xml force-app --wait 10
