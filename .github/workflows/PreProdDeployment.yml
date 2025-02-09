@@ -1,0 +1,22 @@
+name: Salesforce Deployment Process
+run-name: ${{ github.actor }} - is running the PreProd Deployment
+on: 
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - PreProd
+    paths:
+      - 'force-app/**'
+    types:
+      - opened
+      - synchronize
+      - closed
+jobs:
+  build:
+    name: Build Salesforce PgProject Application - Developer Environment
+    uses: "./.github/workflows/Template.yml"
+    with:
+      envValue: PreProd
+      BRANCH_NAME: PreProd
+    secrets: inherit
+      #ENCRYPTED_KEY_FILE_WITH_IN_PATH: ${{ secrets.ENCRYPTED_KEY_FILE_WITH_IN_PATH }}
