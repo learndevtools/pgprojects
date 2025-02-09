@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Subscriptions__c</fullName>
+    <description>PGP-0005: Total number of subscription records.</description>
+    <label>Total Subscriptions</label>
+    <summaryForeignKey>Email_Subscription__c.Email_List__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>
