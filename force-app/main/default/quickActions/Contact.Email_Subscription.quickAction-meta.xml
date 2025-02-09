@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>PGP-0005 : Quick Action for Email Subscription in Bulk.</description>
+    <flowDefinition>SF_Email_Subscription_Screen</flowDefinition>
+    <label>Email Subscription</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
+    <type>Flow</type>
+</QuickAction>
