@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Email_List__c</fullName>
+    <description>PGP-0005: Email List Lookup to create Email Subscription record</description>
+    <label>Email List</label>
+    <referenceTo>Email_List__c</referenceTo>
+    <relationshipLabel>Email Subscriptions</relationshipLabel>
+    <relationshipName>Email_Subscriptions</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>
