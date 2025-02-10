@@ -222,7 +222,7 @@
         <relatedList>RelatedOpportunityList</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>QUOTE.QUOTENUMBER</fields>
+        <!--<fields>QUOTE.QUOTENUMBER</fields>-->
         <fields>QUOTE.NAME</fields>
         <fields>QUOTE.EXPIRATIONDATE</fields>
         <fields>QUOTE.ISSYNCING</fields>
