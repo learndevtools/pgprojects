@@ -156,7 +156,8 @@
                     <inputParameters>
                         <name>fieldsToDisplayList</name>
                         <value>
-                            <stringValue>salutation,firstName,middleName,lastName</stringValue>
+                            <!--<stringValue>salutation,firstName,middleName,lastName</stringValue>-->
+                            <stringValue>salutation,firstName,lastName</stringValue>
                         </value>
                     </inputParameters>
                     <inputParameters>
@@ -165,22 +166,22 @@
                             <booleanValue>false</booleanValue>
                         </value>
                     </inputParameters>
-                    <inputParameters>
+                    <!--<inputParameters>
                         <name>middleName</name>
                         <value>
                             <elementReference>Assign_Lead_Value_From_Contact_Record.MiddleName</elementReference>
                         </value>
-                    </inputParameters>
+                    </inputParameters>-->
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <outputParameters>
                         <assignToReference>Assign_Lead_Value_From_Contact_Record.LastName</assignToReference>
                         <name>lastName</name>
                     </outputParameters>
-                    <outputParameters>
+                    <!--<outputParameters>
                         <assignToReference>Assign_Lead_Value_From_Contact_Record.MiddleName</assignToReference>
                         <name>middleName</name>
-                    </outputParameters>
+                    </outputParameters>-->
                     <outputParameters>
                         <assignToReference>Assign_Lead_Value_From_Contact_Record.Salutation</assignToReference>
                         <name>salutation</name>

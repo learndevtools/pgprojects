@@ -272,10 +272,10 @@
                     <name>label</name>
                     <value>Team Pipeline</value>
                 </componentInstanceProperties>
-                <componentInstanceProperties>
+                <!--<componentInstanceProperties>
                     <name>reportName</name>
                     <value>Sales_Exec_Open_Pipeline</value>
-                </componentInstanceProperties>
+                </componentInstanceProperties>-->
                 <componentInstanceProperties>
                     <name>showRefreshButton</name>
                     <value>true</value>
