@@ -656,10 +656,10 @@
         <enabled>true</enabled>
         <name>ManagePvtRptsAndDashbds</name>
     </userPermissions>
-    <userPermissions>
+    <!--<userPermissions>
         <enabled>true</enabled>
         <name>ManageQuotas</name>
-    </userPermissions>
+    </userPermissions>->
     <userPermissions>
         <enabled>true</enabled>
         <name>ManageRecommendationStrategies</name>
