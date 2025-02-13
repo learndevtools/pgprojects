@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Validate_E_Mail_Field_Action_1</name>
+        <label>Validate E Mail Field Action 1</label>
+        <locationX>308</locationX>
+        <locationY>384</locationY>
+        <actionName>EmailValidationAPI.ValidateEMailField</actionName>
+        <actionType>externalService</actionType>
+        <connector>
+            <targetReference>Update_Contact_Record</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>api_key</name>
+            <value>
+                <elementReference>apiKey</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>email</name>
+            <value>
+                <elementReference>$Record.Email</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>EmailValidationAPI.ValidateEMailField</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <versionSegment>1</versionSegment>
+    </actionCalls>
+    <apiVersion>62.0</apiVersion>
+    <description>PGP-0007 : Get Email verification Status from External API</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>isValidEmail</name>
+        <dataType>Boolean</dataType>
+        <expression>if({!Validate_E_Mail_Field_Action_1.2XX.deliverability} == &quot;DELIVERABLE&quot;,true, false)</expression>
+    </formulas>
+    <interviewLabel>RTF - Update Email Verification Status {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>RTF - Update Email Verification Status</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>PGP-0007: Get Email Validation Service Detail</description>
+        <name>Get_External_Vendor_API</name>
+        <label>Get External Vendor API</label>
+        <locationX>308</locationX>
+        <locationY>276</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Validate_E_Mail_Field_Action_1</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Name</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Email Validation API</stringValue>
+            </value>
+        </filters>
+        <object>External_Vendor_API_Keys__c</object>
+        <outputAssignments>
+            <assignToReference>apiKey</assignToReference>
+            <field>API_Key__c</field>
+        </outputAssignments>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_Contact_Record</name>
+        <label>Update Contact Record</label>
+        <locationX>308</locationX>
+        <locationY>492</locationY>
+        <inputAssignments>
+            <field>Is_Valid_Email__c</field>
+            <value>
+                <elementReference>isValidEmail</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Email</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Email</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <object>Contact</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <scheduledPaths>
+            <connector>
+                <targetReference>Get_External_Vendor_API</targetReference>
+            </connector>
+            <pathType>AsyncAfterCommit</pathType>
+        </scheduledPaths>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>PGP-0007: Store API Key value</description>
+        <name>apiKey</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>
