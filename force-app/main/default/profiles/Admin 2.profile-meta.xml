@@ -5,38 +5,15 @@
         <default>false</default>
         <visible>true</visible>
     </applicationVisibilities>
-    <classAccesses>
-        <apexClass>DisplayYoutubeResults</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>FlatFileIntegration</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>FlatFileIntegrationWrapper</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>GetDataIntoBas64</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Requests</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Results</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>SerializeContent</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
     <custom>false</custom>
     <fieldPermissions>
         <editable>true</editable>
         <field>Contact.AccountId</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.Is_Valid_Email__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -54,21 +31,21 @@
         <field>Contact.Birthdate</field>
         <readable>false</readable>
     </fieldPermissions>
-    <!--<fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Contact.BuyerAttributes</field>
         <readable>true</readable>
-    </fieldPermissions>-->
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Contact.Department</field>
         <readable>true</readable>
     </fieldPermissions>
-    <!--<fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Contact.DepartmentGroup</field>
         <readable>true</readable>
-    </fieldPermissions>-->
+    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Contact.Description</field>
@@ -108,11 +85,6 @@
         <editable>false</editable>
         <field>Contact.HomePhone</field>
         <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Contact.Is_Valid_Email__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -164,11 +136,11 @@
         <field>Contact.Title</field>
         <readable>true</readable>
     </fieldPermissions>
-    <!--<fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Contact.TitleType</field>
         <readable>true</readable>
-    </fieldPermissions>-->
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Email_List__c.Description__c</field>
@@ -253,10 +225,10 @@
         <enabled>true</enabled>
         <name>ApiEnabled</name>
     </userPermissions>
-    <!--<userPermissions>
+    <userPermissions>
         <enabled>true</enabled>
         <name>ApproveContract</name>
-    </userPermissions>-->
+    </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
         <name>AssignPermissionSets</name>
@@ -373,10 +345,10 @@
         <enabled>true</enabled>
         <name>CreateTopics</name>
     </userPermissions>
-    <!--<userPermissions>
+    <userPermissions>
         <enabled>true</enabled>
         <name>CreateWorkBadgeDefinition</name>
-    </userPermissions>-->
+    </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
         <name>CreateWorkspaces</name>
@@ -513,10 +485,10 @@
         <enabled>true</enabled>
         <name>ImportPersonal</name>
     </userPermissions>
-    <!--<userPermissions>
+    <userPermissions>
         <enabled>true</enabled>
         <name>InboundMigrationToolsUser</name>
-    </userPermissions>-->
+    </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
         <name>InstallPackaging</name>
@@ -605,10 +577,10 @@
         <enabled>true</enabled>
         <name>ManageDataIntegrations</name>
     </userPermissions>
-    <!--<userPermissions>
+    <userPermissions>
         <enabled>true</enabled>
         <name>ManageDevSandboxes</name>
-    </userPermissions>-->
+    </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
         <name>ManageDynamicDashboards</name>
@@ -625,10 +597,10 @@
         <enabled>true</enabled>
         <name>ManageFilesAndAttachments</name>
     </userPermissions>
-    <!--<userPermissions>
+    <userPermissions>
         <enabled>true</enabled>
         <name>ManageForecastingCustomData</name>
-    </userPermissions>-->
+    </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
         <name>ManageHealthCheck</name>
@@ -689,10 +661,10 @@
         <enabled>true</enabled>
         <name>ManagePvtRptsAndDashbds</name>
     </userPermissions>
-    <!--<userPermissions>
+    <userPermissions>
         <enabled>true</enabled>
         <name>ManageQuotas</name>
-    </userPermissions>-->
+    </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
         <name>ManageRecommendationStrategies</name>
@@ -713,10 +685,10 @@
         <enabled>true</enabled>
         <name>ManageRoles</name>
     </userPermissions>
-    <!--<userPermissions>
+    <userPermissions>
         <enabled>true</enabled>
         <name>ManageSandboxes</name>
-    </userPermissions>-->
+    </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
         <name>ManageSharing</name>
@@ -733,10 +705,10 @@
         <enabled>true</enabled>
         <name>ManageSynonyms</name>
     </userPermissions>
-    <!--<userPermissions>
+    <userPermissions>
         <enabled>true</enabled>
         <name>ManageTrustMeasures</name>
-    </userPermissions>-->
+    </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
         <name>ManageUnlistedGroups</name>
@@ -777,14 +749,14 @@
         <enabled>true</enabled>
         <name>NewReportBuilder</name>
     </userPermissions>
-    <!--<userPermissions>
+    <userPermissions>
         <enabled>true</enabled>
         <name>OutboundMigrationToolsUser</name>
-    </userPermissions>-->
-    <!--<userPermissions>
+    </userPermissions>
+    <userPermissions>
         <enabled>true</enabled>
         <name>OverrideForecasts</name>
-    </userPermissions>-->
+    </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
         <name>Packaging2</name>
@@ -793,10 +765,10 @@
         <enabled>true</enabled>
         <name>Packaging2Delete</name>
     </userPermissions>
-    <!--<userPermissions>
+    <userPermissions>
         <enabled>true</enabled>
         <name>PipelineInspectorUser</name>
-    </userPermissions>-->
+    </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
         <name>PrivacyDataAccess</name>
@@ -817,10 +789,10 @@
         <enabled>true</enabled>
         <name>RunReports</name>
     </userPermissions>
-    <!--<userPermissions>
+    <userPermissions>
         <enabled>true</enabled>
         <name>ScheduleJob</name>
-    </userPermissions>-->
+    </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
         <name>ScheduleReports</name>
@@ -905,10 +877,10 @@
         <enabled>true</enabled>
         <name>ViewAllData</name>
     </userPermissions>
-    <!--<userPermissions>
+    <userPermissions>
         <enabled>true</enabled>
         <name>ViewAllForecasts</name>
-    </userPermissions>-->
+    </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
         <name>ViewAllProfiles</name>
@@ -973,10 +945,10 @@
         <enabled>true</enabled>
         <name>ViewSetup</name>
     </userPermissions>
-    <!--<userPermissions>
+    <userPermissions>
         <enabled>true</enabled>
         <name>ViewTrustMeasures</name>
-    </userPermissions>-->
+    </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
         <name>ViewUserPII</name>

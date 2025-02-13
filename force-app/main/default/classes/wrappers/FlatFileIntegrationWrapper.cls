@@ -1,0 +1,14 @@
+public class FlatFileIntegrationWrapper {
+    @InvocableVariable
+    public String path;
+    @InvocableVariable
+    public String body;
+    @InvocableVariable
+    public String fileName;
+    public FlatFileIntegrationWrapper(String filePath, String strBody, String strFileName){
+        this.path = filePath;
+        this.body = EncodingUtil.base64Encode(Blob.valueOf(strBody));
+        this.fileName = strFileName;
+    }
+    
+}
