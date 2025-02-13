@@ -1,0 +1,19 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 02-10-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <div class={mainDivCSS} role="alert">
+        <span class="slds-assistive-text">{type}</span>
+        <div>
+            <slot>
+                <lightning-formatted-rich-text
+        value={message}
+    ></lightning-formatted-rich-text>
+            </slot>
+        </div>
+        </div>
+</template>
