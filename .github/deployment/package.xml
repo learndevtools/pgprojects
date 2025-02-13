@@ -10,12 +10,29 @@
 		<members>SerializeContent</members>
 		<name>ApexClass</name>
 	</types>
+     <types>
+		<members>*</members>
+		<name>ContentAsset</name>
+	</types>
+	<types>
+		<members>PgProject</members>
+		<name>CustomApplication</name>
+	</types>
+    <types>
+		<members>Contact-Contact Layout</members>
+		<members>Email_List__c-Email List Layout</members>
+		<members>Email_Subscription__c-Email Subscription Layout</members>
+		<name>Layout</name>
+	</types>
 	<types>
 		<members>Contact.Is_Valid_Email__c</members>
 		<name>CustomField</name>
 	</types>
 	<types>
 		<members>External_Vendor_API_Keys__c</members>
+        <members>Contact</members>
+		<members>Email_List__c</members>
+		<members>Email_Subscription__c</members>
 		<name>CustomObject</name>
 	</types>
 	<types>
@@ -28,6 +45,8 @@
 		<members>Contact_Record_Page</members>
 		<members>Contact_Record_Page1</members>
 		<members>Contact_Record_Page_Three_Column</members>
+		<members>Getting_Started_Home</members>
+		<members>PgProject_UtilityBar</members>
 		<name>FlexiPage</name>
 	</types>
 	<types>
@@ -35,6 +54,10 @@
 		<members>RTF_Update_Email_Verification_Status</members>
 		<!--<members>SF_File_Upload_Component</members>-->
 		<members>SF_Youtube_Search</members>
+        <members>RTF_Opportunity_Create_Opportunity_Contact_Role_Transformation</members>
+		<members>SF_Create_Lead_Record_From_Contact</members>
+		<members>SF_Customer_Information_Screen</members>
+		<members>SF_Email_Subscription_Screen</members>
 		<name>Flow</name>
 	</types>
 	<types>
@@ -55,6 +78,8 @@
 	</types>
 	<types>
 		<members>Contact.Search_Video_On_Youtube_Channel</members>
+        <members>Contact.Create_Lead</members>
+		<members>Contact.Email_Subscription</members>
 		<name>QuickAction</name>
 	</types>
     <types>
