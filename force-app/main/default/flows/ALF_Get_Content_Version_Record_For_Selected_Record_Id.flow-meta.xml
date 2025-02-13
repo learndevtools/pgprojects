@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <assignments>
+        <description>PGP-0007 : Store all Content Document Id in the collection variable</description>
+        <name>Store_all_Content_Document_Ids</name>
+        <label>Store all Content Document Ids</label>
+        <locationX>156</locationX>
+        <locationY>458</locationY>
+        <assignmentItems>
+            <assignToReference>contentDocumentIds</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Collect_Content_Document_Ids.ContentDocumentId</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Collect_Content_Document_Ids</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <description>PGP-0007 : Match Content Document Link records for selected Record Id</description>
+        <name>Match_Entity_Link_Record_Id</name>
+        <label>Match Entity Link Record Id</label>
+        <locationX>176</locationX>
+        <locationY>242</locationY>
+        <defaultConnector>
+            <targetReference>Get_Content_Version_Records</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No Matching Records</defaultConnectorLabel>
+        <rules>
+            <name>Records_Match</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Document_Link_Record</leftValueReference>
+                <operator>IsEmpty</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Collect_Content_Document_Ids</targetReference>
+            </connector>
+            <label>Records Match</label>
+        </rules>
+    </decisions>
+    <description>PGP-0007 : This flow returns content version records for selected record Id. This component return Empty collection if no record match.</description>
+    <environments>Default</environments>
+    <interviewLabel>ALF - Get Content Version Record For Selected Record Id {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>ALF - Get Content Version Record For Selected Record Id</label>
+    <loops>
+        <description>PGP-0007: Store all content document record ids</description>
+        <name>Collect_Content_Document_Ids</name>
+        <label>Collect Content Document Ids</label>
+        <locationX>68</locationX>
+        <locationY>350</locationY>
+        <collectionReference>Get_Document_Link_Record</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Store_all_Content_Document_Ids</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Get_Content_Version_Records</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>PGP-0007 : Get content version records for selected record id value.</description>
+        <name>Get_Content_Version_Records</name>
+        <label>Get Content Version Records</label>
+        <locationX>176</locationX>
+        <locationY>734</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>ContentDocumentId</field>
+            <operator>In</operator>
+            <value>
+                <elementReference>contentDocumentIds</elementReference>
+            </value>
+        </filters>
+        <object>ContentVersion</object>
+        <outputReference>contentDocumentRecords</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Title</queriedFields>
+        <queriedFields>ContentUrl</queriedFields>
+        <queriedFields>FileType</queriedFields>
+        <queriedFields>FileExtension</queriedFields>
+        <queriedFields>RatingCount</queriedFields>
+        <queriedFields>VersionData</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <description>PGP-0007 : Get Content Document Link to fetch records for selected Account</description>
+        <name>Get_Document_Link_Record</name>
+        <label>Get Document Link Record</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Match_Entity_Link_Record_Id</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>LinkedEntityId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>ContentDocumentLink</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Document_Link_Record</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>PGP-0007 : Store all content documents record Id for selected record Id</description>
+        <name>contentDocumentIds</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>PGP-0007 : Store All content document records</description>
+        <name>contentDocumentRecords</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <objectType>ContentVersion</objectType>
+    </variables>
+    <variables>
+        <description>PGP-0007 : Store object Record Id to get records from Content Version object.</description>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>
