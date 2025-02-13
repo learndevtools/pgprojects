@@ -46,5 +46,7 @@ $RECYCLE.BIN/
 manifest/
 keys/
 server_*.key
-#main.yml
+BuyerAttributes.field-meta.xml
+DepartmentGroup.field-meta.xml
+TitleType.field-meta.xml
 

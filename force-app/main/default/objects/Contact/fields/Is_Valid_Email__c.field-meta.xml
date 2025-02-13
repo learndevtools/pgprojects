@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_Valid_Email__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>PGP-0007 : This field value stores whether given Email field value is valid or not.</description>
+    <label>Is Valid Email</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Checkbox</type>
+</CustomField>
