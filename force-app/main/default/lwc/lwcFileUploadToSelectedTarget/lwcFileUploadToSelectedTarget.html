@@ -1,0 +1,50 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 02-13-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+  <lightning-quick-action-panel header="File Upload">
+    <section>
+      <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-size_1-of-2">
+          <lightning-combobox
+               name="Select Target"
+               label="Select Destination"
+               value={value}
+               placeholder="Select File Upload Location"
+               options={options}
+               onchange={handleChange}>
+          </lightning-combobox>
+        </div>
+        <div class="slds-col slds-size_1-of-2">
+          <lightning-file-upload
+              label="Select File"
+              name="fileUpload"
+              accept={acceptedFormats}
+              record-id={recordId}
+              file-field-name="Guest_Record_fileupload__c"
+              onuploadfinished={handleUploadFinished}
+              multiple
+          >
+          </lightning-file-upload>
+        </div>
+
+      </div>
+    </section>
+    <section>
+      <div lwc:if={inputVariables}>
+       
+        <lightning-flow
+           lwc:ref="displayFile"  flow-interview-id={recordId} flow-api-name="SF_Display_Content_Version_Records" flow-input-variables={inputVariables}  >
+        </lightning-flow>
+      </div>
+    </section>
+    <div slot="footer">
+      <lightning-button variant="neutral" label="Close" onclick={closeModal}></lightning-button>
+      <lightning-button variant="brand" label="Upload File" class="slds-m-left_x-small" onclick={uploadFile}></lightning-button>
+    </div>
+  </lightning-quick-action-panel>
+</template>

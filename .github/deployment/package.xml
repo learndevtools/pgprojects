@@ -58,12 +58,15 @@
 		<members>SF_Create_Lead_Record_From_Contact</members>
 		<members>SF_Customer_Information_Screen</members>
 		<members>SF_Email_Subscription_Screen</members>
+		<members>ALF_Get_Content_Version_Record_For_Selected_Record_Id</members>
+		<members>SF_Display_Content_Version_Records</members>
 		<name>Flow</name>
 	</types>
 	<types>
 		<members>lwcDisplayDataTableInFlow</members>
         <members>flowCustomHeader</members>
 		<members>lwcDisplayFlowMessage</members>
+		<members>lwcFileUploadToSelectedTarget</members>
 		<name>LightningComponentBundle</name>
 	</types>
 	<types>
