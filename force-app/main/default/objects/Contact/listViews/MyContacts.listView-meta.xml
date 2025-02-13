@@ -6,9 +6,6 @@
     <columns>CONTACT.TITLE</columns>
     <columns>CONTACT.EMAIL</columns>
     <columns>CONTACT.PHONE1</columns>
-    <columns>ACTION_CADENCE</columns>
-    <columns>ACTION_CADENCE_ASSIGNEE</columns>
-    <columns>ACTION_CADENCE_STATE</columns>
     <filterScope>Mine</filterScope>
     <label>My Contacts</label>
 </ListView>
