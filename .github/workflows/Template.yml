@@ -44,7 +44,7 @@ on:
         required: false
 
 env:
-  ENGINES: "eslint,eslint-lwc,eslint-typescript,pmd,pmd-appexchange,retire-js,sfge,cpd,tslint,tslint-lwc"
+  ENGINES: "eslint,eslint-lwc,eslint-typescript,pmd,pmd-appexchange,retire-js,sfge,cpd,eslint,eslint-lwc"
   CATEGOORY: "Design, Best Practices, Security, Code Coverage, Code Duplication, Code Smells, Vulnerabilities, Deprecations, Performance, Code Style"
   OUTPUT_FILE: "scanned_reports/scan-reports.html"
   OUTPUT_FOLDER: "scanned_reports"
