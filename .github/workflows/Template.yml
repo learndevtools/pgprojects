@@ -79,7 +79,7 @@ jobs:
         run: |
           echo "Running Salesforce Code Analyzer Tool"
           mkdir -p ${{ env.OUTPUT_FOLDER }}
-          sf scanner:run --target "force-app" --format html --output ${{ env.OUTPUT_FILE }} --engine ${{ env.ENGINES }} --category ${{ env.CATEGOORY }} --severity-threshold 3
+          sf scanner:run --target "force-app" --format html --outfile ${{ env.OUTPUT_FILE }} --engine ${{ env.ENGINES }} --category ${{ env.CATEGOORY }} --severity-threshold 3
       - name: Upload Scanner Result as Artifact
         if: always() # always() - Uploads the artifact even if the job fails
         uses: actions/upload-artifact@v4.6.0
