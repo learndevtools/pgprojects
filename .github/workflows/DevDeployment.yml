@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   pull_request:
     branches:
-      - Dev
+      - DEV
     paths:
       - 'force-app/**'
     types:
@@ -17,6 +17,6 @@ jobs:
     uses: "./.github/workflows/Template.yml"
     with:
       envValue: Dev
-      BRANCH_NAME: Dev
+      BRANCH_NAME: DEV
     secrets: inherit
       #ENCRYPTED_KEY_FILE_WITH_IN_PATH: ${{ secrets.ENCRYPTED_KEY_FILE_WITH_IN_PATH }}
