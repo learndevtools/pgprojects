@@ -1,0 +1,14 @@
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<apiVersion>61.0</apiVersion>
+	<isExposed>true</isExposed>
+	<masterLabel>File Upload Quick Action - Without Flow</masterLabel>
+	<description>PGP-0008 :   File Upload Utility Without Flow Controller</description>
+	<targets>
+		<target>lightning__RecordAction</target>
+	</targets>
+	<targetConfigs>
+		<targetConfig targets="lightning__RecordAction">
+			<actionType>ScreenAction</actionType>
+		</targetConfig>
+	</targetConfigs>
+</LightningComponentBundle>
