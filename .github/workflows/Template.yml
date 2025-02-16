@@ -87,6 +87,11 @@ jobs:
           name: scan-reports
           path: ${{ env.OUTPUT_FILE }}
           if-no-files-found: ignore
+      - name: SonarQube Scan
+        # SonarQuebe, SonarCloud, SonarScanner , SonarSource
+        uses: SonarSource/sonarqube-scan-action@v4
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       - name: Install Salesforce DX GIT Delta
         run: |
           echo "Installing Salesforce DX Git Delta CLI Command"
