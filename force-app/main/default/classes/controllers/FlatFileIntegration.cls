@@ -1,3 +1,10 @@
+/**
+ * @description       : 
+ * @author            : salesforce
+ * @group             : 
+ * @last modified on  : 02-16-2025
+ * @last modified by  : salesforce
+**/
 public class FlatFileIntegration {
     public static void uploadFile(String message,String fileName){
         FlatFileIntegrationWrapper obj = new FlatFileIntegrationWrapper(
@@ -10,6 +17,7 @@ public class FlatFileIntegration {
         req.setBody(jsonPayload);
         Http http =new Http();
         HttpResponse response = http.send(req);
-        System.debug('response='+response.getBody());
+        /*System.debug('response='+response.getBody());
+        System.debug('message='+message);*/
     }
 }

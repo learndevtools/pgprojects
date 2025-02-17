@@ -1,0 +1,66 @@
+<!--
+  @description       : 
+  @author            : salesforce
+  @group             : 
+  @last modified on  : 02-17-2025
+  @last modified by  : salesforce
+-->
+<template>
+  <lightning-quick-action-panel header="File Upload">
+    <section>
+      <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-size_1-of-2">
+          <lightning-combobox
+               name="Select Target"
+               label="Select Destination"
+               value={value}
+               placeholder="Select File Upload Location"
+               options={options}
+               onchange={handleChange}>
+          </lightning-combobox>
+        </div>
+        <div class="slds-col slds-size_1-of-2">
+          <lightning-file-upload
+              label="Select File"
+              name="fileUpload"
+              accept={acceptedFormats}
+              record-id={recordId}
+              file-field-name="Record_fileupload__c"
+              file-field-value={fileFieldValue}
+              onuploadfinished={handleUploadFinished}
+              onfocus={handleSelectFile}
+              multiple
+              required
+              >
+          >
+          </lightning-file-upload>
+        </div>
+
+      </div>
+    </section>
+    <section class="slds-p-top_medium">
+      
+      <lightning-tabset variant="scoped">
+        <template for:each={tabs} for:item="tab">
+            <lightning-tab label={tab.label} key={tab.value} value={tab.value} onactive={handleActive}>
+              <div class="slds-grid slds-gutters">
+                <div class="slds-col slds-size_1-of-1">
+                  <lightning-datatable
+                      key-field="Id"
+                      data={fileFilterTargetRecords}
+                      columns={columns}
+                      hide-checkbox-column="true">
+                  </lightning-datatable>
+                </div>
+              </div>
+             
+            </lightning-tab>
+        </template>
+      </lightning-tabset> 
+    </section>
+    <div slot="footer">
+      <lightning-button variant="neutral" label="Close" onclick={closeModal}></lightning-button>
+      <lightning-button variant="brand" label="Upload File" class="slds-m-left_x-small" onclick={uploadFile} disabled={uploadButtonDisabled}></lightning-button>
+    </div>
+  </lightning-quick-action-panel>
+</template>

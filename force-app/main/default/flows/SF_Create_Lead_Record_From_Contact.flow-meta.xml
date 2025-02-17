@@ -480,6 +480,7 @@
         <isCollection>false</isCollection>
         <objectType>Lead</objectType>
         <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
         <transformValues>
             <transformValueActions>
                 <outputFieldApiName>Salutation</outputFieldApiName>

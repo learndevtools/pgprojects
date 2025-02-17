@@ -65,7 +65,6 @@
             </inputParameters>
             <label>ALF - Search Youtube Content</label>
             <nameSegment>ALF_Search_Youtube_Content</nameSegment>
-            <versionSegment>1</versionSegment>
         </actions>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>

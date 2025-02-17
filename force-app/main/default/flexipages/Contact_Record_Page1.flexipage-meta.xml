@@ -31,13 +31,13 @@
                             <value>EmailHighlightAction</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>FeedItem.ContentNote</value>
-                        </valueListItems>
-                        <valueListItems>
                             <value>FeedItem.TextPost</value>
                         </valueListItems>
                         <valueListItems>
                             <value>FeedItem.ContentPost</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Contact.Search_Video_On_Youtube_Channel</value>
                         </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
