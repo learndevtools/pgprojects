@@ -8,6 +8,13 @@
 		<members>Requests</members>
 		<members>Results</members>
 		<members>SerializeContent</members>
+		<members>Application</members>
+		<members>FileUploadController</members>
+		<members>FileUploadsService</members>
+		<members>FileUploadsServiceImpl</members>
+		<members>IFileUploadsService</members>
+		<members>FileContentDocumentWrapper</members>
+		<members>FileUploadControllerTest</members>
 		<name>ApexClass</name>
 	</types>
      <types>
