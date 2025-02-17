@@ -8,6 +8,13 @@
 		<members>Requests</members>
 		<members>Results</members>
 		<members>SerializeContent</members>
+		<members>Application</members>
+		<members>FileUploadController</members>
+		<members>FileUploadsService</members>
+		<members>FileUploadsServiceImpl</members>
+		<members>IFileUploadsService</members>
+		<members>FileContentDocumentWrapper</members>
+		<members>FileUploadControllerTest</members>
 		<name>ApexClass</name>
 	</types>
      <types>
@@ -22,6 +29,7 @@
 		<members>Contact-Contact Layout</members>
 		<members>Email_List__c-Email List Layout</members>
 		<members>Email_Subscription__c-Email Subscription Layout</members>
+		<members>File_Upload_Details__c-File Upload Details Layout</members>
 		<name>Layout</name>
 	</types>
 	<types>
@@ -33,6 +41,7 @@
         <members>Contact</members>
 		<members>Email_List__c</members>
 		<members>Email_Subscription__c</members>
+		<members>File_Upload_Details__c</members>
 		<name>CustomObject</name>
 	</types>
 	<types>
@@ -60,6 +69,8 @@
 		<members>SF_Email_Subscription_Screen</members>
 		<members>ALF_Get_Content_Version_Record_For_Selected_Record_Id</members>
 		<members>SF_Display_Content_Version_Records</members>
+		<members>RTF_Update_Email_Verification_Status</members>
+		<members>SF_File_Upload_Component</members>
 		<name>Flow</name>
 	</types>
 	<types>
@@ -67,6 +78,8 @@
         <members>flowCustomHeader</members>
 		<members>lwcDisplayFlowMessage</members>
 		<members>lwcFileUploadToSelectedTarget</members>
+		<members>lwcFileUploadsWithoutFlow</members>
+		<members>flowShowToastMessage</members>
 		<name>LightningComponentBundle</name>
 	</types>
 	<types>
@@ -83,6 +96,7 @@
 		<members>Contact.Search_Video_On_Youtube_Channel</members>
         <members>Contact.Create_Lead</members>
 		<members>Contact.Email_Subscription</members>
+		<members>Account.File_Upload</members>
 		<name>QuickAction</name>
 	</types>
     <types>
@@ -92,6 +106,10 @@
     <types>
 		<members>*</members>
 		<name>ExternalServiceRegistration</name>
+	</types>
+	<types>
+		<members>*</members>
+		<name>CustomTab</name>
 	</types>
 	<version>62.0</version>
 </Package>
