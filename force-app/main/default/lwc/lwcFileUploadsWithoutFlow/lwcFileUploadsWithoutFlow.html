@@ -2,7 +2,7 @@
   @description       : 
   @author            : salesforce
   @group             : 
-  @last modified on  : 02-14-2025
+  @last modified on  : 02-17-2025
   @last modified by  : salesforce
 -->
 <template>
@@ -25,9 +25,13 @@
               name="fileUpload"
               accept={acceptedFormats}
               record-id={recordId}
-              file-field-name="Guest_Record_fileupload__c"
+              file-field-name="Record_fileupload__c"
+              file-field-value={fileFieldValue}
               onuploadfinished={handleUploadFinished}
+              onfocus={handleSelectFile}
               multiple
+              required
+              >
           >
           </lightning-file-upload>
         </div>
@@ -56,7 +60,7 @@
     </section>
     <div slot="footer">
       <lightning-button variant="neutral" label="Close" onclick={closeModal}></lightning-button>
-      <lightning-button variant="brand" label="Upload File" class="slds-m-left_x-small" onclick={uploadFile}></lightning-button>
+      <lightning-button variant="brand" label="Upload File" class="slds-m-left_x-small" onclick={uploadFile} disabled={uploadButtonDisabled}></lightning-button>
     </div>
   </lightning-quick-action-panel>
 </template>
