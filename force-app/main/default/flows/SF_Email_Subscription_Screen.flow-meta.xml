@@ -861,6 +861,7 @@
         <dataType>String</dataType>
         <isCollection>true</isCollection>
         <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
         <transformValues>
             <transformValueActions>
                 <transformType>Map</transformType>
@@ -883,6 +884,7 @@
         <isCollection>true</isCollection>
         <objectType>Email_Subscription__c</objectType>
         <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
         <transformValues>
             <transformValueActions>
                 <outputFieldApiName>Email_List__c</outputFieldApiName>
@@ -927,6 +929,7 @@
         <isCollection>true</isCollection>
         <objectType>Email_Subscription__c</objectType>
         <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
         <transformValues>
             <transformValueActions>
                 <outputFieldApiName>Id</outputFieldApiName>
