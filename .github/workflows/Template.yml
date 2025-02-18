@@ -44,9 +44,10 @@ on:
         required: false
 
 env:
-  ENGINES: "eslint,eslint-lwc,eslint-typescript,pmd,pmd-appexchange,retire-js,sfge,cpd,tslint,tslint-lwc"
+  ENGINES: "eslint,eslint-lwc,eslint-typescript,pmd,pmd-appexchange,retire-js,sfge,cpd,eslint,eslint-lwc"
   CATEGOORY: "Design, Best Practices, Security, Code Coverage, Code Duplication, Code Smells, Vulnerabilities, Deprecations, Performance, Code Style"
   OUTPUT_FILE: "scanned_reports/scan-reports.html"
+  OUTPUT_FOLDER: "scanned_reports"
   #SF_ALIAS_VAR: "prod"
   TEST_LEVEL: "RunLocalTests"
 jobs:
@@ -59,37 +60,77 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
+
       - name: Install Salesforce CLI Command
         run: |
           echo "Installing Salesforce CLI - npm install -g @salesforce/cli"
           sudo apt-get update
           npm install -g @salesforce/cli
           sf update
+
       - name: Install Salesforce Code Analyzer Tool
         run: |
           echo "Installing Salesforce Code Analyzer Tool - npm install -g @salesforce/sfdx-scanner"
           sf plugins install @salesforce/sfdx-scanner
+
       - name: Upgrade Salesforce Anyalzer Tool to Latest Version
         run: |
           echo "Upgrading Salesforce Code Analyzer Tool - npm update -g @salesforce/sfdx-scanner"
           sf plugins update -v
           echo  ${{ github.event_name }} - ${{ github.ref }}
+
+      - name: Run Salesforce Code Analyzer Tool
+        run: |
+          echo "Running Salesforce Code Analyzer Tool"
+          mkdir -p ${{ env.OUTPUT_FOLDER }}
+          sf scanner:run --target "force-app" --format html --outfile ${{ env.OUTPUT_FILE }} --engine ${{ env.ENGINES }} --category ${{ env.CATEGOORY }} --severity-threshold 3
+
+      - name: Upload Scanner Result as Artifact
+        if: always() # always() - Uploads the artifact even if the job fails
+        uses: actions/upload-artifact@v4.6.0
+        with:
+          name: scan-reports
+          path: ${{ env.OUTPUT_FILE }}
+          if-no-files-found: ignore
+
       - name: Install Salesforce DX GIT Delta
         run: |
           echo "Installing Salesforce DX Git Delta CLI Command"
           sudo apt-get update
           echo 'y' | sf plugins install sfdx-git-delta
           sf update
+
       - name: Decrypt JWT Token for Salesforce Org
         run: |
           echo "Decrypting JWT Token for Salesforce Org"
           openssl enc -nosalt -aes-256-cbc -d -in ${{ secrets.ENCRYPTED_KEY_FILE_WITH_IN_PATH }} -out ${{ secrets.DECRYPTED_KEY_FILE_WITH_OUT_PATH }} -base64 -K ${{ secrets.DECRYPTED_KEY_VALUE }} -iv ${{ secrets.DECRYPTED_IV_VALUE }}
+
       - name: Authenticate Salesforce Org
         run: |
           echo "Authenticating Salesforce Org"
           echo "Environment -" ${{ inputs.envValue }}
           echo "Message -" ${{ inputs.MESSAGE }}
           sf org login jwt --username ${{ secrets.SF_USERNAME }} --jwt-key-file ${{ secrets.DECRYPTED_KEY_FILE_WITH_OUT_PATH }} --client-id ${{ secrets.CONSUMERY_KEY }} --set-default --alias ${{ secrets.SF_ALIAS }} --instance-url ${{ secrets.SF_INSTANCE }}
+
+      - name: Run the LocalTest Cases
+        run: |
+          echo "Running the Local Test Cases"
+          sf apex run test --target-org ${{ secrets.SF_ALIAS }}  --testlevel ${{ env.TEST_LEVEL }} --code-coverage --result-format human -d ./ --wait 10
+
+      - name: SonarQube Scan
+        # SonarQuebe, SonarCloud, SonarScanner , SonarSource
+        uses: SonarSource/sonarqube-scan-action@v4
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.apex.coverage.reportPath=test-result-codecoverage.json
+            -Dsonar.verbose=true
+            -Dsonar.language=apex
+            -Dsonar.sourceEncoding=UTF-8
+            -Dsonar.coverage.exclusions=**/*Test.cls
+            -Dsonar.exclusions=sonar.exclusions=**/*.cmp,**/force-app/**/fflib_*.cls,**/*.yml,**/*.js,**/*.xml,**/*.css,**/*.html,**/*.woff2,**/*.woff,**/*.auradoc,**/*.svg,force-app/main/default/staticresources/**        
+
       - name: Deploy PgProject Application to Salesforce Org
         run: |
           echo "Deploying PgProject Application to Salesforce Org"

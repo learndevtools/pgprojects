@@ -49,4 +49,6 @@ server_*.key
 BuyerAttributes.field-meta.xml
 DepartmentGroup.field-meta.xml
 TitleType.field-meta.xml
-
+reports/
+test-result*.*
+test-run-*.*

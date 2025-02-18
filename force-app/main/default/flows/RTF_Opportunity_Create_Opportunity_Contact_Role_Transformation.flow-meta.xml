@@ -88,6 +88,7 @@
         <isCollection>true</isCollection>
         <objectType>OpportunityContactRole</objectType>
         <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
         <transformValues>
             <transformValueActions>
                 <outputFieldApiName>ContactId</outputFieldApiName>
