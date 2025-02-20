@@ -73,12 +73,15 @@ public with sharing class HttpRequestsGetServiceImpl implements IHttpRequestsGet
         ENDPOINT,
         TIMEOUT
     }
-    /*
-     * @description       :  Method to send the HttpRequest
-     * @param jsonPayLoad
-     * @param externalVendor 
-     * @return Map<String, String>
-     **/
+    /**
+     * Sends an HTTP request with the given JSON payload and parameters.
+     * @description       :  Set the reponse body
+     * @param jsonPayLoad The JSON payload to be sent in the request body.
+     * @param params A list of maps containing the parameters for the HTTP request.
+     * @return A map containing the response status and message, or null if the request is successful.
+     * @throws System.CalloutException If there is an error during the HTTP callout.
+     * @throws System.Exception If there is a general exception during the process.
+     */
     public Map<String, String> sendHttpRequest(String jsonPayLoad,List<Map<String, String>> params){
         Http http = new Http();
         HttpRequest req;
@@ -119,38 +122,27 @@ public with sharing class HttpRequestsGetServiceImpl implements IHttpRequestsGet
      * @param params
      * @return HttpRequest
      **/
-    @SuppressWarnings({'PMD.CognitiveComplexity','PMD.CyclomaticComplexity'})
+    @SuppressWarnings({'PMD.CyclomaticComplexity'})
     private HttpRequest setHttpRequestBody(List<Map<String, String>> params){
         HttpRequest req = new HttpRequest();
         List<String> queryParam = new List<String>();
         for(Map<String,String> param : params){
             switch on param.get('type'){
                 when 'header'{
-                    if (String.isNotBlank(param.get(KEY)) && String.isNotBlank(param.get(VALUE))) {
-                        req.setHeader(param.get(KEY), param.get(VALUE));
-                    }
+                    req.setHeader(param.get(KEY), param.get(VALUE));
+                    
                 }
                 when 'timeout'{
-                    if (String.isNotBlank(param.get(VALUE))) {
-                        req.setTimeout(Integer.valueOf(param.get(VALUE)));
-                    }
+                    req.setTimeout(Integer.valueOf(param.get(VALUE)));
                 }
                 when 'endpoint' {
-                    if (String.isNotBlank(param.get(VALUE))) {
-                        req.setEndPoint(param.get(VALUE));
-                    }
+                    req.setEndPoint(param.get(VALUE));
                 }
                 when 'method'{
-                    if (String.isNotBlank(param.get(VALUE))) {
-                        req.setMethod(param.get(VALUE));
-                    }
+                    req.setMethod(param.get(VALUE));
                 }
                 when 'param' {
-                    if (String.isNotBlank(param.get(KEY)) && String.isNotBlank(param.get(VALUE))) {
-                        queryParam.add(param.get(KEY)+EQUAL_OPERATOR+param.get(VALUE));
-                    } else {
-                        continue;
-                    }
+                    queryParam.add(param.get(KEY)+EQUAL_OPERATOR+param.get(VALUE));
                 }
             }
         }
