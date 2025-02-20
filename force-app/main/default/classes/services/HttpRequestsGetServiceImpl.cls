@@ -106,6 +106,7 @@ public with sharing class HttpRequestsGetServiceImpl implements IHttpRequestsGet
      * @return Map<String, String>
      * Example - {StatusCode=200, message=Request has been processed successfully, status=success, responseBody = Response Body}
      **/
+    @SuppressWarnings('PMD.ExcessiveParameterList')
     private Map<String, String> setRespopnse(String status, String message, Integer statusCode, String responseBody){
         return new Map<String,String>{
             STATUS_KEY => status,
@@ -119,6 +120,8 @@ public with sharing class HttpRequestsGetServiceImpl implements IHttpRequestsGet
      * @param params
      * @return HttpRequest
      **/
+    @SuppressWarnings('PMD.CognitiveComplexity')
+    @SuppressWarnings('PMD.CyclomaticComplexity')
     private HttpRequest setHttpRequestBody(List<Map<String, String>> params){
         HttpRequest req = new HttpRequest();
         List<String> queryParam = new List<String>();
