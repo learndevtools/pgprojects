@@ -1,20 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
 	<types>
-		<members>DisplayYoutubeResults</members>
-		<members>FlatFileIntegration</members>
-		<members>FlatFileIntegrationWrapper</members>
-		<members>GetDataIntoBas64</members>
-		<members>Requests</members>
-		<members>Results</members>
-		<members>SerializeContent</members>
 		<members>Application</members>
 		<members>FileUploadController</members>
+		<members>FlatFileIntegration</members>
+		<members>GetDataIntoBas64</members>
+		<members>SerializeContent</members>
+		<members>ExternalVendorsIntegrationService</members>
+		<members>ExternalVendorsIntegrationServiceImpl</members>
 		<members>FileUploadsService</members>
 		<members>FileUploadsServiceImpl</members>
+		<members>HttpRequestsGetService</members>
+		<members>HttpRequestsGetServiceImpl</members>
+		<members>IExternalVendorsIntegrationService</members>
 		<members>IFileUploadsService</members>
+		<members>IHttpRequestsGetService</members>
+		<members>DisplayYoutubeResults</members>
+		<members>IHttpRequestsGetService</members>
 		<members>FileContentDocumentWrapper</members>
+		<members>FlatFileIntegrationWrapper</members>
+		<members>Requests</members>
+		<members>Results</members>
+		<members>Results</members>
+		<members>Results</members>
 		<members>FileUploadControllerTest</members>
+		<members>ExternalVendorsIntegrationServiceTest</members>
 		<name>ApexClass</name>
 	</types>
      <types>
@@ -26,7 +36,7 @@
 		<name>CustomApplication</name>
 	</types>
     <types>
-		<members>Contact-Contact Layout</members>
+		<!--<members>Contact-Contact Layout</members>-->
 		<members>Email_List__c-Email List Layout</members>
 		<members>Email_Subscription__c-Email Subscription Layout</members>
 		<members>File_Upload_Details__c-File Upload Details Layout</members>
@@ -48,6 +58,7 @@
 		<members>Email_Validation_API</members>
 		<members>FTP_External_Credential</members>
 		<members>Youtube_Search</members>
+		<members>Exchange_Rates</members>
 		<name>ExternalCredential</name>
 	</types>
 	<types>
@@ -90,6 +101,7 @@
 		<members>Email_Validation_API</members>
 		<members>External_API_Named_Credential_Principle</members>
 		<members>FTP_External_Credential</members>
+		<members>Exchange_Rates_PR</members>
 		<name>PermissionSet</name>
 	</types>
 	<types>
