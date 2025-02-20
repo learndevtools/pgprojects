@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSetGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>PGP-0008: Group of external services permission set access</description>
+    <hasActivationRequired>true</hasActivationRequired>
+    <label>External Service Access</label>
+    <permissionSets>Email_Validation_API</permissionSets>
+    <permissionSets>Exchange_Rates_PR</permissionSets>
+    <permissionSets>External_API_Named_Credential_Principle</permissionSets>
+    <permissionSets>FTP_External_Credential</permissionSets>
+    <permissionSets>Reverse_Geocoding</permissionSets>
+    <status>Updated</status>
+</PermissionSetGroup>

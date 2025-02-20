@@ -59,6 +59,7 @@
 		<members>FTP_External_Credential</members>
 		<members>Youtube_Search</members>
 		<members>Exchange_Rates</members>
+		<members>Reverse_Geocoding</members>
 		<name>ExternalCredential</name>
 	</types>
 	<types>
@@ -102,6 +103,7 @@
 		<members>External_API_Named_Credential_Principle</members>
 		<members>FTP_External_Credential</members>
 		<members>Exchange_Rates_PR</members>
+		<members>Reverse_Geocoding</members>
 		<name>PermissionSet</name>
 	</types>
 	<types>
@@ -110,6 +112,10 @@
 		<members>Contact.Email_Subscription</members>
 		<members>Account.File_Upload</members>
 		<name>QuickAction</name>
+	</types>
+	<types>
+		<members>External_Service_Access</members>
+		<name>PermissionSetGroup</name>
 	</types>
     <types>
 		<members>Admin</members>
