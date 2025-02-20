@@ -122,7 +122,7 @@ public with sharing class HttpRequestsGetServiceImpl implements IHttpRequestsGet
      * @param params
      * @return HttpRequest
      **/
-    @SuppressWarnings({'PMD.CyclomaticComplexity'})
+    @SuppressWarnings('PMD.CyclomaticComplexity')
     private HttpRequest setHttpRequestBody(List<Map<String, String>> params){
         HttpRequest req = new HttpRequest();
         List<String> queryParam = new List<String>();
