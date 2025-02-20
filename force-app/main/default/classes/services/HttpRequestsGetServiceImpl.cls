@@ -78,7 +78,6 @@ public with sharing class HttpRequestsGetServiceImpl implements IHttpRequestsGet
      * @param jsonPayLoad
      * @param externalVendor 
      * @return Map<String, String>
-     * @example - 
      **/
     public Map<String, String> sendHttpRequest(String jsonPayLoad,List<Map<String, String>> params){
         Http http = new Http();
