@@ -18,7 +18,7 @@ public with sharing class ExternalVendorsIntegrationServiceTest {
             'type' => 'param'
         });
         HttpRequest req = new HttpRequest();
-            Map<String, String> externalVendorIntegrations = Map<String,String> result =ExternalVendorsIntegrationService.getExternalServiceResult('Reverse Geocoding',null, params);
+            Map<String, String> externalVendorIntegrations = ExternalVendorsIntegrationService.getExternalServiceResult('Reverse Geocoding',null, params);
         Test.stopTest();
         System.assertEquals(true, externalVendorIntegrations.size()>0, 'External Vendor Integration should not be null');
     }
