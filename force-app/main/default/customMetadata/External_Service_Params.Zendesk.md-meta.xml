@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Zendesk</label>
+    <protected>false</protected>
+    <values>
+        <field>Is_Required_Encoding__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>Key_Value_Prefix__c</field>
+        <value xsi:type="xsd:string">Basic</value>
+    </values>
+    <values>
+        <field>Key__c</field>
+        <value xsi:type="xsd:string">Authorization</value>
+    </values>
+    <values>
+        <field>Type__c</field>
+        <value xsi:type="xsd:string">Header</value>
+    </values>
+    <values>
+        <field>Value__c</field>
+        <value xsi:type="xsd:string">puneetgaur.contact@gmail.com/token:bOdyF9I8Tnk7U6GhGSNQVPggu8kYEWUdCscSbkvC</value>
+    </values>
+</CustomMetadata>
