@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : salesforce
  * @group             : 
- * @last modified on  : 02-19-2025
+ * @last modified on  : 02-22-2025
  * @last modified by  : salesforce
  * How to use this service
  * sendHttpRequest => Public method to consume from other classes. This method accepts two parameter
@@ -127,6 +127,9 @@ public with sharing class HttpRequestsGetServiceImpl implements IHttpRequestsGet
         HttpRequest req = new HttpRequest();
         List<String> queryParam = new List<String>();
         for(Map<String,String> param : params){
+            if(String.isBlank(param.get(VALUE))){
+                continue;
+            }
             switch on param.get('type'){
                 when 'header'{
                     req.setHeader(param.get(KEY), param.get(VALUE));
