@@ -6,6 +6,8 @@
 		<members>FlatFileIntegration</members>
 		<members>GetDataIntoBas64</members>
 		<members>SerializeContent</members>
+		<members>ExternalServiceParamsSelector</members>
+		<members>IExternalServiceParamsSelector</members>
 		<members>ExternalVendorsIntegrationService</members>
 		<members>ExternalVendorsIntegrationServiceImpl</members>
 		<members>FileUploadsService</members>
@@ -21,7 +23,7 @@
 		<members>FlatFileIntegrationWrapper</members>
 		<members>Requests</members>
 		<members>Results</members>
-		<members>Results</members>
+		<members>ReverseGeocodingWrapper</members>
 		<members>Results</members>
 		<members>FileUploadControllerTest</members>
 		<members>ExternalVendorsIntegrationServiceTest</members>
@@ -128,6 +130,14 @@
 	<types>
 		<members>*</members>
 		<name>CustomTab</name>
+	</types>
+	<types>
+		<members>*</members>
+		<name>CustomMetadata</name>
+	</types>
+    <types>
+		<members>External_Service_Params__mdt</members>
+		<name>CustomObject</name>
 	</types>
 	<version>62.0</version>
 </Package>
