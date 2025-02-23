@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : salesforce
  * @group             : 
- * @last modified on  : 02-20-2025
+ * @last modified on  : 02-22-2025
  * @last modified by  : salesforce
  * How to use this service
  * sendHttpRequest => Public method to consume from other classes. This method accepts two parameter
@@ -88,7 +88,6 @@ public with sharing class HttpRequestsGetServiceImpl implements IHttpRequestsGet
         HttpResponse response = new HttpResponse();
         try{
             req = setHttpRequestBody(params);
-            System.debug('Request=>'+req);
             if(String.isNotBlank(jsonPayLoad)){
                 req.setBody(jsonPayLoad);
             }
