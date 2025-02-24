@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : salesforce
  * @group             : 
- * @last modified on  : 02-21-2025
+ * @last modified on  : 02-24-2025
  * @last modified by  : salesforce
 **/
 public with sharing class ExternalVendorsIntegrationServiceImpl implements IExternalVendorsIntegrationService {
@@ -20,7 +20,7 @@ public with sharing class ExternalVendorsIntegrationServiceImpl implements IExte
         for(External_Service_Params__mdt externalServiceParam : new ExternalServiceParamsSelector().getExternalServiceParamsConfiguration(vendorName)){
             params.add(new Map<String, String>{
                 KEY_STRING => externalServiceParam.Key__c,
-                TYPE_STRING => ((String.isNotBlank(externalServiceParam.Key_Value_Prefix__c)?externalServiceParam.Key_Value_Prefix__c:SPACE)+SPACE+(externalServiceParam.Is_Required_Encoding__c?EncodingUtil.base64Encode(Blob.valueOf(externalServiceParam.Value__c)):externalServiceParam.Value__c)).trim(),
+                VALUE_STRING => ((String.isNotBlank(externalServiceParam.Key_Value_Prefix__c)?externalServiceParam.Key_Value_Prefix__c:SPACE)+SPACE+(externalServiceParam.Is_Required_Encoding__c?EncodingUtil.base64Encode(Blob.valueOf(externalServiceParam.Value__c)):externalServiceParam.Value__c)).trim(),
                 TYPE_STRING => externalServiceParam.Type__c.toLowerCase()
             });
 
