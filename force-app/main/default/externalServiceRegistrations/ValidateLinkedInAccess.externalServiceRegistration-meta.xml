@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExternalServiceRegistration xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>PGP-0010 : Validate whether user has an access to send message or not.</description>
+    <label>ValidateLinkedInAccess</label>
+    <namedCredentialReference>LinkedIn_Account</namedCredentialReference>
+    <operations>
+        <active>true</active>
+        <name>validatex20userx20info</name>
+    </operations>
+    <registrationProviderType>SchemaInferred</registrationProviderType>
+    <schema>{&quot;openapi&quot;:&quot;3.0.1&quot;,&quot;info&quot;:{&quot;title&quot;:&quot;ValidateLinkedInAccess&quot;,&quot;description&quot;:&quot;PGP-0010 : Validate whether user has an access to send message or not.&quot;},&quot;paths&quot;:{&quot;/v2/userinfo&quot;:{&quot;get&quot;:{&quot;description&quot;:&quot;PGP-0010 : Validate User Details with GET method&quot;,&quot;operationId&quot;:&quot;Validate User Info&quot;,&quot;responses&quot;:{&quot;2XX&quot;:{&quot;description&quot;:&quot;Validating user information&quot;,&quot;content&quot;:{&quot;application/json&quot;:{&quot;schema&quot;:{&quot;type&quot;:&quot;object&quot;,&quot;properties&quot;:{&quot;sub&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;email_verified&quot;:{&quot;type&quot;:&quot;boolean&quot;},&quot;name&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;locale&quot;:{&quot;type&quot;:&quot;object&quot;,&quot;properties&quot;:{&quot;country&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;language&quot;:{&quot;type&quot;:&quot;string&quot;}}},&quot;given_name&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;family_name&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;email&quot;:{&quot;type&quot;:&quot;string&quot;}}}}}}}}}}}</schema>
+    <schemaType>OpenApi3</schemaType>
+    <serviceBinding>{&quot;host&quot;:&quot;&quot;,&quot;basePath&quot;:&quot;/&quot;,&quot;allowedSchemes&quot;:[],&quot;requestMediaTypes&quot;:[],&quot;responseMediaTypes&quot;:[],&quot;compatibleMediaTypes&quot;:{}}</serviceBinding>
+    <status>Complete</status>
+    <systemVersion>6</systemVersion>
+</ExternalServiceRegistration>
