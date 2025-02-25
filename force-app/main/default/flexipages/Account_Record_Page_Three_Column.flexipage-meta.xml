@@ -486,7 +486,7 @@
                 <identifier>force_relatedListSingleContainer5</identifier>
             </componentInstance>
         </itemInstances>
-        <itemInstances>
+        <!--<itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
                     <name>parentFieldApiName</name>
@@ -511,7 +511,7 @@
                 <componentName>force:relatedListSingleContainer</componentName>
                 <identifier>force_relatedListSingleContainer6</identifier>
             </componentInstance>
-        </itemInstances>
+        </itemInstances>-->
         <name>Facet-162da897-f102-40b0-9441-7ee34ef3c871</name>
         <type>Facet</type>
     </flexiPageRegions>
