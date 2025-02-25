@@ -38,7 +38,6 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <apiVersion>63.0</apiVersion>
-    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <description>PGP-0010 : Assign Post Message Values</description>
         <name>Assign_Post_Message</name>
@@ -84,12 +83,12 @@
             <targetReference>Post_Meesage_To_Channel_Action</targetReference>
         </connector>
     </assignments>
-    <customProperties>
+    <!--<customProperties>
         <name>ScreenProgressIndicator</name>
         <value>
             <stringValue>{&quot;location&quot;:&quot;top&quot;,&quot;type&quot;:&quot;simple&quot;}</stringValue>
         </value>
-    </customProperties>
+    </customProperties>-->
     <decisions>
         <description>PGP-0010 : Check Post Response</description>
         <name>Post_Validate</name>
