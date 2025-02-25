@@ -96,7 +96,7 @@
 		<members>ALF_Get_Content_Version_Record_For_Selected_Record_Id</members>
 		<members>SF_Display_Content_Version_Records</members>
 		<members>RTF_Update_Email_Verification_Status</members>
-		<members>SF_File_Upload_Component</members>
+		<members>SF_Post_Message_To_Linked_In</members>
 		<name>Flow</name>
 	</types>
 	<types>
