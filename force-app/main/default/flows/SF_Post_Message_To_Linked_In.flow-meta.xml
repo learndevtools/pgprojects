@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Post_Meesage_To_Channel_Action</name>
+        <label>Post Meesage To Channel Action</label>
+        <locationX>50</locationX>
+        <locationY>566</locationY>
+        <actionName>PostMessage.Post Meesage To Channel</actionName>
+        <actionType>externalService</actionType>
+        <connector>
+            <targetReference>Post_Validate</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>body</name>
+            <value>
+                <elementReference>SendTextBody</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>PostMessage.Post Meesage To Channel</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <description>PGP-0010 : Validate LinkedIn User Information</description>
+        <name>Validate_LinkedIn_User_Info_With_HttpCall_Out</name>
+        <label>Validate LinkedIn User Info With HttpCall Out</label>
+        <locationX>182</locationX>
+        <locationY>242</locationY>
+        <actionName>ValidateLinkedInAccess.Validate User Info</actionName>
+        <actionType>externalService</actionType>
+        <connector>
+            <targetReference>Validated_User_Information</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <nameSegment>ValidateLinkedInAccess.Validate User Info</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <apiVersion>63.0</apiVersion>
+    <assignments>
+        <description>PGP-0010 : Assign Post Message Values</description>
+        <name>Assign_Post_Message</name>
+        <label>Assign Post Message</label>
+        <locationX>50</locationX>
+        <locationY>458</locationY>
+        <assignmentItems>
+            <assignToReference>SendTextBody.specificContent.comx2elinkedinx2eugcx2eShareContent.shareCommentary.text</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>LinkedIn_Post1</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SendTextBody.author</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>autherDetail</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SendTextBody.lifecycleState</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>PUBLISHED</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SendTextBody.specificContent.comx2elinkedinx2eugcx2eShareContent.shareMediaCategory</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>NONE</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SendTextBody.visibility.comx2elinkedinx2eugcx2eMemberNetworkVisibility</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>PUBLIC</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Post_Meesage_To_Channel_Action</targetReference>
+        </connector>
+    </assignments>
+    <!--<customProperties>
+        <name>ScreenProgressIndicator</name>
+        <value>
+            <stringValue>{&quot;location&quot;:&quot;top&quot;,&quot;type&quot;:&quot;simple&quot;}</stringValue>
+        </value>
+    </customProperties>-->
+    <decisions>
+        <description>PGP-0010 : Check Post Response</description>
+        <name>Post_Validate</name>
+        <label>Post Validate</label>
+        <locationX>50</locationX>
+        <locationY>674</locationY>
+        <defaultConnector>
+            <targetReference>Response_Screen</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Failed</defaultConnectorLabel>
+        <rules>
+            <name>Sent</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Post_Meesage_To_Channel_Action.responseCode</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <numberValue>201.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Response_Screen</targetReference>
+            </connector>
+            <label>Sent</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>PGP-0010: Validate whether the user infor API is successful or failed..</description>
+        <name>Validated_User_Information</name>
+        <label>Validated User Information</label>
+        <locationX>182</locationX>
+        <locationY>350</locationY>
+        <defaultConnector>
+            <targetReference>Response_Screen</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Validated</defaultConnectorLabel>
+        <rules>
+            <name>User_Validated</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Validate_LinkedIn_User_Info_With_HttpCall_Out.responseCode</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <numberValue>200.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Post_Message</targetReference>
+            </connector>
+            <label>User Validated</label>
+        </rules>
+    </decisions>
+    <description>PGP-0010 : Post Message To Linked In Channel</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>PGP-0010 : Store Author Details of LinkedIn Post</description>
+        <name>autherDetail</name>
+        <dataType>String</dataType>
+        <expression>&quot;urn:li:person:&quot;&amp;{!Validate_LinkedIn_User_Info_With_HttpCall_Out.2XX.sub}</expression>
+    </formulas>
+    <formulas>
+        <description>PGP-0010 : Store Message as per response</description>
+        <name>displayMessage</name>
+        <dataType>String</dataType>
+        <expression>if(!{!User_Validated},&quot;There is an issue with Linked Message channel configuration, please contact with system administrator&quot;,if({!Sent},&quot;Message sent successfully to LinkedIn&quot;,&quot;There is an issue while sending message to LinkedIn. Please coordinate with System Admin&quot;))</expression>
+    </formulas>
+    <formulas>
+        <description>PGP-0010 : Store variant based on response</description>
+        <name>displayVariant</name>
+        <dataType>String</dataType>
+        <expression>if({!Sent},&quot;success&quot;,&quot;error&quot;)</expression>
+    </formulas>
+    <interviewLabel>SF - Post Message To Linked In {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>SF - Post Message To Linked In</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <screens>
+        <description>PGP-0010 : Post message to LinkedIn channel</description>
+        <name>LinkedIn_Post</name>
+        <label>LinkedIn Post</label>
+        <locationX>182</locationX>
+        <locationY>134</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Validate_LinkedIn_User_Info_With_HttpCall_Out</targetReference>
+        </connector>
+        <fields>
+            <name>LinkedIn_Post_Section1</name>
+            <fieldType>RegionContainer</fieldType>
+            <fields>
+                <name>LinkedIn_Post_Section1_Column1</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>LinkedIn_Post1</name>
+                    <fieldText>LinkedIn Post</fieldText>
+                    <fieldType>LargeTextArea</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>12</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <isRequired>false</isRequired>
+            <regionContainerType>SectionWithoutHeader</regionContainerType>
+        </fields>
+        <nextOrFinishButtonLabel>Post Message</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <description>PGP-0010 : Display Response Message</description>
+        <name>Response_Screen</name>
+        <label>Response Screen</label>
+        <locationX>182</locationX>
+        <locationY>950</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>showToastMessage</name>
+            <extensionName>c:flowShowToastMessage</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>message</name>
+                <value>
+                    <elementReference>displayMessage</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>variant</name>
+                <value>
+                    <elementReference>displayVariant</elementReference>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+        </fields>
+        <showFooter>false</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>LinkedIn_Post</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>PGP-0010 : Send Text Body</description>
+        <name>SendTextBody</name>
+        <apexClass>ExternalService__PostMessage_Postx20Meesagex20Tox20Channel_IN_body</apexClass>
+        <dataType>Apex</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

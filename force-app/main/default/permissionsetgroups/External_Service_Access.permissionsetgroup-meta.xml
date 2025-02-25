@@ -8,5 +8,6 @@
     <permissionSets>External_API_Named_Credential_Principle</permissionSets>
     <permissionSets>FTP_External_Credential</permissionSets>
     <permissionSets>Reverse_Geocoding</permissionSets>
+    <permissionSets>LinkedIn_Access</permissionSets>
     <status>Updated</status>
 </PermissionSetGroup>

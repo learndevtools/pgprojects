@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
 	<types>
+		<members>*</members>
+		<name>AuthProvider</name>
+	</types>
+	<types>
 		<members>Application</members>
 		<members>FileUploadController</members>
 		<members>FlatFileIntegration</members>
@@ -58,11 +62,18 @@
 	</types>
 	<types>
 		<members>Email_Validation_API</members>
-		<members>FTP_External_Credential</members>
-		<members>Youtube_Search</members>
 		<members>Exchange_Rates</members>
+		<members>FTP_External_Credential</members>
+		<members>LinkedIn_Account</members>
 		<members>Reverse_Geocoding</members>
+		<members>Youtube_Search</members>
+		<members>Zendesk</members>
+		<members>Zendesk_Ticket</members>
 		<name>ExternalCredential</name>
+	</types>
+	<types>
+		<members>*</members>
+		<name>ExternalDataSource</name>
 	</types>
 	<types>
 		<members>Contact_Record_Page</members>
@@ -70,6 +81,7 @@
 		<members>Contact_Record_Page_Three_Column</members>
 		<members>Getting_Started_Home</members>
 		<members>PgProject_UtilityBar</members>
+		<members>Account_Record_Page_Three_Column</members>
 		<name>FlexiPage</name>
 	</types>
 	<types>
@@ -84,7 +96,7 @@
 		<members>ALF_Get_Content_Version_Record_For_Selected_Record_Id</members>
 		<members>SF_Display_Content_Version_Records</members>
 		<members>RTF_Update_Email_Verification_Status</members>
-		<members>SF_File_Upload_Component</members>
+		<members>SF_Post_Message_To_Linked_In</members>
 		<name>Flow</name>
 	</types>
 	<types>
@@ -106,6 +118,7 @@
 		<members>FTP_External_Credential</members>
 		<members>Exchange_Rates_PR</members>
 		<members>Reverse_Geocoding</members>
+		<members>LinkedIn_Access</members>
 		<name>PermissionSet</name>
 	</types>
 	<types>
@@ -113,6 +126,7 @@
         <members>Contact.Create_Lead</members>
 		<members>Contact.Email_Subscription</members>
 		<members>Account.File_Upload</members>
+		<members>Account.LinkedIn_Post</members>
 		<name>QuickAction</name>
 	</types>
 	<types>
