@@ -38,7 +38,6 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <apiVersion>63.0</apiVersion>
-    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <description>PGP-0010 : Assign Post Message Values</description>
         <name>Assign_Post_Message</name>

@@ -492,10 +492,10 @@
                     <name>parentFieldApiName</name>
                     <value>Account.Id</value>
                 </componentInstanceProperties>
-                <componentInstanceProperties>
+                <!--<componentInstanceProperties>
                     <name>relatedListApiName</name>
                     <value>CampaignInfluences</value>
-                </componentInstanceProperties>
+                </componentInstanceProperties>-->
                 <componentInstanceProperties>
                     <name>relatedListComponentOverride</name>
                     <value>NONE</value>
