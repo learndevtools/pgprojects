@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : salesforce
  * @group             : 
- * @last modified on  : 02-22-2025
+ * @last modified on  : 02-25-2025
  * @last modified by  : salesforce
 **/
 @isTest
@@ -19,6 +19,21 @@ public with sharing class ExternalVendorsIntegrationServiceTest {
         });
         HttpRequest req = new HttpRequest();
             Map<String, String> externalVendorIntegrations = ExternalVendorsIntegrationService.getExternalServiceResult('Reverse Geocoding',null, params);
+        Test.stopTest();
+        System.assertEquals(true, externalVendorIntegrations.size()>0, 'External Vendor Integration should not be null');
+    }
+    @IsTest
+    private static void validateExtervalVendorWhenPassLinkedInPost() {
+        External_Vendor_API_Keys__c externalVendorAPIKey = createExternalVendorAPIKeyrecord();
+        Test.startTest();
+        List<Map<String, String>> params = new List<Map<String, String>>();
+        params.add(new Map<String, String>{
+            'key' => 'q',
+            'value' => '52.5432379%2C+13.4142133',
+            'type' => 'param'
+        });
+        HttpRequest req = new HttpRequest();
+            Map<String, String> externalVendorIntegrations = LinkedInPostController.externalServiceCallout('Reverse Geocoding',null, params);
         Test.stopTest();
         System.assertEquals(true, externalVendorIntegrations.size()>0, 'External Vendor Integration should not be null');
     }
