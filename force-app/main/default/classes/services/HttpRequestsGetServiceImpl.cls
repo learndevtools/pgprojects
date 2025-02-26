@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : salesforce
  * @group             : 
- * @last modified on  : 02-22-2025
+ * @last modified on  : 02-25-2025
  * @last modified by  : salesforce
  * How to use this service
  * sendHttpRequest => Public method to consume from other classes. This method accepts two parameter
@@ -53,7 +53,7 @@ public with sharing class HttpRequestsGetServiceImpl implements IHttpRequestsGet
     public static final String STATUS_ERROR_MESSAGE = 'Error while processing the request';
     public static final String STATUS_CODE = 'StatusCode';
     public static final String RESPONSE_BODY = 'ResponseBody';
-    public static final Integer SUCCESS_STATUS_CODE = 200;
+    public static final Set<Integer> SUCCESS_STATUS_CODE = new Set<Integer>{200,201};
     public static final Integer EXCEPTION_STATUS_CODE = 501;
     public static final String TYPE = 'type';  
     public static final String HEADER = 'header';  
@@ -92,7 +92,7 @@ public with sharing class HttpRequestsGetServiceImpl implements IHttpRequestsGet
                 req.setBody(jsonPayLoad);
             }
             response = http.send(req);
-            return response.getStatusCode() == SUCCESS_STATUS_CODE?setRespopnse(STATUS_SUCCESS,STATUS_SUCCESS_MESSAGE,response.getStatusCode(),response.getBody()):setRespopnse(STATUS_ERROR,STATUS_ERROR_MESSAGE,response.getStatusCode(), response.getBody());
+            return SUCCESS_STATUS_CODE.contains(response.getStatusCode())?setRespopnse(STATUS_SUCCESS,STATUS_SUCCESS_MESSAGE,response.getStatusCode(),response.getBody()):setRespopnse(STATUS_ERROR,STATUS_ERROR_MESSAGE,response.getStatusCode(), response.getBody());
         }catch(System.CalloutException exCallOut){
             return setRespopnse(STATUS_ERROR,STATUS_ERROR_MESSAGE,EXCEPTION_STATUS_CODE, exCallOut.getMessage());
         }catch(System.Exception ex){
