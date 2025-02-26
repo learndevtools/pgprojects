@@ -31,6 +31,7 @@
 		<members>Results</members>
 		<members>FileUploadControllerTest</members>
 		<members>ExternalVendorsIntegrationServiceTest</members>
+		<members>LinkedInPostController</members>
 		<name>ApexClass</name>
 	</types>
      <types>
@@ -106,6 +107,7 @@
 		<members>lwcFileUploadToSelectedTarget</members>
 		<members>lwcFileUploadsWithoutFlow</members>
 		<members>flowShowToastMessage</members>
+		<members>lwcLinkedInPostMessage</members>
 		<name>LightningComponentBundle</name>
 	</types>
 	<types>
@@ -127,6 +129,7 @@
 		<members>Contact.Email_Subscription</members>
 		<members>Account.File_Upload</members>
 		<members>Account.LinkedIn_Post</members>
+		<members>Contact.LinkedIn_Post</members>
 		<name>QuickAction</name>
 	</types>
 	<types>
@@ -152,6 +155,11 @@
     <types>
 		<members>External_Service_Params__mdt</members>
 		<name>CustomObject</name>
+	</types>
+	<types>
+		<members>LINKED_IN_BLANK_POST_MESSAGE</members>
+		<members>LINKED_IN_CONNECTION_FAILURE</members>
+		<name>CustomLabel</name>
 	</types>
 	<version>62.0</version>
 </Package>
