@@ -47,6 +47,7 @@
 		<members>Email_List__c-Email List Layout</members>
 		<members>Email_Subscription__c-Email Subscription Layout</members>
 		<members>File_Upload_Details__c-File Upload Details Layout</members>
+		<members>Linked_In_Post_Message__c-Linked In Post Message Layout</members>
 		<name>Layout</name>
 	</types>
 	<types>
@@ -154,12 +155,17 @@
 	</types>
     <types>
 		<members>External_Service_Params__mdt</members>
+		<members>Linked_In_Post_Message__c</members>
 		<name>CustomObject</name>
 	</types>
 	<types>
 		<members>LINKED_IN_BLANK_POST_MESSAGE</members>
 		<members>LINKED_IN_CONNECTION_FAILURE</members>
 		<name>CustomLabel</name>
+	</types>
+	<types>
+		<members>*</members>
+		<name>CustomPermission</name>
 	</types>
 	<version>62.0</version>
 </Package>
