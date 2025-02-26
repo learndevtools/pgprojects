@@ -1,0 +1,35 @@
+<!--
+  @description       : 
+  @author            : salesforce
+  @group             : 
+  @last modified on  : 02-25-2025
+  @last modified by  : salesforce
+-->
+<template>
+  <template lwc:if={userInfo}>
+    <lightning-quick-action-panel header="LinkedIn Post Message" onclose={closeModal} size="small">
+      <div class="slds-m-top_none">
+        <!-- With an icon -->
+        <div class="slds-p-around_medium lgc-bg">
+            <lightning-tile label={userInfo.name} type="media">
+                <lightning-icon slot="media" icon-name="standard:groups"></lightning-icon>
+                <p class="slds-truncate" title={userInfo.email}>{userInfo.email}</p>
+            </lightning-tile>
+        </div>
+     </div>
+      <div>
+        <lightning-input-rich-text
+          value={messageText}
+          label-visible
+          onchange={setMessageText}
+          placeholder="Compose your post message..."
+          required>
+        </lightning-input-rich-text>
+      </div>
+      <div slot="footer">
+        <lightning-button variant="neutral" label="Close" onclick={closeModal}></lightning-button>
+        <lightning-button variant="brand" label="Post" class="slds-m-left_x-small" onclick={postMessages}></lightning-button>
+      </div>
+    </lightning-quick-action-panel>  
+  </template>
+</template>
