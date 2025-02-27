@@ -122,6 +122,7 @@
 		<members>Exchange_Rates_PR</members>
 		<members>Reverse_Geocoding</members>
 		<members>LinkedIn_Access</members>
+		<members>Salesforce_Deployment_User</members>
 		<name>PermissionSet</name>
 	</types>
 	<types>
@@ -166,6 +167,26 @@
 	<types>
 		<members>*</members>
 		<name>CustomPermission</name>
+	</types>
+	<types>
+		<members>Salesforce_Deployment_Pipeline</members>
+		<name>ExternalClientApplication</name>
+	</types>
+	<types>
+		<members>Salesforce_Deployment_Pipeline_plcy</members>
+		<name>ExtlClntAppConfigurablePolicies</name>
+	</types>
+	<types>
+		<members>Salesforce_Deployment_Pipeline_glbloauth</members>
+		<name>ExtlClntAppGlobalOauthSettings</name>
+	</types>
+	<types>
+		<members>Salesforce_Deployment_Pipeline_oauthPlcy</members>
+		<name>ExtlClntAppOauthConfigurablePolicies</name>
+	</types>
+	<types>
+		<members>Salesforce_Deployment_Pipeline_oauth</members>
+		<name>ExtlClntAppOauthSettings</name>
 	</types>
 	<version>62.0</version>
 </Package>
