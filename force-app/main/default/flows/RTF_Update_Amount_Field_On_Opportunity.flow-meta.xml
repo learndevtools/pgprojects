@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>63.0</apiVersion>
-    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <!--<areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>-->
     <description>PGP-0012 - This flow updates the Amount field in the Account object with Potential Value in Opportunity,</description>
     <environments>Default</environments>
     <interviewLabel>RTF - Update Amount Field On Opportunity {!$Flow.CurrentDateTime}</interviewLabel>
