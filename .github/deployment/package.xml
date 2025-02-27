@@ -168,7 +168,7 @@
 		<members>*</members>
 		<name>CustomPermission</name>
 	</types>
-	<types>
+	<!--<types>
 		<members>Salesforce_Deployment_Pipeline</members>
 		<name>ExternalClientApplication</name>
 	</types>
@@ -187,6 +187,6 @@
 	<types>
 		<members>Salesforce_Deployment_Pipeline_oauth</members>
 		<name>ExtlClntAppOauthSettings</name>
-	</types>
+	</types>-->
 	<version>62.0</version>
 </Package>
