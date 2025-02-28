@@ -48,10 +48,14 @@
 		<members>Email_Subscription__c-Email Subscription Layout</members>
 		<members>File_Upload_Details__c-File Upload Details Layout</members>
 		<members>Linked_In_Post_Message__c-Linked In Post Message Layout</members>
+		<members>Contact-Contact Layout</members>
 		<name>Layout</name>
 	</types>
 	<types>
 		<members>Contact.Is_Valid_Email__c</members>
+		<members>Contact.Linked_In_Failure_Post__c</members>
+		<members>Contact.Linked_In_Success_Post__c</members>
+		<members>Contact.Total_Linked_In_Messages__c</members>
 		<name>CustomField</name>
 	</types>
 	<types>
