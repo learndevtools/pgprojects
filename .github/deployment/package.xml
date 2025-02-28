@@ -99,6 +99,7 @@
 		<members>SF_Display_Content_Version_Records</members>
 		<members>RTF_Update_Email_Verification_Status</members>
 		<members>SF_Post_Message_To_Linked_In</members>
+		<members>RTF_Update_Amount_Field_On_Opportunity</members>
 		<name>Flow</name>
 	</types>
 	<types>
@@ -167,6 +168,15 @@
 	<types>
 		<members>*</members>
 		<name>CustomPermission</name>
+	</types>
+	<types>
+		<members>Lead.Potential_Value__c</members>
+		<members>Opportunity.Potential_Value__c</members>
+		<name>CustomField</name>
+	</types>
+	<types>
+		<members>LeadConvertSettings</members>
+		<name>LeadConvertSettings</name>
 	</types>
 	<!--<types>
 		<members>Salesforce_Deployment_Pipeline</members>
