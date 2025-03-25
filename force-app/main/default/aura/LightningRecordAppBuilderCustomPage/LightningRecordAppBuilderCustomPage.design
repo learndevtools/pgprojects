@@ -1,0 +1,15 @@
+<design:component label="Custom Page With two Region and Top and Footer Region">
+    <flexipage:template >
+        <flexipage:region name="topPanel" defaultWidth="Large" label="Top Panel">
+
+        </flexipage:region>
+        <flexipage:region name="leftPanel" defaultWidth="Medium" label="Left Panel">
+            <flexipage:formfactor type="Medium" width="SMALL" />
+        </flexipage:region>
+        <flexipage:region name="rightPanel" defaultWidth="SMALL" label="Right Panel">
+            <flexipage:formfactor type="Medium" width="SMALL" />
+        </flexipage:region>
+        <flexipage:region name="footerPanel" defaultWidth="LARGE" label="Footer Panel">
+        </flexipage:region>
+    </flexipage:template>
+</design:component>
