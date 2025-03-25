@@ -202,5 +202,9 @@
 		<members>Salesforce_Deployment_Pipeline_oauth</members>
 		<name>ExtlClntAppOauthSettings</name>
 	</types>-->
+	<types>
+        <members>LightningRecordAppBuilderCustomPage</members>
+        <name>AuraDefinitionBundle</name>
+    </types>
 	<version>62.0</version>
 </Package>
