@@ -1,0 +1,25 @@
+<!--
+  @description       : 
+  @author            : salesforce
+  @group             : 
+  @last modified on  : 03-24-2025
+  @last modified by  : salesforce
+-->
+<aura:component implements="lightning:recordHomeTemplate"  access="global" description="A custom Lightning App Builder template.">
+    <aura:attribute name="leftPanel" type="Aura.Component[]" description="Left Region" />
+    <aura:attribute name="rightPanel" type="Aura.Component[]"  description="Right Region"/>
+    <aura:attribute name="topPanel" type="Aura.Component[]"  description="Top Region"/>
+    <aura:attribute name="footerPanel" type="Aura.Component[]"  description="Footer Region"/>
+    <div>
+        <div>{!v.topPanel}</div>
+        <lightning:layout>
+            <lightning:layoutitem flexibility = "grow" class="slds-m-right_small">
+                <div>{!v.leftPanel}</div>
+            </lightning:layoutitem>
+            <lightning:layoutitem class="slds-m-left_small" size="{! $Browser.isDesktop ? 4 : 6 }">
+                <div>{!v.rightPanel}</div>
+            </lightning:layoutitem>
+        </lightning:layout>
+        <div>{!v.footerPanel}</div>
+    </div>
+</aura:component>
