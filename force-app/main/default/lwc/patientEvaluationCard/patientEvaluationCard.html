@@ -1,0 +1,43 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 03-25-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <!--<lightning-card  title={componentType} >
+        <lightning-button label={status} slot="actions"></lightning-button>
+        <p>{status} : {dateValue}</p>
+        <br/>
+        <p>{notes}</p>
+    </lightning-card>-->
+    <div class="slds-m-bottom_xx-small slds-card lgc-bg content" style="min-height: 170px;">
+        <!-- With an icon -->
+        
+        <div class="slds-grid slds-gutters">
+            <!--<img src={imagepath} style="width:26px;height:26px;" />-->
+            <div class="slds-col slds-size_2-of-3">
+                <div class="slds-p-around_medium">
+                    
+                    <lightning-tile type="media">
+                        <lightning-avatar slot="media" src={imagepath}></lightning-avatar>
+                        <h1>{componentType}</h1>
+                        <br/>
+                        <p>{status} : {dateValue}</p>
+                        <p><lightning-formatted-text value={notes}></lightning-formatted-text></p>
+                    </lightning-tile>
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-3 slds-clearfix">
+                <div class="slds-p-around_x-small  slds-float_right">
+                    
+                        <div class="slds-box slds-box_xx-small slds-align_absolute-center" style={panelStyle}>
+                            <p class="slds-text-color_inverse">&nbsp;{status}&nbsp;</p>
+                        </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Image_Path__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(Type__c,
+&apos;Labs/Bloodwork&apos;, &apos;LabResults.png&apos;, 
+&apos;Cardiac Clearance&apos;, &apos;HeartEvaluation.png&apos;,
+&apos;Psychosocial Evaluation&apos;, &apos;Psyco.png&apos;,
+&apos;Palliative Evaluation&apos;, &apos;PallativeEvaluation.png&apos;,
+&apos;Financial Evaluation&apos;, &apos;Financial.png&apos;,
+&apos;Dental Clearance&apos;, &apos;DentalClearance.png&apos;,
+&apos;Cancer Screening&apos;, &apos;CancerScreening.png&apos;,
+&apos;Diagnostic Imaging&apos;, &apos;DiagnosticImage.png&apos;,&apos;&apos;
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Image Path</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

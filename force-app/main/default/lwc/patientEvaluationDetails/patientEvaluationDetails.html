@@ -1,0 +1,37 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 03-25-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <div class="slds-m-bottom_xx-small slds-card">
+        <div class="slds-box">
+            <h1>Clinical Evaluation Status</h1>
+            <p>Track progress of required evaluations</p>
+            <br/>
+            <div class="light-gray">
+                <div class="progress-color" style="height:44px;width:45%;">
+                    <b>5/8 Completed</b>
+                </div>
+            </div>
+            <br/>
+            <div  class="content">
+            <template for:each={storeEvaluationComponents} for:item="evaluationComponent">
+               
+                   <c-patient-evaluation-card key={evaluationComponent.Id}
+                        component-type={evaluationComponent.type}
+                        notes={evaluationComponent.notes}
+                        status={evaluationComponent.status}
+                        color={evaluationComponent.color}
+                        imagepath={evaluationComponent.imagepath}
+                        date-value={evaluationComponent.date} class="slds-m-around_xx-small"
+                    ></c-patient-evaluation-card>
+                
+            </template>
+        </div>
+        </div>
+
+    </div> 
+</template>
