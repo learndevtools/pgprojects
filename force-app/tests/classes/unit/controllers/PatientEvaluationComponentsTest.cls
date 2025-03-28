@@ -6,6 +6,7 @@
  * @last modified by  : salesforce
 **/
 @isTest
+@SuppressWarnings('PMD.TooManyFields')
 private with sharing class PatientEvaluationComponentsTest {
     private static String VALIDATE_COMPONENT_RECORD = 'System should return component record for selected evaluation record Id';
     private static String VALIDATE_COMPONENT_RECORD_WITH_UNAUTHORIZED_USER = 'System should throw an error message';
