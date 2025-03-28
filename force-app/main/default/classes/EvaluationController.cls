@@ -1,3 +1,10 @@
+/**
+ * @description       : 
+ * @author            : salesforce
+ * @group             : 
+ * @last modified on  : 03-27-2025
+ * @last modified by  : salesforce
+**/
 public with sharing class EvaluationController {
     @AuraEnabled(cacheable=true)
     public static List<Evaluation_Component__c> getEvaluationComponents(Id evaluationId) {
@@ -5,6 +12,7 @@ public with sharing class EvaluationController {
             SELECT Id, Name, Type__c, Status__c, Due_Date__c, Completion_Date__c, Notes__c
             FROM Evaluation_Component__c
             WHERE Evaluation__c = :evaluationId
+            WITH SECURITY_ENFORCED
             ORDER BY Type__c ASC
         ];
     }
@@ -15,6 +23,7 @@ public with sharing class EvaluationController {
             SELECT Id, Name, Document_Type__c, Date_Received__c, Verified__c, File_URL__c 
             FROM Patient_Document__c
             WHERE Evaluation__c = :evaluationId
+            WITH SECURITY_ENFORCED
             ORDER BY Date_Received__c DESC
         ];
     }
@@ -27,6 +36,7 @@ public with sharing class EvaluationController {
             FROM Appointment__c
             WHERE Evaluation__c = :evaluationId
             AND Start_Time__c >= TODAY
+            WITH SECURITY_ENFORCED
             ORDER BY Start_Time__c ASC
         ];
     }
@@ -56,7 +66,7 @@ public with sharing class EvaluationController {
         }
         
         try {
-            update component;
+            Database.update(component, AccessLevel.USER_MODE);
         } catch (Exception e) {
             throw new AuraHandledException('Error updating component: ' + e.getMessage());
         }
@@ -69,12 +79,14 @@ public with sharing class EvaluationController {
             SELECT COUNT(Id) totalCount 
             FROM Evaluation_Component__c 
             WHERE Evaluation__c = :evaluationId
+            WITH SECURITY_ENFORCED
         ];
         
         AggregateResult[] completedResults = [
             SELECT COUNT(Id) completedCount 
             FROM Evaluation_Component__c 
             WHERE Evaluation__c = :evaluationId
+            WITH SECURITY_ENFORCED
             //AND Status__c = 'Completed'
         ];
         
@@ -95,7 +107,7 @@ public with sharing class EvaluationController {
         if (!evaluations.isEmpty()) {
             Evaluation__c eval = evaluations[0];
             eval.Progress__c = progressPercentage;
-            update eval;
+            Database.update(eval, AccessLevel.USER_MODE);
         }
         
         return progressPercentage;
@@ -109,7 +121,7 @@ public with sharing class EvaluationController {
         }
         
         try {
-            insert appointment;
+            Database.update(appointment, AccessLevel.USER_MODE);
             return appointment.Id;
         } catch (Exception e) {
             throw new AuraHandledException('Error creating appointment: ' + e.getMessage());
@@ -128,7 +140,7 @@ public with sharing class EvaluationController {
         );
         
         try {
-            insert doc;
+            Database.insert(doc, AccessLevel.USER_MODE);
             return doc.Id;
         } catch (Exception e) {
             throw new AuraHandledException('Error uploading document: ' + e.getMessage());
