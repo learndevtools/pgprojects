@@ -129,10 +129,10 @@ public with sharing class EvaluationController {
     }
     
     @AuraEnabled
-    public static Id uploadDocument(String documentName, String documentType, Id patientId, Id evaluationId, String fileUrl) {
+    public static Id uploadDocument(Id patientId, Id evaluationId, String fileUrl) {
         Patient_Document__c doc = new Patient_Document__c(
-            Name = documentName,
-            Document_Type__c = documentType,
+            Name = 'UploadDocument.txt',
+            Document_Type__c = 'txt',
             Patient__c = patientId,
             Evaluation__c = evaluationId,
             Date_Received__c = Datetime.now(),

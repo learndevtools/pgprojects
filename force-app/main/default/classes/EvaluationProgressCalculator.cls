@@ -5,7 +5,7 @@
  * @last modified on  : 03-27-2025
  * @last modified by  : salesforce
 **/
-public class EvaluationProgressCalculator {
+public with sharing class EvaluationProgressCalculator {
     @future
     public static void calculateProgress(Set<Id> evaluationIds) {
         List<Evaluation__c> evaluationsToUpdate = new List<Evaluation__c>();
