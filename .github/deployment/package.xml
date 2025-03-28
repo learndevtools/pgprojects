@@ -32,6 +32,9 @@
 		<members>FileUploadControllerTest</members>
 		<members>ExternalVendorsIntegrationServiceTest</members>
 		<members>LinkedInPostController</members>
+		<members>PatientEvaluationComponents</members>
+	    <members>EvaluationController</members>
+	    <members>EvaluationProgressCalculator</members>
 		<name>ApexClass</name>
 	</types>
      <types>
@@ -39,9 +42,14 @@
 		<name>ContentAsset</name>
 	</types>
 	<types>
+		<members>HRSA</members>
 		<members>PgProject</members>
 		<name>CustomApplication</name>
 	</types>
+	<types>
+      <members>EvaluationComponentTrigger</members>
+      <name>ApexTrigger</name>
+   </types>
     <types>
 		<!--<members>Contact-Contact Layout</members>-->
 		<members>Email_List__c-Email List Layout</members>
@@ -49,6 +57,11 @@
 		<members>File_Upload_Details__c-File Upload Details Layout</members>
 		<members>Linked_In_Post_Message__c-Linked In Post Message Layout</members>
 		<members>Contact-Contact Layout</members>
+		<members>Appointment__c-Appointment Layout</members>
+      <members>Evaluation_Component__c-Evaluation Component Layout</members>
+      <members>Evaluation__c-Evaluation Layout</members>
+      <members>Patient_Document__c-Patient Document Layout</members>
+      <members>Transplant_Patient__c-Transplant Patient Layout</members>
 		<name>Layout</name>
 	</types>
 	<types>
@@ -60,10 +73,15 @@
 	</types>
 	<types>
 		<members>External_Vendor_API_Keys__c</members>
-        <members>Contact</members>
+        <!--<members>Contact</members>-->
 		<members>Email_List__c</members>
 		<members>Email_Subscription__c</members>
 		<members>File_Upload_Details__c</members>
+		<members>Appointment__c</members>
+      <members>Evaluation_Component__c</members>
+      <members>Evaluation__c</members>
+      <members>Patient_Document__c</members>
+      <members>Transplant_Patient__c</members>
 		<name>CustomObject</name>
 	</types>
 	<types>
@@ -88,6 +106,9 @@
 		<members>Getting_Started_Home</members>
 		<members>PgProject_UtilityBar</members>
 		<members>Account_Record_Page_Three_Column</members>
+		 <members>HRSA_UtilityBar</members>
+      <members>Evaluation_Custom_Page</members>
+      <members>Evaluation_Page_Custom_App</members>
 		<name>FlexiPage</name>
 	</types>
 	<types>
@@ -114,6 +135,21 @@
 		<members>lwcFileUploadsWithoutFlow</members>
 		<members>flowShowToastMessage</members>
 		<members>lwcLinkedInPostMessage</members>
+		<members>evaluationManagement</members>
+	      <members>evaluationManagements</members>
+	      <members>evaluationStatusBadge</members>
+	      <members>menuPanel</members>
+	      <members>modalWrapper</members>
+	      <members>myComponent</members>
+	      <members>oppCard</members>
+	      <members>oppRecordForm</members>
+	      <members>patientEvaluationCard</members>
+	      <members>patientEvaluationDetails</members>
+	      <members>patientEvaluationTile</members>
+	      <members>recordModal</members>
+	      <members>scheduleAppointment</members>
+	      <members>showModal</members>
+	      <members>uploadFiles</members>
 		<name>LightningComponentBundle</name>
 	</types>
 	<types>
@@ -128,6 +164,7 @@
 		<members>Reverse_Geocoding</members>
 		<members>LinkedIn_Access</members>
 		<members>Salesforce_Deployment_User</members>
+		<members>HRSA_App_Access</members>
 		<name>PermissionSet</name>
 	</types>
 	<types>
@@ -204,7 +241,12 @@
 	</types>-->
 	<types>
         <members>LightningRecordAppBuilderCustomPage</members>
+        <members>LightningRecordAppBuilderCustomPage</members>
         <name>AuraDefinitionBundle</name>
     </types>
+        <types>
+		<members>EvaluationImage</members>
+		<name>StaticResource</name>
+	</types>
 	<version>62.0</version>
 </Package>
