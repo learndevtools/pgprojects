@@ -33,19 +33,7 @@ private with sharing class PatientEvaluationComponentsTest {
     private static String TP_ORGAN_TYPE = 'Kidney';
     @TestSetup
     static void setupEvaluationRecord(){
-      User standardUser = new User(
-          ProfileId = standardUserProfile(),
-          Alias= USER_ALIAS,
-          Email=USER_EMAIL,
-          LastName =USER_LAST_NAME,
-          FirstName = USER_FIRST_NAME,
-          UserName=USER_NAME,
-          LanguageLocaleKey=USER_LANGUAGE_LOCALE_KEY,
-          TimeZoneSidKey=USER_TIME_ZONE_SIDKEY,
-          EmailEncodingKey=USER_EMAIL_ENCODING_KEY,
-          LocaleSidKey=USER_LOCALE_SID_KEY         
-      );
-      insert standardUser;
+      User standardUser = createUser();
       Transplant_Patient__c transplanRecord = createTransplantPatientRecord();
       Evaluation__c evalRecord = createPatientEvaluationRecord(transplanRecord.Id);
       Patient_Document__c patientDocRecord = createPatientDocumentRecord(transplanRecord.Id,evalRecord.Id);
@@ -131,5 +119,20 @@ private with sharing class PatientEvaluationComponentsTest {
       return [
         SELECT Id FROM User WHERE Alias= :USER_ALIAS LIMIT 1
       ]?.get(0);
+   }
+   private static User createUser(){
+      User standardUser = new User();
+      standardUser.ProfileId = standardUserProfile();
+      standardUser.Alias= USER_ALIAS;
+      standardUser.Email=USER_EMAIL;
+      standardUser.LastName =USER_LAST_NAME;
+      standardUser.FirstName = USER_FIRST_NAME;
+      standardUser.UserName=USER_NAME;
+      standardUser.LanguageLocaleKey=USER_LANGUAGE_LOCALE_KEY;
+      standardUser.TimeZoneSidKey=USER_TIME_ZONE_SIDKEY;
+      standardUser.EmailEncodingKey=USER_EMAIL_ENCODING_KEY;
+      standardUser.LocaleSidKey=USER_LOCALE_SID_KEY;
+      insert standardUser;
+      return standardUser;
    }
 }
