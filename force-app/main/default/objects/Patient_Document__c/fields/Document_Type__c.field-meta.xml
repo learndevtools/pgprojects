@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Document_Type__c</fullName>
+    <label>Document Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Medical Records</fullName>
+                <default>false</default>
+                <label>Medical Records</label>
+            </value>
+            <value>
+                <fullName>Insurance Card</fullName>
+                <default>false</default>
+                <label>Insurance Card</label>
+            </value>
+            <value>
+                <fullName>Laboratory Results</fullName>
+                <default>false</default>
+                <label>Laboratory Results</label>
+            </value>
+            <value>
+                <fullName>Imaging Results</fullName>
+                <default>false</default>
+                <label>Imaging Results</label>
+            </value>
+            <value>
+                <fullName>Consent Forms</fullName>
+                <default>false</default>
+                <label>Consent Forms</label>
+            </value>
+            <value>
+                <fullName>Psychosocial Assessment</fullName>
+                <default>false</default>
+                <label>Psychosocial Assessment</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

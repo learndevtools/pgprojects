@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type__c</fullName>
+    <label>Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Labs/Bloodwork</fullName>
+                <default>false</default>
+                <label>Labs/Bloodwork</label>
+            </value>
+            <value>
+                <fullName>Diagnostic Imaging</fullName>
+                <default>false</default>
+                <label>Diagnostic Imaging</label>
+            </value>
+            <value>
+                <fullName>Cardiac Clearance</fullName>
+                <default>false</default>
+                <label>Cardiac Clearance</label>
+            </value>
+            <value>
+                <fullName>Dental Clearance</fullName>
+                <default>false</default>
+                <label>Dental Clearance</label>
+            </value>
+            <value>
+                <fullName>Psychosocial Evaluation</fullName>
+                <default>false</default>
+                <label>Psychosocial Evaluation</label>
+            </value>
+            <value>
+                <fullName>Palliative Evaluation</fullName>
+                <default>false</default>
+                <label>Palliative Evaluation</label>
+            </value>
+            <value>
+                <fullName>Cancer Screening</fullName>
+                <default>false</default>
+                <label>Cancer Screening</label>
+            </value>
+            <value>
+                <fullName>Financial Evaluation</fullName>
+                <default>false</default>
+                <label>Financial Evaluation</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
