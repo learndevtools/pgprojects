@@ -3,6 +3,9 @@
         <flexipage:region name="topPanel" defaultWidth="Large" label="Top Panel">
 
         </flexipage:region>
+        <flexipage:region name="menuPanel" defaultWidth="Large" label="Menu Panel">
+
+        </flexipage:region>
         <flexipage:region name="leftPanel" defaultWidth="Medium" label="Left Panel">
             <flexipage:formfactor type="Medium" width="SMALL" />
         </flexipage:region>

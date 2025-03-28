@@ -1,0 +1,23 @@
+h1, .h1 {
+    font-size: 1.4em;
+    font-weight: bold;
+  }
+  .light-gray {
+    background-color: lightgray;
+
+  }
+  .progress-color {
+    background-color: #00A1E0;
+    text-align: center;
+  }
+
+  .content{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  c-patient-evaluation-card{
+    min-width: 45%;
+    min-height: 150px;
+    flex: 1;
+
+  }

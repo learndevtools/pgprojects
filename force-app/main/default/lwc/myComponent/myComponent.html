@@ -1,0 +1,22 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 03-24-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <lightning-card  title="Lightning Card">
+        <div class="slds-m-left_small">
+            <lightning-button variant="brand" label="Show Contacts" onclick={toggleView}></lightning-button>
+            <template lwc:if={showContacts}>
+                <p>Showing Contacts</p>
+                <template for:each={contacts} for:item="contact">
+                    <li key={contact.Id}>
+                        <p>{contact.Id} | {contact.FirstName}| {contact.LastName}</p>
+                   </li>
+                </template>
+            </template>
+        </div>
+    </lightning-card>
+</template>
