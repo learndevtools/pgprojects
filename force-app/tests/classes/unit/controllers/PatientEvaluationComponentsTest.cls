@@ -11,7 +11,7 @@ private with sharing class PatientEvaluationComponentsTest {
     private static String VALIDATE_COMPONENT_RECORD = 'System should return component record for selected evaluation record Id';
     private static String VALIDATE_COMPONENT_RECORD_WITH_UNAUTHORIZED_USER = 'System should throw an error message';
     //Parameters for create New User
-   	private static String USER_ALIAS = 'test2803';
+   	private static String USER_ALIAS = 'test28';
     private static String USER_EMAIL = 'learndeavtools@outlook.com';
     private static String USER_LAST_NAME = 'Testing';
     private static String USER_FIRST_NAME = 'Testing';
@@ -32,9 +32,11 @@ private with sharing class PatientEvaluationComponentsTest {
     private static String TP_INSURANCE = 'Medicare';
     private static String TP_MRN = 'MRN-00001';
     private static String TP_ORGAN_TYPE = 'Kidney';
+    private static String HRSA_PERMISISON_SET = 'HRSA_App_Access';
     @TestSetup
     static void setupEvaluationRecord(){
-      User standardUser = createUser();
+
+      User standardUser2 = createUser('2');
       Transplant_Patient__c transplanRecord = createTransplantPatientRecord();
       Evaluation__c evalRecord = createPatientEvaluationRecord(transplanRecord.Id);
       Patient_Document__c patientDocRecord = createPatientDocumentRecord(transplanRecord.Id,evalRecord.Id);
@@ -44,8 +46,12 @@ private with sharing class PatientEvaluationComponentsTest {
     static void validateEvaluationComponentWhenEvaluationCreated() {
       List<Evaluation_Component__c> evalCompRecords = null;
       Id evaluationRecord = [SELECT ID FROM Evaluation__c LIMIT 1]?.Id;
+      User standardUser = createUser('1');
+      setPermissionSet(standardUser.Id);
         Test.startTest();
+        System.runAs(getStandardUser(USER_ALIAS+'1')) {
             evalCompRecords = PatientEvaluationComponents.getEvaluationComponents(evaluationRecord);
+        }
         Test.stopTest();
         System.Assert.isNotNull(evalCompRecords, VALIDATE_COMPONENT_RECORD);
         
@@ -56,7 +62,7 @@ private with sharing class PatientEvaluationComponentsTest {
       Boolean isError = false;
       Id evaluationRecord = [SELECT ID FROM Evaluation__c LIMIT 1]?.Id;
         Test.startTest();
-          System.runAs(getStandardUser()) {
+          System.runAs(getStandardUser(USER_ALIAS+'2')) {
               try{
                   evalCompRecords = PatientEvaluationComponents.getEvaluationComponents(evaluationRecord);
               }catch(Exception ex){
@@ -116,24 +122,42 @@ private with sharing class PatientEvaluationComponentsTest {
         LIMIT 1
       ]?.Id;
    }
-   private static User getStandardUser(){
-      return [
-        SELECT Id FROM User WHERE Alias= :USER_ALIAS LIMIT 1
+   private static User getStandardUser(String userAlias){
+       System.debug('userAlias='+userAlias+'=');
+       User userRecord=[
+        SELECT Id FROM User WHERE Alias= :userAlias LIMIT 1
+      ]?.get(0);
+        System.debug('userAlias='+userAlias+'='+userRecord);
+       return [
+        SELECT Id FROM User WHERE Alias= :userAlias LIMIT 1
       ]?.get(0);
    }
-   private static User createUser(){
+   private static User createUser(String userNumber){
       User standardUser = new User();
       standardUser.ProfileId = standardUserProfile();
-      standardUser.Alias= USER_ALIAS;
+      standardUser.Alias= USER_ALIAS+userNumber;
       standardUser.Email=USER_EMAIL;
-      standardUser.LastName =USER_LAST_NAME;
-      standardUser.FirstName = USER_FIRST_NAME;
-      standardUser.UserName=USER_NAME;
+      standardUser.LastName =USER_LAST_NAME+userNumber;
+      standardUser.FirstName = USER_FIRST_NAME+userNumber;
+      standardUser.UserName=USER_NAME+userNumber;
       standardUser.LanguageLocaleKey=USER_LANGUAGE_LOCALE_KEY;
       standardUser.TimeZoneSidKey=USER_TIME_ZONE_SIDKEY;
       standardUser.EmailEncodingKey=USER_EMAIL_ENCODING_KEY;
       standardUser.LocaleSidKey=USER_LOCALE_SID_KEY;
       insert standardUser;
+       System.debug('standardUser='+standardUser);
       return standardUser;
+   }
+   private static void setPermissionSet(Id userId){
+      Id permissionsetId = [
+         SELECT
+           Id
+         FROM
+           PermissionSet
+           WHERE
+              Name = :HRSA_PERMISISON_SET
+         LIMIT 1
+       ]?.Id;
+       insert new PermissionSetAssignment(AssigneeId = userId, PermissionSetId = permissionsetId);
    }
 }
