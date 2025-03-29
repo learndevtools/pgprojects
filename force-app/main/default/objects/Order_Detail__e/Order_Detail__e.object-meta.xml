@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>PGP-0015 : Platform Event To Stores all Order Details</description>
+    <eventType>HighVolume</eventType>
+    <label>Order Detail</label>
+    <pluralLabel>Order Details</pluralLabel>
+    <publishBehavior>PublishAfterCommit</publishBehavior>
+</CustomObject>
