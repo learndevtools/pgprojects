@@ -1,0 +1,24 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 03-26-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <lightning-modal-header label={headerLabel}></lightning-modal-header>
+    <lightning-modal-body>
+        <lightning-record-form
+            record-id={recordId}
+            object-api-name={objectApiName}
+            mode={formMode}
+            layout-type={layoutType}
+            columns={columns}
+            oncancel={handleCancel}
+            onsuccess={handleSuccess}
+        ></lightning-record-form>
+    </lightning-modal-body>
+    <lightning-modal-footer>
+        <p class="slds-align_absolute-center">This information is the sole property of GenWatt, Inc.</p>
+    </lightning-modal-footer>
+</template>
