@@ -1,0 +1,89 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 03-26-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <lightning-card>
+        <h3 slot="title">
+            <lightning-icon icon-name="standard:service_appointment" size="small"></lightning-icon>
+            &nbsp;&nbsp;Schedule Appointment
+        </h3>
+        <div class="slds-m-around_medium slds-align_absolute-center">
+            <button class="slds-button slds-button_brand slds-button_stateful slds-not-selected slds-button_stretch"
+                style="height:50px" aria-live="assertive" onclick={scheduleAppointment}>
+                <span class="slds-text-not-selected slds-text-heading_medium">
+                    +Schedule Appointment</span>
+            </button>
+        </div>
+
+    </lightning-card>
+    <template lwc:if={isDisplayModal}>
+        <c-show-modal onclose={closeModal}>
+            <div slot="header">
+                <h1>Evaluation Appintment</h1>
+            </div>
+            <div slot="footer">
+                <button class="slds-button slds-button_neutral" aria-label="Cancel and close"
+                    onclick={closeModal}>Cancel</button>
+                <!--<button class="slds-button slds-button_brand" onclick={saveForm}>Save</button>-->
+                <lightning-button label="Save" onclick={saveForm} variant="brand"></lightning-button>
+            </div>
+            <div>
+                <lightning-record-edit-form object-api-name="Appointment__c"  onsubmit={handleSubmit} oncancel={handleCancel}>
+                    <div class="slds-hide slds-grid">
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning-input-field field-name="Evaluation__c"
+                                value={recordId}>
+                            </lightning-input-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning-input-field field-name="Patient__c"
+                            value={patientId}>
+                            </lightning-input-field>
+                        </div>
+                    </div>
+                    <div class="slds-grid">
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning-input-field field-name="Evaluation_Component__c"
+                                value={evaluationComponent}>
+                            </lightning-input-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning-input-field field-name="Appointment_Type__c"
+                            value={appointmentType}>
+                            </lightning-input-field>
+                        </div>
+                    </div>
+                    <div class="slds-grid">
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning-input-field field-name="Start_Time__c"
+                                value={evaluationStartDateTime}>
+                            </lightning-input-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning-input-field field-name="End_Time__c"
+                            value={evaluationEndDateTime}>
+                            </lightning-input-field>
+                        </div>
+                    </div>
+                    <div class="slds-grid">
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning-input-field field-name="Location__c"
+                                value={evaluationLocation}>
+                            </lightning-input-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning-input-field field-name="Special_Requirements__c"
+                            value={evaluationSpecialRequirement}>
+                            </lightning-input-field>
+                        </div>
+                    </div>
+
+                </lightning-record-edit-form>
+            </div>
+        </c-show-modal>
+    </template>
+</template>

@@ -1,0 +1,55 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 03-26-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <lightning-card>
+       <h3 slot="title">
+               <lightning-icon icon-name="standard:file" size="small"></lightning-icon>
+               &nbsp;&nbsp;Document Management
+        </h3>
+        <div class="slds-m-around_medium slds-align_absolute-center">
+            <!--<button class="slds-button slds-button_brand slds-button_stretch">Upload Document</button>-->
+            <button class="slds-button slds-button_brand slds-button_stateful slds-not-selected slds-button_stretch" style="height:50px" aria-live="assertive" onclick={uploadFile}>
+                <span class="slds-text-not-selected slds-text-heading_medium">
+                    +Upload Document</span>
+            </button>
+            <!--<lightning-input type="file" name="input1" label="Select File" variant="label-hidden"></lightning-input>-->
+        </div>
+        
+    </lightning-card>
+    <template lwc:if={isDisplayModal}>
+        <c-show-modal onclose={closeModal}>
+            <div slot="header"><h1>Upload Evaluation Files</h1></div>
+            <div slot="footer">
+                <button class="slds-button slds-button_neutral" aria-label="Cancel and close" onclick={closeModal}>Cancel</button>
+                <!--<button class="slds-button slds-button_brand">Save</button>-->
+            </div>
+            <div>
+                <!--<lightning-input 
+                    type="file" 
+                    name="input1" 
+                    label="Select File" 
+                    onchange={handleFileUpload}
+                    variant="label-hidden">
+                </lightning-input>-->
+                <lightning-file-upload
+                    variant="label-hidden"
+                    name="fileUploader"
+                    record-id={recordId}
+                    onuploadfinished={handleUploadFinished}
+                   multiple>
+                </lightning-file-upload>
+            </div>
+            <template lwc:if={fileData}>
+                <div class="slds-m-around_small">
+                    <p>{fileData.filename}</p>
+                </div>
+            </template>
+            
+        </c-show-modal>
+    </template>
+</template>
