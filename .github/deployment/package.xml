@@ -110,8 +110,9 @@
 		<members>PgProject_UtilityBar</members>
 		<members>Account_Record_Page_Three_Column</members>
 		 <members>HRSA_UtilityBar</members>
-      <members>Evaluation_Custom_Page</members>
-      <members>Evaluation_Page_Custom_App</members>
+		<members>Evaluation_Custom_Page</members>
+		<members>Evaluation_Page_Custom_App</members>
+		<members>Integration_Use_Cases_UtilityBar</members>
 		<name>FlexiPage</name>
 	</types>
 	<types>
