@@ -123,11 +123,9 @@ private with sharing class PatientEvaluationComponentsTest {
       ]?.Id;
    }
    private static User getStandardUser(String userAlias){
-       System.debug('userAlias='+userAlias+'=');
        User userRecord=[
         SELECT Id FROM User WHERE Alias= :userAlias LIMIT 1
       ]?.get(0);
-        System.debug('userAlias='+userAlias+'='+userRecord);
        return [
         SELECT Id FROM User WHERE Alias= :userAlias LIMIT 1
       ]?.get(0);
@@ -145,7 +143,6 @@ private with sharing class PatientEvaluationComponentsTest {
       standardUser.EmailEncodingKey=USER_EMAIL_ENCODING_KEY;
       standardUser.LocaleSidKey=USER_LOCALE_SID_KEY;
       insert standardUser;
-       System.debug('standardUser='+standardUser);
       return standardUser;
    }
    private static void setPermissionSet(Id userId){
