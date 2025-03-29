@@ -35,6 +35,7 @@
 		<members>PatientEvaluationComponents</members>
 	    <members>EvaluationController</members>
 	    <members>EvaluationProgressCalculator</members>
+		<members>PatientEvaluationComponentsTest</members>
 		<name>ApexClass</name>
 	</types>
      <types>
