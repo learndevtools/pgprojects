@@ -85,6 +85,7 @@
       	<members>Patient_Document__c</members>
       	<members>Transplant_Patient__c</members>
 	  	<members>Order_Detail__e</members>
+		<members>Lightning_Component_Refresh__e</members>
 		<name>CustomObject</name>
 	</types>
 	<types>

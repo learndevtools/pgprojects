@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Order_Number__c</fullName>
-    <externalId>false</externalId>
+    <fullName>Component_Name__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>PGP-0017 - This field contains True/False to trigger page refresh event.</description>
     <isFilteringDisabled>false</isFilteringDisabled>
     <isNameField>false</isNameField>
     <isSortingDisabled>false</isSortingDisabled>
-    <label>Order Number</label>
-    <length>255</length>
-    <required>false</required>
-    <type>Text</type>
-    <unique>false</unique>
+    <label>Component Refresh</label>
+    <type>Checkbox</type>
 </CustomField>
