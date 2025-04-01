@@ -1,0 +1,10 @@
+<!--
+  @description       : 
+  @author            : salesforce
+  @group             : 
+  @last modified on  : 04-01-2025
+  @last modified by  : salesforce
+-->
+<aura:component implements="lightning:availableForFlowActions" access="global">
+
+</aura:component>
