@@ -45,6 +45,7 @@
 	<types>
 		<members>HRSA</members>
 		<members>PgProject</members>
+		<members>Integration_Use_Cases</members>
 		<name>CustomApplication</name>
 	</types>
 	<types>
@@ -79,10 +80,12 @@
 		<members>Email_Subscription__c</members>
 		<members>File_Upload_Details__c</members>
 		<members>Appointment__c</members>
-      <members>Evaluation_Component__c</members>
-      <members>Evaluation__c</members>
-      <members>Patient_Document__c</members>
-      <members>Transplant_Patient__c</members>
+      	<members>Evaluation_Component__c</members>
+      	<members>Evaluation__c</members>
+      	<members>Patient_Document__c</members>
+      	<members>Transplant_Patient__c</members>
+	  	<members>Order_Detail__e</members>
+		<members>Lightning_Component_Refresh__e</members>
 		<name>CustomObject</name>
 	</types>
 	<types>
@@ -108,8 +111,9 @@
 		<members>PgProject_UtilityBar</members>
 		<members>Account_Record_Page_Three_Column</members>
 		 <members>HRSA_UtilityBar</members>
-      <members>Evaluation_Custom_Page</members>
-      <members>Evaluation_Page_Custom_App</members>
+		<members>Evaluation_Custom_Page</members>
+		<members>Evaluation_Page_Custom_App</members>
+		<members>Integration_Use_Cases_UtilityBar</members>
 		<name>FlexiPage</name>
 	</types>
 	<types>
@@ -166,6 +170,7 @@
 		<members>LinkedIn_Access</members>
 		<members>Salesforce_Deployment_User</members>
 		<members>HRSA_App_Access</members>
+		<members>Integration_Learning</members>
 		<name>PermissionSet</name>
 	</types>
 	<types>
