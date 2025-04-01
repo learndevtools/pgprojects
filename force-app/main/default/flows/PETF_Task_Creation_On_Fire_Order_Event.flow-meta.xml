@@ -43,7 +43,7 @@
         <offset>0</offset>
     </actionCalls>
     <apiVersion>63.0</apiVersion>
-    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <!--<areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>-->
     <decisions>
         <description>PGP-0017 - Validate Custom Notification Record</description>
         <name>Validate_Custom_Notification_Record</name>

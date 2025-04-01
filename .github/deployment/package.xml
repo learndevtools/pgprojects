@@ -215,6 +215,7 @@
 	<types>
 		<members>LINKED_IN_BLANK_POST_MESSAGE</members>
 		<members>LINKED_IN_CONNECTION_FAILURE</members>
+        <members>ORDER_EVENT_CUSTOM_NOTIFICATION</members>
 		<name>CustomLabel</name>
 	</types>
 	<types>
