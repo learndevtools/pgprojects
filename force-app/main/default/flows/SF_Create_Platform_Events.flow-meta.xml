@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>63.0</apiVersion>
-    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
-    <customProperties>
+    <!--<areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>-->
+    <!--<customProperties>
         <name>ScreenProgressIndicator</name>
         <value>
             <stringValue>{&quot;location&quot;:&quot;top&quot;,&quot;type&quot;:&quot;simple&quot;}</stringValue>
         </value>
-    </customProperties>
+    </customProperties>-->
     <description>PGP-0016 - Create platform event through screen</description>
     <environments>Default</environments>
     <interviewLabel>SF - Create Platform Events {!$Flow.CurrentDateTime}</interviewLabel>
