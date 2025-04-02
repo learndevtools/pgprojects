@@ -1,10 +1,13 @@
 import { LightningElement, api } from "lwc";
 import {subscribe, unsubscribe, onError, setDebugFlage , isEmpEnabled} from 'lightning/empApi'
 import {RefreshEvent, registerRefreshHandler, unregisterRefreshHandler} from 'lightning/refresh';
+import lightningConfirm from 'lightning/confirm';
+import { notifyRecordUpdateAvailable } from 'lightning/uiRecordApi';
 export default class DisplayRefreshMessage extends LightningElement {
 	@api recordId;
 	@api objectApiName;
 	@api channelName = '/data/ContactChangeEvent';
+	jsonResponse;
 	isDisplayBanner = false;
 	subscription = {}
 
@@ -21,7 +24,7 @@ export default class DisplayRefreshMessage extends LightningElement {
 		const messageCallBack = (response)=>{
 			console.log("New Message Received=", JSON.stringify(response));
 			//this.isDisplayBanner = true;
-			this.handleChangeResponse()
+			this.handleChangeResponse(response)
 		}
 		subscribe(this.channelName,-1,messageCallBack).then((response) =>{
 			console.log("Subscription Request Sent", JSON.stringify(response));
@@ -41,13 +44,38 @@ export default class DisplayRefreshMessage extends LightningElement {
             // Error contains the server-side error
         });
 	}
-	handleChangeResponse(){
-		console.log('Received Response');
-		this.isDisplayBanner = true;
+	handleChangeResponse(response){
+		if(response.hasOwnProperty('data')){
+			let jsonObj = response.data;
+			if(jsonObj.hasOwnProperty("payload")){
+				let payload = jsonObj.payload;
+				const isRecordFound = payload.ChangeEventHeader.recordIds.find((currItem)=> currItem === this.recordId);
+				if(isRecordFound){
+					this.isDisplayBanner = true;
+				}
+			}
+		}
 	}
-	refreshPage(event){
-		this.isDisplayBanner = false;
+	async refreshPage(event){
+		const result = await lightningConfirm.open({
+				message: 'Are you sure you want to refresh the page?',
+				variant: 'header', //header or headerless
+				label:'Please confirm',
+				theme: 'error', //Valid values are "default", "shade","inverse", "alt-inverse", "success","success", "info", "warning", "error",and "offline".
+				cancelLabel: 'No',
+				confirmLabel: 'Yes'
+		});
+		if(result){
+			//this.isDisplayBanner = false;
+			//this.dispatchEvent(new RefreshEvent());
+			await notifyRecordUpdateAvailable([{
+				recordId: this.recordId
+			}]).then(result=>{
+				this.isDisplayBanner = false;
+			}).catch(error=>{
+
+			})
+		}
 		
-		this.dispatchEvent(new RefreshEvent());
 	}
 }
