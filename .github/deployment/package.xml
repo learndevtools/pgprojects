@@ -265,5 +265,9 @@
 		<members>ChangeEvents_ContactChangeEvent</members>
 		<name>PlatformEventChannelMember</name>
 	</types>
+	<types>
+		<members>Order_Event_Notification</members>
+		<name>CustomNotificationType</name>
+	</types>
 	<version>62.0</version>
 </Package>
