@@ -14,4 +14,11 @@
         <shortDescription>PGP-0010 : LinkedIn User Connection Failure</shortDescription>
         <value>Please contact with system administrator to configure LinkedIn User details!!</value>
     </labels>
+    <labels>
+        <fullName>ORDER_EVENT_CUSTOM_NOTIFICATION</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PGP-0017 - ORDER EVENT CUSTOM NOTIFICATION</shortDescription>
+        <value>Order_Event_Notification</value>
+    </labels>
 </CustomLabels>

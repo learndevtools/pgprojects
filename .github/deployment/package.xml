@@ -64,6 +64,7 @@
       <members>Evaluation__c-Evaluation Layout</members>
       <members>Patient_Document__c-Patient Document Layout</members>
       <members>Transplant_Patient__c-Transplant Patient Layout</members>
+	  <members>Task-Task Layout</members>
 		<name>Layout</name>
 	</types>
 	<types>
@@ -130,6 +131,9 @@
 		<members>RTF_Update_Email_Verification_Status</members>
 		<members>SF_Post_Message_To_Linked_In</members>
 		<members>RTF_Update_Amount_Field_On_Opportunity</members>
+		<members>PETF_Task_Creation_On_Fire_Order_Event</members>
+		<members>RTF_Send_Notification_On_Appointment_Record</members>
+		<members>SF_Create_Platform_Events</members>
 		<name>Flow</name>
 	</types>
 	<types>
@@ -180,6 +184,7 @@
 		<members>Account.File_Upload</members>
 		<members>Account.LinkedIn_Post</members>
 		<members>Contact.LinkedIn_Post</members>
+		<members>Task.Create_Order_Event</members>
 		<name>QuickAction</name>
 	</types>
 	<types>
@@ -210,6 +215,7 @@
 	<types>
 		<members>LINKED_IN_BLANK_POST_MESSAGE</members>
 		<members>LINKED_IN_CONNECTION_FAILURE</members>
+        <members>ORDER_EVENT_CUSTOM_NOTIFICATION</members>
 		<name>CustomLabel</name>
 	</types>
 	<types>
@@ -253,6 +259,15 @@
         <types>
 		<members>EvaluationImage</members>
 		<name>StaticResource</name>
+	</types>
+	<types>
+		<members>ChangeEvents_AccountChangeEvent</members>
+		<members>ChangeEvents_ContactChangeEvent</members>
+		<name>PlatformEventChannelMember</name>
+	</types>
+	<types>
+		<members>Order_Event_Notification</members>
+		<name>CustomNotificationType</name>
 	</types>
 	<version>62.0</version>
 </Package>
