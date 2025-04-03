@@ -1,13 +1,12 @@
 /**
  * @description       : 
  * @author            : salesforce
- * @group             : 
+ * @group             : gaurp
  * @last modified on  : 04-02-2025
  * @last modified by  : salesforce
 **/
 public inherited sharing class ContactChangeEvents extends fflib_SObjects implements IContactChangeEvents {
-    /*
-    */
+
     private static final string STATUS_NEW = 'New';
     private static final string CREATE_OPS = 'CREATE';
     private static final string UPDATE_OPS = 'UPDATE';
