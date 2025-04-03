@@ -54,6 +54,7 @@
 		<members>HRSA</members>
 		<members>PgProject</members>
 		<members>Integration_Use_Cases</members>
+		<members>Flow_Automations</members>
 		<name>CustomApplication</name>
 	</types>
 	<types>
@@ -81,6 +82,7 @@
 		<members>Contact.Linked_In_Failure_Post__c</members>
 		<members>Contact.Linked_In_Success_Post__c</members>
 		<members>Contact.Total_Linked_In_Messages__c</members>
+		<members>Activity.Assigned_Coordinator__c</members>
 		<name>CustomField</name>
 	</types>
 	<types>
@@ -124,6 +126,7 @@
 		<members>Evaluation_Custom_Page</members>
 		<members>Evaluation_Page_Custom_App</members>
 		<members>Integration_Use_Cases_UtilityBar</members>
+		<members>Flow_Automations_UtilityBar</members>
 		<name>FlexiPage</name>
 	</types>
 	<types>
@@ -143,6 +146,7 @@
 		<members>PETF_Task_Creation_On_Fire_Order_Event</members>
 		<members>RTF_Send_Notification_On_Appointment_Record</members>
 		<members>SF_Create_Platform_Events</members>
+		<members>RTF_Task_Related_To_Id_Field_With_Assigned_To_Coordinator_Field</members>
 		<name>Flow</name>
 	</types>
 	<types>
@@ -184,6 +188,7 @@
 		<members>Salesforce_Deployment_User</members>
 		<members>HRSA_App_Access</members>
 		<members>Integration_Learning</members>
+		<members>Flow_WorkShops</members>
 		<name>PermissionSet</name>
 	</types>
 	<types>
