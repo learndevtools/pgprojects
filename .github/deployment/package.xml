@@ -126,6 +126,7 @@
 		<members>Evaluation_Custom_Page</members>
 		<members>Evaluation_Page_Custom_App</members>
 		<members>Integration_Use_Cases_UtilityBar</members>
+		<members>Flow_Automations_UtilityBar</members>
 		<name>FlexiPage</name>
 	</types>
 	<types>
