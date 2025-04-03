@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <!--<areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>-->
+    <assignments>
+        <description>PGP-0019: Assigned User Record Id to Realted To Record Id</description>
+        <name>Assign_Owner_to_Assigned_to_Coordinator_Record_Id</name>
+        <label>Assign Owner to Assigned to Coordinator Record Id</label>
+        <locationX>270</locationX>
+        <locationY>695</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.OwnerId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>userRecordId</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <description>PGP-0019 : Assigned Current User Id</description>
+        <name>Assigned_Current_User_Id_For_Empty_Assigned_Coordinator</name>
+        <label>Assigned Current User Id For Empty Assigned Coordinator</label>
+        <locationX>314</locationX>
+        <locationY>395</locationY>
+        <assignmentItems>
+            <assignToReference>userRecordId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$User.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Validate_Task_Owner_Field_Value</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <description>PGP-0019 : Assigned Coordinator Is Not Empty</description>
+        <name>Validate_Assigned_Coordinator_Is_Not_Empty</name>
+        <label>Validate Assigned Coordinator Is Not Empty</label>
+        <locationX>182</locationX>
+        <locationY>287</locationY>
+        <defaultConnector>
+            <targetReference>Assigned_Current_User_Id_For_Empty_Assigned_Coordinator</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Assigned_Coordinator_Is_not_Empty</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Assigned_Coordinator__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_User_Record_Id</targetReference>
+            </connector>
+            <label>Assigned Coordinator Is not Empty</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>PGP-0019 - Validate Task Owner Field value with Assigned to coordinator field value</description>
+        <name>Validate_Task_Owner_Field_Value</name>
+        <label>Validate Task Owner Field Value</label>
+        <locationX>182</locationX>
+        <locationY>587</locationY>
+        <defaultConnector>
+            <targetReference>Assign_Owner_to_Assigned_to_Coordinator_Record_Id</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Match</defaultConnectorLabel>
+        <rules>
+            <name>Match</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.OwnerId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>userRecordId</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>userRecordId</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>Match</label>
+        </rules>
+    </decisions>
+    <description>PGP-0019 - This flow updates Related To Id field value to Assigned Coordinator field value.</description>
+    <environments>Default</environments>
+    <interviewLabel>RTF - Task Related To Id Field With Assigned To Coordinator Field {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>RTF - Task Related To Id Field With Assigned To Coordinator Field</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>PGP-0019 - Get Selected Assigned to coordinator user record Id</description>
+        <name>Get_User_Record_Id</name>
+        <label>Get User Record Id</label>
+        <locationX>50</locationX>
+        <locationY>395</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Validate_Task_Owner_Field_Value</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Name</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Assigned_Coordinator__c</elementReference>
+            </value>
+        </filters>
+        <object>User</object>
+        <outputAssignments>
+            <assignToReference>userRecordId</assignToReference>
+            <field>Id</field>
+        </outputAssignments>
+        <sortField>Name</sortField>
+        <sortOrder>Asc</sortOrder>
+    </recordLookups>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Validate_Assigned_Coordinator_Is_Not_Empty</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Assigned_Coordinator__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Task</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>PGP-0019 - Stores Selected Assigned To Coordinator user record Id</description>
+        <name>userRecordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>
