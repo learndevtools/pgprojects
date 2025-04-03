@@ -39,7 +39,7 @@
 		<members>ApplicationDomainHandler</members>
 		<members>ContactChangeEvents</members>
 		<members>IContactChangeEvents</members>
-		<members>fflib_SObjectDomain</members>
+		<!--<members>fflib_SObjectDomain</members>-->
 		<members>SystemFacade</members>
 		<members>ContactChangeEventsHandler</members>
 		<members>SystemFacadeTest</members>
