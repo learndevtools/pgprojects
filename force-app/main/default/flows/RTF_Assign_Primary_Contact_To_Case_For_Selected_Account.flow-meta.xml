@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <!--<areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>-->
+    <customErrors>
+        <description>PGP-0020 : Display Error On No Primary Contact Match</description>
+        <name>Display_Custom_Error_Message</name>
+        <label>Display Custom Error Message</label>
+        <locationX>50</locationX>
+        <locationY>827</locationY>
+        <customErrorMessages>
+            <errorMessage>{!$Label.ASSIGNED_PRIMARY_CONTACT_TO_CASE}</errorMessage>
+            <isFieldError>false</isFieldError>
+        </customErrorMessages>
+    </customErrors>
+    <decisions>
+        <description>PGO-0020 : Display Custom Error If No Primary Contact</description>
+        <name>Get_Primary_Contact</name>
+        <label>Get Primary Contact</label>
+        <locationX>380</locationX>
+        <locationY>503</locationY>
+        <defaultConnectorLabel>Found Primary Contact</defaultConnectorLabel>
+        <rules>
+            <name>Not_Found_Primary_Contact</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.ContactId</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Oldest_Contact_For_Account</targetReference>
+            </connector>
+            <label>Not Found Primary Contact</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>PGP-0020 - No Action is required if  user doesn&apos;t have Account Role field permission</description>
+        <name>User_Must_Have_Permission_To_Ready_Account_Role_Field</name>
+        <label>User Must Have Permission To Ready Account Role Field</label>
+        <locationX>611</locationX>
+        <locationY>287</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>User_has_field_permission</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Permission.Assigned_Case_To_Perimary_Role_Contact</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Primary_Contact_Record</targetReference>
+            </connector>
+            <label>User has field permission</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>PGP-0020 - Check Account has any oldest record or not. If no then system will throw an error message to create a new Contact for selected Account record/</description>
+        <name>Validate_Account_Has_Oldest_Contact</name>
+        <label>Validate Account Has Oldest Contact</label>
+        <locationX>182</locationX>
+        <locationY>719</locationY>
+        <defaultConnectorLabel>Oldest Record - Yes</defaultConnectorLabel>
+        <rules>
+            <name>Oldest_Record_No</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.ContactId</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Display_Custom_Error_Message</targetReference>
+            </connector>
+            <label>Oldest Record - No</label>
+        </rules>
+    </decisions>
+    <description>PGP-0020 - Add Primary Contact to Case.</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>PGP-0020 : Get Primary Contact</description>
+        <name>parimaryContact</name>
+        <dataType>String</dataType>
+        <expression>&quot;Primary Contact&quot;</expression>
+    </formulas>
+    <interviewLabel>RTF - Assign Primary Contact To Case For Selected Account {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>RTF - Assign Primary Contact To Case For Selected Account</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>PGP-0020 - If there is no contact role then system will assign the oldest contact on the case.</description>
+        <name>Get_Oldest_Contact_For_Account</name>
+        <label>Get Oldest Contact For Account</label>
+        <locationX>182</locationX>
+        <locationY>611</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Validate_Account_Has_Oldest_Contact</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>AccountId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.AccountId</elementReference>
+            </value>
+        </filters>
+        <object>Contact</object>
+        <outputAssignments>
+            <assignToReference>$Record.ContactId</assignToReference>
+            <field>Id</field>
+        </outputAssignments>
+        <sortField>CreatedDate</sortField>
+        <sortOrder>Asc</sortOrder>
+    </recordLookups>
+    <recordLookups>
+        <description>PGP-0020 : Get Primary Contact for selected Account Id record</description>
+        <name>Get_Primary_Contact_Record</name>
+        <label>Get Primary Contact Record</label>
+        <locationX>380</locationX>
+        <locationY>395</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Primary_Contact</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>AccountId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.AccountId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Account_Role__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>parimaryContact</elementReference>
+            </value>
+        </filters>
+        <object>Contact</object>
+        <outputAssignments>
+            <assignToReference>$Record.ContactId</assignToReference>
+            <field>Id</field>
+        </outputAssignments>
+        <sortField>AccountId</sortField>
+        <sortOrder>Asc</sortOrder>
+    </recordLookups>
+    <start>
+        <locationX>485</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>User_Must_Have_Permission_To_Ready_Account_Role_Field</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>AccountId</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>ContactId</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Case</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>
