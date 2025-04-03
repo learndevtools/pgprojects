@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomPermission xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>PGP-0020 : Custom permission to assign case to Primary Role contact.</description>
+    <isLicensed>false</isLicensed>
+    <label>Assigned Case To Perimary Role Contact</label>
+</CustomPermission>
