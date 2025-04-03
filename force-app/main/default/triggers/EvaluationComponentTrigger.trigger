@@ -1,8 +1,8 @@
 /**
  * @description       : 
  * @author            : salesforce
- * @group             : 
- * @last modified on  : 03-28-2025
+ * @group             : gaurp
+ * @last modified on  : 04-02-2025
  * @last modified by  : salesforce
 **/
 trigger EvaluationComponentTrigger on Evaluation_Component__c (after insert, after update, after delete) {

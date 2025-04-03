@@ -36,6 +36,14 @@
 	    <members>EvaluationController</members>
 	    <members>EvaluationProgressCalculator</members>
 		<members>PatientEvaluationComponentsTest</members>
+		<members>ApplicationDomainHandler</members>
+		<members>ContactChangeEvents</members>
+		<members>IContactChangeEvents</members>
+		<!--<members>fflib_SObjectDomain</members>-->
+		<members>SystemFacade</members>
+		<members>ContactChangeEventsHandler</members>
+		<members>SystemFacadeTest</members>
+		<members>ContactChangeEventsHandlerTest</members>
 		<name>ApexClass</name>
 	</types>
      <types>
@@ -50,6 +58,7 @@
 	</types>
 	<types>
       <members>EvaluationComponentTrigger</members>
+	  <members>ContactChangeEventTrigger</members>
       <name>ApexTrigger</name>
    </types>
     <types>
@@ -216,6 +225,8 @@
 		<members>LINKED_IN_BLANK_POST_MESSAGE</members>
 		<members>LINKED_IN_CONNECTION_FAILURE</members>
         <members>ORDER_EVENT_CUSTOM_NOTIFICATION</members>
+		 <members>TASK_MESSAGE_FOR_CREATE</members>
+		  <members>TASK_MESSAGE_FOR_UPDATE</members>
 		<name>CustomLabel</name>
 	</types>
 	<types>

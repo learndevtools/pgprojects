@@ -1,8 +1,8 @@
 /**
  * @description       : 
  * @author            : salesforce
- * @group             : 
- * @last modified on  : 02-21-2025
+ * @group             : gaurp
+ * @last modified on  : 04-02-2025
  * @last modified by  : salesforce
 **/
 public class Application {
@@ -10,7 +10,8 @@ public class Application {
         new List<SObjectType>{
             Account.SObjectType,
             Contact.SObjectType,
-            File_Upload_Details__c.SObjectType
+            File_Upload_Details__c.SObjectType,
+            Task.SObjectType
         }
     );
     public static final fflib_Application.ServiceFactory SERVICE = new fflib_Application.ServiceFactory(
@@ -25,4 +26,10 @@ public class Application {
             External_Service_Params__mdt.SObjectType => ExternalServiceParamsSelector.class
         }
     ); 
+    public static final fflib_Application.DomainFactory DOMAIN = new fflib_Application.DomainFactory(
+        Application.Selector,
+        new Map<SObjectType, Type>{
+            ContactChangeEvent.SObjectType => ContactChangeEvents.Constructor.class
+        }
+    );
 }
