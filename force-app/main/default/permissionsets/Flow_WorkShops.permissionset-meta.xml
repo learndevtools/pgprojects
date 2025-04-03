@@ -4,7 +4,16 @@
         <application>Flow_Automations</application>
         <visible>true</visible>
     </applicationVisibilities>
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>Assigned_Case_To_Perimary_Role_Contact</name>
+    </customPermissions>
     <description>PGP-0019 - This permission set is created only for flow related tasks.</description>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.Account_Role__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Event.Assigned_Coordinator__c</field>
