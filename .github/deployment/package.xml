@@ -83,6 +83,7 @@
 		<members>Contact.Linked_In_Success_Post__c</members>
 		<members>Contact.Total_Linked_In_Messages__c</members>
 		<members>Activity.Assigned_Coordinator__c</members>
+		 <members>Contact.Account_Role__c</members>
 		<name>CustomField</name>
 	</types>
 	<types>
@@ -147,6 +148,7 @@
 		<members>RTF_Send_Notification_On_Appointment_Record</members>
 		<members>SF_Create_Platform_Events</members>
 		<members>RTF_Task_Related_To_Id_Field_With_Assigned_To_Coordinator_Field</members>
+		<members>RTF_Assign_Primary_Contact_To_Case_For_Selected_Account</members>
 		<name>Flow</name>
 	</types>
 	<types>
@@ -232,6 +234,7 @@
         <members>ORDER_EVENT_CUSTOM_NOTIFICATION</members>
 		 <members>TASK_MESSAGE_FOR_CREATE</members>
 		  <members>TASK_MESSAGE_FOR_UPDATE</members>
+		   <members>ASSIGNED_PRIMARY_CONTACT_TO_CASE</members>
 		<name>CustomLabel</name>
 	</types>
 	<types>
