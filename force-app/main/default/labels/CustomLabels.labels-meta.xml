@@ -35,4 +35,11 @@
         <shortDescription>PGP-0018 - TASK_MESSAGE_FOR_UPDATE</shortDescription>
         <value>Email address of Contact has changes - Please take an appropriate action</value>
     </labels>
+    <labels>
+        <fullName>ASSIGNED_PRIMARY_CONTACT_TO_CASE</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PGP-0020 - ASSIGNED_PRIMARY_CONTACT_TO_CASE</shortDescription>
+        <value>There is no contact for selected account. Please either reach out to support team or create a new contact for the selected account.</value>
+    </labels>
 </CustomLabels>
