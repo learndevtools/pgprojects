@@ -21,4 +21,18 @@
         <shortDescription>PGP-0017 - ORDER EVENT CUSTOM NOTIFICATION</shortDescription>
         <value>Order_Event_Notification</value>
     </labels>
+    <labels>
+        <fullName>TASK_MESSAGE_FOR_CREATE</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PGP-0018 - TASK_MESSAGE_FOR_CREATE</shortDescription>
+        <value>New Contact Created - Please Take an appropriate action</value>
+    </labels>
+    <labels>
+        <fullName>TASK_MESSAGE_FOR_UPDATE</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PGP-0018 - TASK_MESSAGE_FOR_UPDATE</shortDescription>
+        <value>Email address of Contact has changes - Please take an appropriate action</value>
+    </labels>
 </CustomLabels>
