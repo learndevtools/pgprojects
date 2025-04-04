@@ -24,6 +24,11 @@
         <field>Task.Assigned_Coordinator__c</field>
         <readable>true</readable>
     </fieldPermissions>
+     <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.Affected_User__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Flow WorkShops</label>
 </PermissionSet>
