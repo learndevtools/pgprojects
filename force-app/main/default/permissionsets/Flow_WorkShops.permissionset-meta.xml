@@ -11,6 +11,11 @@
     <description>PGP-0019 - This permission set is created only for flow related tasks.</description>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Case.Affected_User__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Contact.Account_Role__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -24,11 +29,10 @@
         <field>Task.Assigned_Coordinator__c</field>
         <readable>true</readable>
     </fieldPermissions>
-     <fieldPermissions>
-        <editable>true</editable>
-        <field>Case.Affected_User__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Flow WorkShops</label>
+    <recordTypeVisibilities>
+        <recordType>Case.Salesforce_Help_Desk</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
 </PermissionSet>
