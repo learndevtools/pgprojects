@@ -84,6 +84,7 @@
 		<members>Contact.Total_Linked_In_Messages__c</members>
 		<members>Activity.Assigned_Coordinator__c</members>
 		 <members>Contact.Account_Role__c</members>
+		 <members>Case.Affected_User__c</members>
 		<name>CustomField</name>
 	</types>
 	<types>
@@ -128,6 +129,7 @@
 		<members>Evaluation_Page_Custom_App</members>
 		<members>Integration_Use_Cases_UtilityBar</members>
 		<members>Flow_Automations_UtilityBar</members>
+		<members>Case_Record_Page_Flexi</members>
 		<name>FlexiPage</name>
 	</types>
 	<types>
@@ -149,6 +151,7 @@
 		<members>SF_Create_Platform_Events</members>
 		<members>RTF_Task_Related_To_Id_Field_With_Assigned_To_Coordinator_Field</members>
 		<members>RTF_Assign_Primary_Contact_To_Case_For_Selected_Account</members>
+		<members>SF_New_Salesforce_Help_Desk_Case</members>
 		<name>Flow</name>
 	</types>
 	<types>
@@ -287,6 +290,24 @@
 	<types>
 		<members>Order_Event_Notification</members>
 		<name>CustomNotificationType</name>
+	</types>
+	<types>
+		<members>CaseStatus</members>
+		<members>CaseType</members>
+		<name>StandardValueSet</name>
+    </types>
+	<types>
+		<members>Salesforce_Help_Desk</members>
+		<name>PathAssistant</name>
+	</types>
+	<types>
+		<members>Case.Salesforce_Help_Desk</members>
+		<members>Case.Standard_Support</members>
+		<name>RecordType</name>
+	</types>
+	<types>
+		<members>Case.Standard Support Process</members>
+		<name>BusinessProcess</name>
 	</types>
 	<version>62.0</version>
 </Package>
