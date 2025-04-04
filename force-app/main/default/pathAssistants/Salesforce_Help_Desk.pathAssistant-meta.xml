@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathAssistant xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <entityName>Case</entityName>
+    <fieldName>Status</fieldName>
+    <masterLabel>Salesforce Help Desk</masterLabel>
+    <pathAssistantSteps>
+        <fieldNames>Subject</fieldNames>
+        <info>&lt;p&gt;Make sure to fill in the subject.&lt;/p&gt;</info>
+        <picklistValueName>New</picklistValueName>
+    </pathAssistantSteps>
+    <recordTypeName>Salesforce_Help_Desk</recordTypeName>
+</PathAssistant>
