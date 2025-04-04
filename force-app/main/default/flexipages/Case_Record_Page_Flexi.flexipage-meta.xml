@@ -158,9 +158,9 @@
                 <identifier>RecordAffected_User_cField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
+                        <leftValue>{!Record.Type}</leftValue>
                         <operator>EQUAL</operator>
-                        <rightValue>Salesforce Help Desk</rightValue>
+                        <rightValue>Bug</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
