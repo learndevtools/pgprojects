@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_BirthDay_Today__c</fullName>
+    <description>PGP-0023 - Formula to  check contact Birthday.</description>
+    <formula>If( 
+AND(
+DAY(Birthdate) = DAY(TODAY()),
+MONTH(Birthdate) = MONTH(TODAY())),
+true,
+false
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Is BirthDay Today</label>
+    <type>Checkbox</type>
+</CustomField>
