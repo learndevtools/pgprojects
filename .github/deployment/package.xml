@@ -90,6 +90,7 @@
 		<members>Account.Account_Notes__c</members>
 		<members>Opportunity.Opportunity_Notes__c</members>
 		<members>Opportunity.Account_Notes__c</members>
+		<members>Contact.Is_BirthDay_Today__c</members>
 		<name>CustomField</name>
 	</types>
 	<types>
@@ -160,6 +161,7 @@
 		<members>RTF_Account_After_Update_Account_Notes_Field_In_Opportunity</members>
 		<members>RTF_Opportunity_Before_Update_Opportunity_Notes</members>
 		<members>RTF_Opportunity_Updates_Related_Opportunity_Notes_Field_Value</members>
+		<members>STF_Contact_Send_Happy_Birthday_Email_Flow</members>
 		<name>Flow</name>
 	</types>
 	<types>
@@ -316,6 +318,14 @@
 	<types>
 		<members>Case.Standard Support Process</members>
 		<name>BusinessProcess</name>
+	</types>
+	<types>
+		<members>unfiled$public/Happy_Birthday_Email_1743856111022</members>
+		<name>EmailTemplate</name>
+	</types>
+	<types>
+		<members>unfiled$public</members>
+		<name>EmailTemplateFolder</name>
 	</types>
 	<version>62.0</version>
 </Package>
