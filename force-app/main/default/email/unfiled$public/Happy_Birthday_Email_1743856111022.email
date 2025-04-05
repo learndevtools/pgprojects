@@ -1,0 +1,8 @@
+<html>
+ <head>
+  <title></title>
+ </head>
+ <body style="height: auto; min-height: auto;">
+  Hi&nbsp;{{{Recipient.Name}}},<br /> <br /> From all of us at Universal Container, We hope you have a wonderful birthday!<br /> <img alt="BirthDayImage" src="{[devName:BirthDayImage]}" style="max-width: 1784.7976562499998px" title="BirthDayImage" /><br /> We wish you all the best on your special day.<br /> <br /> Regards,<br /> UC Services
+ </body>
+</html>
