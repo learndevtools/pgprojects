@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <!--<areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>-->
+    <description>PGP-0022 - Update Account Notes On Opportunity Field</description>
+    <environments>Default</environments>
+    <interviewLabel>RTF - Account(After) - Update Account Notes Field In Opportunity {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>RTF - Account(After) - Update Account Notes Field In Opportunity</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description>PGP-0022 - Update Account Notes Field in Opportunity Object On Update Notes Field in Account record</description>
+        <name>Update_Account_Notes_In_Opportunity_Object</name>
+        <label>Update Account Notes In Opportunity Object</label>
+        <locationX>176</locationX>
+        <locationY>323</locationY>
+        <inputAssignments>
+            <field>Account_Notes__c</field>
+            <value>
+                <elementReference>$Record.Account_Notes__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record.Opportunities</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Update_Account_Notes_In_Opportunity_Object</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Account_Notes__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Account</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>
