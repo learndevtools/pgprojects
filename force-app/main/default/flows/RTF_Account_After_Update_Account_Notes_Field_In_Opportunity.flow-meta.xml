@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>63.0</apiVersion>
-    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <!--<areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>-->
     <description>PGP-0022 - Update Account Notes On Opportunity Field</description>
     <environments>Default</environments>
     <interviewLabel>RTF - Account(After) - Update Account Notes Field In Opportunity {!$Flow.CurrentDateTime}</interviewLabel>
