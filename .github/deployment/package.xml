@@ -323,9 +323,9 @@
 		<members>unfiled$public/Happy_Birthday_Email_1743856111022</members>
 		<name>EmailTemplate</name>
 	</types>
-	<types>
+	<!--<types>
 		<members>unfiled$public</members>
 		<name>EmailTemplateFolder</name>
-	</types>
+	</types>-->
 	<version>62.0</version>
 </Package>
