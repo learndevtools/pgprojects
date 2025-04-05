@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <description>PGP-0022 - Copy Account Notes to Opportunity Notes on New Opportunity Creation</description>
+        <name>Update_Opportunity_Notes_On_Creation</name>
+        <label>Update Opportunity Notes On Creation</label>
+        <locationX>50</locationX>
+        <locationY>503</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Opportunity_Notes__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Existing_Opportunity_Nores_Of_Selected_Account_Id.Opportunity_Notes__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Account_Notes__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Account.Account_Notes__c</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <description>PGP-0022 - Check Account Id field value NULL or NOT NULL</description>
+        <name>Check_Account_Id_Field_Value_In_Opportunity</name>
+        <label>Check Account Id Field Value In Opportunity</label>
+        <locationX>182</locationX>
+        <locationY>287</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Account_Id_Is_Not_Null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.AccountId</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Existing_Opportunity_Nores_Of_Selected_Account_Id</targetReference>
+            </connector>
+            <label>Account Id Is Not Null</label>
+        </rules>
+    </decisions>
+    <description>PGP-002 - Update Opportunity Notes With Account Notes on creation</description>
+    <environments>Default</environments>
+    <interviewLabel>RTF - Opportunity(Before) - Update Opportunity Notes {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>RTF - Opportunity(Before) - Update Opportunity Notes</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>PGP-0022 - Get Opportunity Notes Off the existing Opportunity record</description>
+        <name>Get_Existing_Opportunity_Nores_Of_Selected_Account_Id</name>
+        <label>Get Existing Opportunity Nores Of Selected Account Id</label>
+        <locationX>50</locationX>
+        <locationY>395</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Update_Opportunity_Notes_On_Creation</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>AccountId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.AccountId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Opportunity</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Check_Account_Id_Field_Value_In_Opportunity</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Opportunity_Notes__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Opportunity</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>
