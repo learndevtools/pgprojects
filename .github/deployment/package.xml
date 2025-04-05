@@ -70,11 +70,13 @@
 		<members>Linked_In_Post_Message__c-Linked In Post Message Layout</members>
 		<members>Contact-Contact Layout</members>
 		<members>Appointment__c-Appointment Layout</members>
-      <members>Evaluation_Component__c-Evaluation Component Layout</members>
-      <members>Evaluation__c-Evaluation Layout</members>
-      <members>Patient_Document__c-Patient Document Layout</members>
-      <members>Transplant_Patient__c-Transplant Patient Layout</members>
-	  <members>Task-Task Layout</members>
+		<members>Evaluation_Component__c-Evaluation Component Layout</members>
+		<members>Evaluation__c-Evaluation Layout</members>
+		<members>Patient_Document__c-Patient Document Layout</members>
+		<members>Transplant_Patient__c-Transplant Patient Layout</members>
+		<members>Task-Task Layout</members>
+	  	<members>Account-Account Layout</members>
+		<members>Opportunity-Opportunity Layout</members>
 		<name>Layout</name>
 	</types>
 	<types>
@@ -85,6 +87,9 @@
 		<members>Activity.Assigned_Coordinator__c</members>
 		 <members>Contact.Account_Role__c</members>
 		 <members>Case.Affected_User__c</members>
+		<members>Account.Account_Notes__c</members>
+		<members>Opportunity.Opportunity_Notes__c</members>
+		<members>Opportunity.Account_Notes__c</members>
 		<name>CustomField</name>
 	</types>
 	<types>
@@ -152,6 +157,9 @@
 		<members>RTF_Task_Related_To_Id_Field_With_Assigned_To_Coordinator_Field</members>
 		<members>RTF_Assign_Primary_Contact_To_Case_For_Selected_Account</members>
 		<members>SF_New_Salesforce_Help_Desk_Case</members>
+		<members>RTF_Account_After_Update_Account_Notes_Field_In_Opportunity</members>
+		<members>RTF_Opportunity_Before_Update_Opportunity_Notes</members>
+		<members>RTF_Opportunity_Updates_Related_Opportunity_Notes_Field_Value</members>
 		<name>Flow</name>
 	</types>
 	<types>

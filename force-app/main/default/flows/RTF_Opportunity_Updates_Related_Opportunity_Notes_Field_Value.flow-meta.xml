@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <!--<areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>-->
+    <decisions>
+        <description>PGP-002 - Get related opportunity records with updated Opportunities notes</description>
+        <name>Get_Ma_pping_Records</name>
+        <label>Get Ma;pping Records</label>
+        <locationX>182</locationX>
+        <locationY>647</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Mapping_Records</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Mapped_Notes_Value_To_Related_Opportunity_Records</leftValueReference>
+                <operator>IsEmpty</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Transform_records</targetReference>
+            </connector>
+            <label>Mapping Records</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>PGP-0022 - Process gets terminate if no related opportunity records.</description>
+        <name>Validate_Get_Related_Opportunities_Record</name>
+        <label>Validate Get Related Opportunities Record</label>
+        <locationX>336</locationX>
+        <locationY>431</locationY>
+        <defaultConnectorLabel>Related Opportunity - No</defaultConnectorLabel>
+        <rules>
+            <name>Related_Opportunity_Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Related_Opportunities_records</leftValueReference>
+                <operator>IsEmpty</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Mapped_Notes_Value_To_Related_Opportunity_Records</targetReference>
+            </connector>
+            <label>Related Opportunity - Yes</label>
+        </rules>
+    </decisions>
+    <description>PGP-0022 - This flow updates related opportunities Notes field value.</description>
+    <environments>Default</environments>
+    <interviewLabel>RTF - Opportunity - Updates Related Opportunity - Notes Field Value {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>RTF - Opportunity - Updates Related Opportunity - Notes Field Value</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>PGP-0020 - Get related opportunities records for selected Account field value.</description>
+        <name>Get_Related_Opportunities_records</name>
+        <label>Get Related Opportunities records</label>
+        <locationX>336</locationX>
+        <locationY>323</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Validate_Get_Related_Opportunities_Record</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>AccountId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.AccountId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Id</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Opportunity</object>
+        <sortField>CloseDate</sortField>
+        <sortOrder>Asc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <description>PGP-0022 - Update Transform Collections</description>
+        <name>Update_Transform_records</name>
+        <label>Update Transform records</label>
+        <locationX>50</locationX>
+        <locationY>755</locationY>
+        <inputReference>Mapped_Notes_Value_To_Related_Opportunity_Records</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>210</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Related_Opportunities_records</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Opportunity_Notes__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Opportunity</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <transforms>
+        <description>PGP-0022 - Mapped triggered record opportunity notes to all related opportunity records</description>
+        <name>Mapped_Notes_Value_To_Related_Opportunity_Records</name>
+        <label>Mapped Notes Value To Related Opportunity Records</label>
+        <locationX>182</locationX>
+        <locationY>539</locationY>
+        <connector>
+            <targetReference>Get_Ma_pping_Records</targetReference>
+        </connector>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <objectType>Opportunity</objectType>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <outputFieldApiName>Id</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_Related_Opportunities_records[$EachItem].Id</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>Opportunity_Notes__c</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>$Record.Opportunity_Notes__c</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+</Flow>
