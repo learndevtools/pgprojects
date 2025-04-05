@@ -51,6 +51,10 @@
                 <behavior>Edit</behavior>
                 <field>NumberOfEmployees</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Account_Notes__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
@@ -157,11 +161,6 @@
             <actionType>ProductivityAction</actionType>
             <sortOrder>8</sortOrder>
         </platformActionListItems>
-        <!--<platformActionListItems>
-            <actionName>Account.LinkedIn_Post</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>9</sortOrder>
-        </platformActionListItems>-->
         <platformActionListItems>
             <actionName>FeedItem.ContentPost</actionName>
             <actionType>QuickAction</actionType>
