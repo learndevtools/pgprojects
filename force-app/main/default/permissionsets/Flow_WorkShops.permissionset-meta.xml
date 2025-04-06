@@ -19,11 +19,11 @@
         <field>Automation_Analytics__c.Hours_Saved__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
+    <!--<fieldPermissions>
         <editable>true</editable>
         <field>Automation_Analytics__c.Automation_Name__c</field>
         <readable>true</readable>
-    </fieldPermissions>
+    </fieldPermissions>-->
     <fieldPermissions>
         <editable>true</editable>
         <field>Case.Affected_User__c</field>
