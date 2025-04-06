@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>PGP-0024 - Send Email On update Opportunity Stage With Working</description>
+        <name>Send_Immediate_Email_To_Customer_on_Working_Stage</name>
+        <label>Send Immediate Email To Customer on Working Stage</label>
+        <locationX>50</locationX>
+        <locationY>1427</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <connector>
+            <targetReference>Create_Automation_Analytics_Record</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <stringValue>CurrentUser</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>relatedRecordId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recipientId</name>
+            <value>
+                <elementReference>selectedContactRecord.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>logEmailOnSend</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailTemplateId</name>
+            <value>
+                <elementReference>emailtemplateRecordId</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <apiVersion>63.0</apiVersion>
+    <!--<areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>-->
+    <assignments>
+        <description>PGP-0024 - Set Values for Follow up email</description>
+        <name>Assigned_final_follow_up_email</name>
+        <label>Assigned final follow up email</label>
+        <locationX>1469</locationX>
+        <locationY>276</locationY>
+        <assignmentItems>
+            <assignToReference>EmailTemplateName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>5-Final Follow up  Email</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>AutomationName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Opportunity - Send Immediate Email &amp; Follow Up</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>HoursSaved</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <numberValue>0.083</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_First_Follow_Up_Email_team</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>PGP-0024 - Set Values for second follow up email</description>
+        <name>Assigned_Values_for_Second_Followup_Email</name>
+        <label>Assigned Values for Second Followup Email</label>
+        <locationX>941</locationX>
+        <locationY>276</locationY>
+        <assignmentItems>
+            <assignToReference>EmailTemplateName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>3-Second Follow up  Email</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>AutomationName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Opportunity -  Send Second follow up email</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>HoursSaved</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <numberValue>0.083</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_First_Follow_Up_Email_team</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>PGP-0024 - Set Values for third follow up email</description>
+        <name>Assigned_Values_for_third_follow_up_email</name>
+        <label>Assigned Values for third follow up email</label>
+        <locationX>1205</locationX>
+        <locationY>276</locationY>
+        <assignmentItems>
+            <assignToReference>EmailTemplateName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>4-Third Follow up  Email</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>AutomationName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Opportunity - Send Third Follow Up</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>HoursSaved</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <numberValue>0.083</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_First_Follow_Up_Email_team</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>PGP-0024 - Set Values for first follow up</description>
+        <name>Assigned_Values_to_get_first_follow_up_path</name>
+        <label>Assigned Values to get first follow up path</label>
+        <locationX>677</locationX>
+        <locationY>276</locationY>
+        <assignmentItems>
+            <assignToReference>EmailTemplateName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>2-First Follow up  Email</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>AutomationName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Opportunity - Send First Follow Up</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>HoursSaved</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <numberValue>0.083</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_First_Follow_Up_Email_team</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>PGP-0024 - Set Values for Immediate Execution</description>
+        <name>Assigned_Values_to_get_Get_Immediate_Execution</name>
+        <label>Assigned Values to get Get Immediate Execution</label>
+        <locationX>413</locationX>
+        <locationY>276</locationY>
+        <assignmentItems>
+            <assignToReference>EmailTemplateName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>1-Immediate Email Response</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>AutomationName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Opportunity - Send Immediate Email &amp; Follow Up</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>HoursSaved</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <numberValue>0.083</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_First_Follow_Up_Email_team</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <description>PGP-0024 - Get Primary Contact Role Record</description>
+        <name>Get_Primary_Contact_Record</name>
+        <label>Get Primary Contact Record</label>
+        <locationX>776</locationX>
+        <locationY>911</locationY>
+        <defaultConnector>
+            <targetReference>Get_Oldest_Contact_Record</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Primary Contact - No</defaultConnectorLabel>
+        <rules>
+            <name>Primary_Contact_Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Primary_Contact_For_Selected_Opportunity_Record</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Validate_Selected_Contact_Record</targetReference>
+            </connector>
+            <label>Primary Contact - Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>PGP-0024 - Validate Email Field</description>
+        <name>Validate_Email_Field_In_Selected_Contact_Record</name>
+        <label>Validate Email Field In Selected Contact Record</label>
+        <locationX>446</locationX>
+        <locationY>1319</locationY>
+        <defaultConnectorLabel>Email Empty</defaultConnectorLabel>
+        <rules>
+            <name>Email_Not_Empty</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>selectedContactRecord.Email</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_Immediate_Email_To_Customer_on_Working_Stage</targetReference>
+            </connector>
+            <label>Email- Not Empty</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>PGP-0024 - Validate Immediate Email Template Record Id Get Record steps</description>
+        <name>Validate_Email_Template_For_Immediate_Response</name>
+        <label>Validate Email Template For Immediate Response</label>
+        <locationX>1073</locationX>
+        <locationY>695</locationY>
+        <defaultConnectorLabel>Immediate Email Template - No</defaultConnectorLabel>
+        <rules>
+            <name>Immediate_Email_Template_Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>emailtemplateRecordId</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Primary_Contact_For_Selected_Opportunity_Record</targetReference>
+            </connector>
+            <label>Immediate Email Template - Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>PGP-0024 - Validate Primary or Oldest contact record</description>
+        <name>Validate_Selected_Contact_Record</name>
+        <label>Validate Selected Contact Record</label>
+        <locationX>776</locationX>
+        <locationY>1211</locationY>
+        <defaultConnectorLabel>Selected Contact - No</defaultConnectorLabel>
+        <rules>
+            <name>Selected_Contact_Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>selectedContactRecord</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Validate_Email_Field_In_Selected_Contact_Record</targetReference>
+            </connector>
+            <label>Selected Contact - Yes</label>
+        </rules>
+    </decisions>
+    <description>PGP-0024 - This flow sends email on Working Stage.</description>
+    <environments>Default</environments>
+    <interviewLabel>RTF-Opportunity(After)-Send Notification For Working Stage {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>RTF-Opportunity(After)-Send Notification For Working Stage</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <description>PGP-0024 - Create Automation Analytics Record on post send an email.</description>
+        <name>Create_Automation_Analytics_Record</name>
+        <label>Create Automation Analytics Record</label>
+        <locationX>50</locationX>
+        <locationY>1535</locationY>
+        <inputAssignments>
+            <field>Automation_Name__c</field>
+            <value>
+                <elementReference>AutomationName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Hours_Saved__c</field>
+            <value>
+                <elementReference>HoursSaved</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Automation_Analytics__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordLookups>
+        <description>PGP-0024 - Get Email From Id from EmailTemplate object</description>
+        <name>Get_First_Follow_Up_Email_team</name>
+        <label>Get First Follow Up Email team</label>
+        <locationX>1073</locationX>
+        <locationY>587</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Validate_Email_Template_For_Immediate_Response</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Name</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>EmailTemplateName</elementReference>
+            </value>
+        </filters>
+        <object>EmailTemplate</object>
+        <outputAssignments>
+            <assignToReference>emailtemplateRecordId</assignToReference>
+            <field>Id</field>
+        </outputAssignments>
+    </recordLookups>
+    <recordLookups>
+        <description>PGP-0024 - get Oldest Contact record for no primary role contact</description>
+        <name>Get_Oldest_Contact_Record</name>
+        <label>Get Oldest Contact Record</label>
+        <locationX>864</locationX>
+        <locationY>1019</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Validate_Selected_Contact_Record</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>AccountId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.AccountId</elementReference>
+            </value>
+        </filters>
+        <object>Contact</object>
+        <outputReference>selectedContactRecord</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Email</queriedFields>
+        <sortField>CreatedDate</sortField>
+        <sortOrder>Asc</sortOrder>
+    </recordLookups>
+    <recordLookups>
+        <description>PGP-0024 - Get Primary Role Contact From Opportunity Account Record</description>
+        <name>Get_Primary_Contact_For_Selected_Opportunity_Record</name>
+        <label>Get Primary Contact For Selected Opportunity Record</label>
+        <locationX>776</locationX>
+        <locationY>803</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Primary_Contact_Record</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>AccountId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.AccountId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Account_Role__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Primary Contact</stringValue>
+            </value>
+        </filters>
+        <object>Contact</object>
+        <outputReference>selectedContactRecord</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Email</queriedFields>
+        <sortField>CreatedDate</sortField>
+        <sortOrder>Asc</sortOrder>
+    </recordLookups>
+    <recordUpdates>
+        <description>PGP-0024 - Update Opportunity Stage With Closed</description>
+        <name>Update_Opportunity_Record_Stage_After_10_days</name>
+        <label>Update Opportunity Record Stage After 10 days</label>
+        <locationX>1733</locationX>
+        <locationY>276</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>StageName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Working</stringValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>StageName</field>
+            <value>
+                <stringValue>Closed Lost</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>947</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Assigned_Values_to_get_Get_Immediate_Execution</targetReference>
+        </connector>
+        <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>StageName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Working</stringValue>
+            </value>
+        </filters>
+        <object>Opportunity</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <scheduledPaths>
+            <name>X2_Days_Later</name>
+            <connector>
+                <targetReference>Assigned_Values_to_get_first_follow_up_path</targetReference>
+            </connector>
+            <label>2 Days Later</label>
+            <offsetNumber>2</offsetNumber>
+            <offsetUnit>Days</offsetUnit>
+            <timeSource>RecordTriggerEvent</timeSource>
+        </scheduledPaths>
+        <scheduledPaths>
+            <name>X4_Days_After</name>
+            <connector>
+                <targetReference>Assigned_Values_for_Second_Followup_Email</targetReference>
+            </connector>
+            <label>4 Days After</label>
+            <offsetNumber>4</offsetNumber>
+            <offsetUnit>Days</offsetUnit>
+            <timeSource>RecordTriggerEvent</timeSource>
+        </scheduledPaths>
+        <scheduledPaths>
+            <name>X6_Days_Later</name>
+            <connector>
+                <targetReference>Assigned_Values_for_third_follow_up_email</targetReference>
+            </connector>
+            <label>6 Days Later</label>
+            <offsetNumber>6</offsetNumber>
+            <offsetUnit>Days</offsetUnit>
+            <timeSource>RecordTriggerEvent</timeSource>
+        </scheduledPaths>
+        <scheduledPaths>
+            <name>X8_Days_After</name>
+            <connector>
+                <targetReference>Assigned_final_follow_up_email</targetReference>
+            </connector>
+            <label>8 Days After</label>
+            <offsetNumber>8</offsetNumber>
+            <offsetUnit>Days</offsetUnit>
+            <timeSource>RecordTriggerEvent</timeSource>
+        </scheduledPaths>
+        <scheduledPaths>
+            <name>Closed_Lost_Stage</name>
+            <connector>
+                <targetReference>Update_Opportunity_Record_Stage_After_10_days</targetReference>
+            </connector>
+            <label>Closed Lost Stage</label>
+            <offsetNumber>10</offsetNumber>
+            <offsetUnit>Days</offsetUnit>
+            <timeSource>RecordTriggerEvent</timeSource>
+        </scheduledPaths>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>PGP-0024 - Stores name of the Automation Activity</description>
+        <name>AutomationName</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>PGP-0024 - Stores Email Template Name</description>
+        <name>EmailTemplateName</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>PGP-0024 - Store Email Template Record</description>
+        <name>emailTemplateRecord</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>EmailTemplate</objectType>
+    </variables>
+    <variables>
+        <description>PGP-0024 - Stores Email Template Record Id</description>
+        <name>emailtemplateRecordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>PGP-0024 - Stores Saved Hours</description>
+        <name>HoursSaved</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>3</scale>
+    </variables>
+    <variables>
+        <description>PGP-0024 - Stores Contact record (Primary or Oldest)</description>
+        <name>selectedContactRecord</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Contact</objectType>
+    </variables>
+</Flow>
