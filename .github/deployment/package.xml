@@ -77,6 +77,7 @@
 		<members>Task-Task Layout</members>
 	  	<members>Account-Account Layout</members>
 		<members>Opportunity-Opportunity Layout</members>
+		<members>Automation_Analytics__c-Automation Analytics Layout</members>
 		<name>Layout</name>
 	</types>
 	<types>
@@ -106,6 +107,7 @@
       	<members>Transplant_Patient__c</members>
 	  	<members>Order_Detail__e</members>
 		<members>Lightning_Component_Refresh__e</members>
+		<members>Automation_Analytics__c</members>
 		<name>CustomObject</name>
 	</types>
 	<types>
@@ -162,6 +164,7 @@
 		<members>RTF_Opportunity_Before_Update_Opportunity_Notes</members>
 		<members>RTF_Opportunity_Updates_Related_Opportunity_Notes_Field_Value</members>
 		<members>STF_Contact_Send_Happy_Birthday_Email_Flow</members>
+		<members>RTF_Opportunity_After_Send_Notification_For_Working_Stage</members>
 		<name>Flow</name>
 	</types>
 	<types>
@@ -304,6 +307,7 @@
 	<types>
 		<members>CaseStatus</members>
 		<members>CaseType</members>
+		<members>OpportunityStage</members>
 		<name>StandardValueSet</name>
     </types>
 	<types>
@@ -321,6 +325,11 @@
 	</types>
 	<types>
 		<members>unfiled$public/Happy_Birthday_Email_1743856111022</members>
+		<members>unfiled$public/X5_Final_Follow_up_Email_1743897911256</members>
+		<members>unfiled$public/X1_Immediate_Email_Response_1743897548649</members>
+		<members>unfiled$public/X2_First_Follow_up_Email_1743897767520</members>
+		<members>unfiled$public/X3_Second_Follow_up_Email_1743897826134</members>
+		<members>unfiled$public/X4_Third_Follow_up_Email_1743897855591</members>
 		<name>EmailTemplate</name>
 	</types>
 	<!--<types>
