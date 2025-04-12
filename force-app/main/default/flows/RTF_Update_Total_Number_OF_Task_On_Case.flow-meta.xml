@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+     <!--<areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>-->
+    <customErrors>
+        <description>PGP-0025 - Display Error On Read Task Records</description>
+        <name>Display_Error_On_Task_Count</name>
+        <label>Display Error On Task Count</label>
+        <locationX>842</locationX>
+        <locationY>431</locationY>
+        <customErrorMessages>
+            <errorMessage>{!$Flow.FaultMessage}</errorMessage>
+            <isFieldError>false</isFieldError>
+        </customErrorMessages>
+    </customErrors>
+    <customErrors>
+        <description>PGP-0025 - Error On Update Case Field</description>
+        <name>Error_Update_Case_Record</name>
+        <label>Error - Update Case Record</label>
+        <locationX>314</locationX>
+        <locationY>755</locationY>
+        <customErrorMessages>
+            <errorMessage>{!$Flow.FaultMessage}</errorMessage>
+            <isFieldError>false</isFieldError>
+        </customErrorMessages>
+    </customErrors>
+    <decisions>
+        <description>PGP-0025 - Validate Total Number Of Task Count</description>
+        <name>Validate_Task_Count</name>
+        <label>Validate Task Count</label>
+        <locationX>314</locationX>
+        <locationY>539</locationY>
+        <defaultConnectorLabel>Task Count is 0</defaultConnectorLabel>
+        <rules>
+            <name>Task_Count_More_Than_0</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Total_Task_Count</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <numberValue>0.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Task_Count_In_case_Object</targetReference>
+            </connector>
+            <label>Task Count More Than 0</label>
+        </rules>
+    </decisions>
+    <description>PGP-0025 - Update Total Number Of Task On Case Object</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>PGP-0025 - Validate associated Record Id SObject</description>
+        <name>validateCaseSObject</name>
+        <dataType>Boolean</dataType>
+        <expression>If(LEFT({!$Record.WhatId},3)=&apos;005&apos; || (ISCHANGED({!$Record.WhatId}) &amp;&amp; LEFT({!$Record__Prior.WhatId},3)=&apos;005&apos; &amp;&amp; LEFT({!$Record.WhatId},3)!=&apos;005&apos; ),true,false)</expression>
+    </formulas>
+    <interviewLabel>RTF - Update Total Number OF Task On Case {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>RTF - Update Total Number OF Task On Case</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>PGP-0025 - Get Task records for selected WhatId value</description>
+        <name>Get_Task_Records_for_Selected_WhatId</name>
+        <label>Get Task Records for Selected WhatId</label>
+        <locationX>314</locationX>
+        <locationY>323</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Total_Task_Count</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Display_Error_On_Task_Count</targetReference>
+        </faultConnector>
+        <filterLogic>(1 OR 2) AND 3</filterLogic>
+        <filters>
+            <field>WhatId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.WhatId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>WhatId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record__Prior.WhatId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>WhatId</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Task</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <description>PGP-0025 - Update Number Of Task Count In Case Record</description>
+        <name>Update_Task_Count_In_case_Object</name>
+        <label>Update Task Count In case Object</label>
+        <locationX>50</locationX>
+        <locationY>647</locationY>
+        <faultConnector>
+            <targetReference>Error_Update_Case_Record</targetReference>
+        </faultConnector>
+        <filterLogic>or</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record__Prior.WhatId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.WhatId</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Task_Count__c</field>
+            <value>
+                <elementReference>Total_Task_Count</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Case</object>
+    </recordUpdates>
+    <start>
+        <locationX>188</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Task_Records_for_Selected_WhatId</targetReference>
+        </connector>
+        <filterFormula>If(LEFT({!$Record.WhatId},3)=&apos;500&apos; || (ISCHANGED({!$Record.WhatId}) &amp;&amp; LEFT({!$Record__Prior.WhatId},3)=&apos;500&apos; &amp;&amp; LEFT({!$Record.WhatId},3)!=&apos;500&apos; ),true,false)</filterFormula>
+        <object>Task</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <transforms>
+        <description>PGP-0025 - Get Task Count For Associated Case Record</description>
+        <name>Total_Task_Count</name>
+        <label>Total Task Count</label>
+        <locationX>314</locationX>
+        <locationY>431</locationY>
+        <connector>
+            <targetReference>Validate_Task_Count</targetReference>
+        </connector>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <inputParameters>
+                    <name>aggregationValues</name>
+                    <value>
+                        <elementReference>Get_Task_Records_for_Selected_WhatId</elementReference>
+                    </value>
+                </inputParameters>
+                <transformType>Count</transformType>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+</Flow>
