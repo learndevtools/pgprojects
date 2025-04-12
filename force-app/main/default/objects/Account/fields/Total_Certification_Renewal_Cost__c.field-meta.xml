@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Certification_Renewal_Cost__c</fullName>
+    <description>PGP-0025 - It stores total active certification renewal proce.</description>
+    <label>Total Certification Renewal Cost</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Currency</type>
+</CustomField>

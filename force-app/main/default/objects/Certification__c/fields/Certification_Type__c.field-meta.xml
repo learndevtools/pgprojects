@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Certification_Type__c</fullName>
+    <description>PGP-0025 - Store Type of certification type in the record.</description>
+    <label>Certification Type</label>
+    <required>true</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Master Of Container Logistics</fullName>
+                <default>false</default>
+                <label>Master Of Container Logistics</label>
+            </value>
+            <value>
+                <fullName>Certified Shipping Container Safety Inspector</fullName>
+                <default>false</default>
+                <label>Certified Shipping Container Safety Inspector</label>
+            </value>
+            <value>
+                <fullName>Advanced Container Stacking and Storage Expert</fullName>
+                <default>false</default>
+                <label>Advanced Container Stacking and Storage Expert</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
