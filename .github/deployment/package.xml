@@ -97,6 +97,7 @@
 		<members>Account.Total_Certification_Renewal_Cost__c</members>
 		<members>Account.Latest_Certification_Date__c</members>
 		<members>Case.Task_Count__c</members>
+		<members>Opportunity.Send_Follow_Up_Emails__c</members>
 		<name>CustomField</name>
 	</types>
 	<types>
