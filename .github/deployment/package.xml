@@ -78,6 +78,7 @@
 	  	<members>Account-Account Layout</members>
 		<members>Opportunity-Opportunity Layout</members>
 		<members>Automation_Analytics__c-Automation Analytics Layout</members>
+		<members>Certification__c-Certification Layout</members>
 		<name>Layout</name>
 	</types>
 	<types>
@@ -92,6 +93,10 @@
 		<members>Opportunity.Opportunity_Notes__c</members>
 		<members>Opportunity.Account_Notes__c</members>
 		<members>Contact.Is_BirthDay_Today__c</members>
+		<members>Account.Certification_Count__c</members>
+		<members>Account.Total_Certification_Renewal_Cost__c</members>
+		<members>Account.Latest_Certification_Date__c</members>
+		<members>Case.Task_Count__c</members>
 		<name>CustomField</name>
 	</types>
 	<types>
@@ -108,6 +113,7 @@
 	  	<members>Order_Detail__e</members>
 		<members>Lightning_Component_Refresh__e</members>
 		<members>Automation_Analytics__c</members>
+		<members>Certification__c</members>
 		<name>CustomObject</name>
 	</types>
 	<types>
@@ -138,6 +144,7 @@
 		<members>Integration_Use_Cases_UtilityBar</members>
 		<members>Flow_Automations_UtilityBar</members>
 		<members>Case_Record_Page_Flexi</members>
+		<members>Certification_Record_Page</members>
 		<name>FlexiPage</name>
 	</types>
 	<types>
@@ -165,6 +172,8 @@
 		<members>RTF_Opportunity_Updates_Related_Opportunity_Notes_Field_Value</members>
 		<members>STF_Contact_Send_Happy_Birthday_Email_Flow</members>
 		<members>RTF_Opportunity_After_Send_Notification_For_Working_Stage</members>
+		<members>RTF_Count_Active_Certification</members>
+		<members>RTF_Update_Total_Number_OF_Task_On_Case</members>
 		<name>Flow</name>
 	</types>
 	<types>
