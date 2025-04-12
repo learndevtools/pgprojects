@@ -55,6 +55,18 @@
                 <behavior>Edit</behavior>
                 <field>Account_Notes__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Certification_Count__c</field>
+            </layoutItems>
+             <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Total_Certification_Renewal_Cost__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Latest_Certification_Date__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>

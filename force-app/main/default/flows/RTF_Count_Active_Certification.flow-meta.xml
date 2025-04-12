@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <!--<areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>-->
+    <assignments>
+        <description>PGP-0025 - Assign latest date into variable</description>
+        <name>Assign_Latest_Date_To_Variable</name>
+        <label>Assign Latest Date To Variable</label>
+        <locationX>270</locationX>
+        <locationY>1187</locationY>
+        <assignmentItems>
+            <assignToReference>LatestDateOfAchievement</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Read_Filter_Records.Date_Obtained__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Terminate_Loop_On_Latest_Date</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>PGP-0025 - Stores total active certifications.</description>
+        <name>Assign_Total_Number_Of_Active_Certification</name>
+        <label>Assign Total Number Of Active Certification</label>
+        <locationX>50</locationX>
+        <locationY>755</locationY>
+        <assignmentItems>
+            <assignToReference>CountActiveCertification</assignToReference>
+            <operator>AssignCount</operator>
+            <value>
+                <elementReference>Filter_Active_Certification</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Count_Of_Active_Certification</targetReference>
+        </connector>
+    </assignments>
+    <collectionProcessors>
+        <description>PGP-0025 - Filter only Active certifications.</description>
+        <name>Filter_Active_Certification</name>
+        <elementSubtype>FilterCollectionProcessor</elementSubtype>
+        <label>Filter Active Certification</label>
+        <locationX>182</locationX>
+        <locationY>539</locationY>
+        <assignNextValueToReference>currentItem_Filter_Active_Certification</assignNextValueToReference>
+        <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
+        <collectionReference>Get_Other_Certification</collectionReference>
+        <conditionLogic>and</conditionLogic>
+        <conditions>
+            <leftValueReference>currentItem_Filter_Active_Certification.Is_Active__c</leftValueReference>
+            <operator>EqualTo</operator>
+            <rightValue>
+                <stringValue>Active</stringValue>
+            </rightValue>
+        </conditions>
+        <connector>
+            <targetReference>Validate_Record_On_Filter</targetReference>
+        </connector>
+    </collectionProcessors>
+    <customErrors>
+        <description>PGP-0025 - Failures On Update Certification Count in Account record.</description>
+        <name>Failure_On_Update_Certification_Count</name>
+        <label>Failure On Update Certification Count</label>
+        <locationX>490</locationX>
+        <locationY>1829</locationY>
+        <customErrorMessages>
+            <errorMessage>{!$Flow.FaultMessage}</errorMessage>
+            <isFieldError>false</isFieldError>
+        </customErrorMessages>
+    </customErrors>
+    <decisions>
+        <description>PGP-0025 - Loop terminates on latest date assignment</description>
+        <name>Terminate_Loop_On_Latest_Date</name>
+        <label>Terminate Loop On Latest Date</label>
+        <locationX>270</locationX>
+        <locationY>1295</locationY>
+        <defaultConnector>
+            <targetReference>Read_Filter_Records</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Terminate_Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>LatestDateOfAchievement</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <isGoTo>true</isGoTo>
+                <targetReference>Update_Account_Record</targetReference>
+            </connector>
+            <label>Terminate - Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>PGP-0025 - Validate record count for Activate certification records.</description>
+        <name>Validate_Get_Other_Certification_Records_Count</name>
+        <label>Validate Get Other Certification Records Count</label>
+        <locationX>468</locationX>
+        <locationY>431</locationY>
+        <defaultConnectorLabel>Not Found - Active Certification</defaultConnectorLabel>
+        <rules>
+            <name>Found_Active_Certification</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Other_Certification</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Filter_Active_Certification</targetReference>
+            </connector>
+            <label>Found - Active Certification</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>PGP-0025 - Validate filter records on Status = Active</description>
+        <name>Validate_Record_On_Filter</name>
+        <label>Validate Record On Filter</label>
+        <locationX>182</locationX>
+        <locationY>647</locationY>
+        <defaultConnector>
+            <targetReference>Update_Account_Record</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Active Filter - Not Found</defaultConnectorLabel>
+        <rules>
+            <name>Active_Filter_Found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Filter_Active_Certification</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Total_Number_Of_Active_Certification</targetReference>
+            </connector>
+            <label>Active Filter - Found</label>
+        </rules>
+    </decisions>
+    <description>PGP-0025 - This flow gives total active certification.</description>
+    <environments>Default</environments>
+    <interviewLabel>RTF-Count Active Certification {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>RTF-Count Active Certification</label>
+    <loops>
+        <description>PGP-0025 - Read filter collection and terminate loop after first record</description>
+        <name>Read_Filter_Records</name>
+        <label>Read Filter Records</label>
+        <locationX>50</locationX>
+        <locationY>1079</locationY>
+        <collectionReference>Filter_Active_Certification</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Assign_Latest_Date_To_Variable</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Update_Account_Record</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>PGP-0025 - Get Other Certification Details</description>
+        <name>Get_Other_Certification</name>
+        <label>Get Other Certification</label>
+        <locationX>468</locationX>
+        <locationY>323</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Validate_Get_Other_Certification_Records_Count</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>AccountId__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.AccountId__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Certification__c</object>
+        <sortField>Date_Obtained__c</sortField>
+        <sortOrder>Desc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <description>PGP-0025 - Update Count in the Account object.</description>
+        <name>Update_Account_Record</name>
+        <label>Update Account Record</label>
+        <locationX>182</locationX>
+        <locationY>1721</locationY>
+        <faultConnector>
+            <targetReference>Failure_On_Update_Certification_Count</targetReference>
+        </faultConnector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.AccountId__c</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Certification_Count__c</field>
+            <value>
+                <elementReference>Count_Of_Active_Certification</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Latest_Certification_Date__c</field>
+            <value>
+                <elementReference>LatestDateOfAchievement</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Total_Certification_Renewal_Cost__c</field>
+            <value>
+                <elementReference>Sum_of_Total_Amount</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Account</object>
+    </recordUpdates>
+    <start>
+        <locationX>342</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Other_Certification</targetReference>
+        </connector>
+        <object>Certification__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <transforms>
+        <description>PGP-0025 - Returns count of active certification.</description>
+        <name>Count_Of_Active_Certification</name>
+        <label>Count Of Active Certification</label>
+        <locationX>50</locationX>
+        <locationY>863</locationY>
+        <connector>
+            <targetReference>Sum_of_Total_Amount</targetReference>
+        </connector>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <inputParameters>
+                    <name>aggregationValues</name>
+                    <value>
+                        <elementReference>Filter_Active_Certification</elementReference>
+                    </value>
+                </inputParameters>
+                <transformType>Count</transformType>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <description>PGP-0025 - Returns sum to total active certification</description>
+        <name>Sum_of_Total_Amount</name>
+        <label>Sum of Total Amount</label>
+        <locationX>50</locationX>
+        <locationY>971</locationY>
+        <connector>
+            <targetReference>Read_Filter_Records</targetReference>
+        </connector>
+        <dataType>Currency</dataType>
+        <isCollection>false</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <inputParameters>
+                    <name>aggregationValues</name>
+                    <value>
+                        <elementReference>Filter_Active_Certification</elementReference>
+                    </value>
+                </inputParameters>
+                <inputParameters>
+                    <name>aggregationField</name>
+                    <value>
+                        <stringValue>Renewal_Cost__c</stringValue>
+                    </value>
+                </inputParameters>
+                <transformType>Sum</transformType>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <variables>
+        <description>PGP-0025 - Variable to store count of active certifications.</description>
+        <name>CountActiveCertification</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
+    </variables>
+    <variables>
+        <name>currentItem_Filter_Active_Certification</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Certification__c</objectType>
+    </variables>
+    <variables>
+        <description>PGP-0025 - Assign latest date to variable</description>
+        <name>LatestDateOfAchievement</name>
+        <dataType>Date</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>
