@@ -40,6 +40,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.Task_Count__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Certification__c.AccountId__c</field>
         <readable>true</readable>
@@ -77,6 +82,21 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Event.Assigned_Coordinator__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Event.Display_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Event.Display_Subject__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Event.WhoName__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

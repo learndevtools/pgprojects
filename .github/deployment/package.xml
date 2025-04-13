@@ -79,6 +79,7 @@
 		<members>Opportunity-Opportunity Layout</members>
 		<members>Automation_Analytics__c-Automation Analytics Layout</members>
 		<members>Certification__c-Certification Layout</members>
+		<members>Case-Case Layout</members>
 		<name>Layout</name>
 	</types>
 	<types>
@@ -87,8 +88,8 @@
 		<members>Contact.Linked_In_Success_Post__c</members>
 		<members>Contact.Total_Linked_In_Messages__c</members>
 		<members>Activity.Assigned_Coordinator__c</members>
-		 <members>Contact.Account_Role__c</members>
-		 <members>Case.Affected_User__c</members>
+		<members>Contact.Account_Role__c</members>
+		<members>Case.Affected_User__c</members>
 		<members>Account.Account_Notes__c</members>
 		<members>Opportunity.Opportunity_Notes__c</members>
 		<members>Opportunity.Account_Notes__c</members>
@@ -98,6 +99,9 @@
 		<members>Account.Latest_Certification_Date__c</members>
 		<members>Case.Task_Count__c</members>
 		<members>Opportunity.Send_Follow_Up_Emails__c</members>
+		<members>Activity.Display_Subject__c</members>
+		<members>Activity.WhoName__c</members>
+        <members>Activity.Display_Name__c</members>
 		<name>CustomField</name>
 	</types>
 	<types>
@@ -175,6 +179,8 @@
 		<members>RTF_Opportunity_After_Send_Notification_For_Working_Stage</members>
 		<members>RTF_Count_Active_Certification</members>
 		<members>RTF_Update_Total_Number_OF_Task_On_Case</members>
+		<members>RTF_Update_WhoName_Field_In_Task_Record</members>
+		<members>SF_Display_Associated_Task_Records_With_Case</members>
 		<name>Flow</name>
 	</types>
 	<types>
@@ -227,6 +233,7 @@
 		<members>Account.LinkedIn_Post</members>
 		<members>Contact.LinkedIn_Post</members>
 		<members>Task.Create_Order_Event</members>
+		<members>Case.Open_Tasks</members>
 		<name>QuickAction</name>
 	</types>
 	<types>

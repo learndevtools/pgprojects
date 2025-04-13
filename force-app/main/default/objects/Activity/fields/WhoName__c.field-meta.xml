@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>WhoName__c</fullName>
+    <description>PGP-0026 - Stores who Id name to display in the Datatable for bulk update</description>
+    <externalId>false</externalId>
+    <label>WhoName</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
