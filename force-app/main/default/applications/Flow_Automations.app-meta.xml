@@ -39,9 +39,18 @@
     <tabs>standard-Case</tabs>
     <tabs>standard-Task</tabs>
     <tabs>standard-Opportunity</tabs>
+    <tabs>standard-Lead</tabs>
+    <tabs>Automation_Analytics__c</tabs>
+    <tabs>Certification__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Flow_Automations_UtilityBar</utilityBar>
     <workspaceConfig>
+        <mappings>
+            <tab>Automation_Analytics__c</tab>
+        </mappings>
+        <mappings>
+            <tab>Certification__c</tab>
+        </mappings>
         <mappings>
             <tab>standard-Account</tab>
         </mappings>
@@ -50,6 +59,9 @@
         </mappings>
         <mappings>
             <tab>standard-Contact</tab>
+        </mappings>
+        <mappings>
+            <tab>standard-Lead</tab>
         </mappings>
         <mappings>
             <tab>standard-Opportunity</tab>
