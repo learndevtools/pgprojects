@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <description>PGP-0028 - Validate primary contact object record value</description>
+        <name>Validate_Primary_Contact_Object</name>
+        <label>Validate Primary Contact Object</label>
+        <locationX>176</locationX>
+        <locationY>242</locationY>
+        <defaultConnector>
+            <targetReference>Get_Oldest_Contact_Record</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Primary Contact - Null</defaultConnectorLabel>
+        <rules>
+            <name>Primary_Contact_Not_Null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>primaryContactRecord</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>Primary Contact - Not Null</label>
+        </rules>
+    </decisions>
+    <description>PGP-0028 - Get the primary contact record for the selected Account ID field value and Account Primary Role field value.</description>
+    <environments>Default</environments>
+    <interviewLabel>ALF-Get Primary Contact For Selected Account Id field {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>ALF-Get Primary Contact For Selected Account Id field</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>PGP-0028 - If there is no Primary Contact record then get olderst contact record for selected AccountId value.</description>
+        <name>Get_Oldest_Contact_Record</name>
+        <label>Get Oldest Contact Record</label>
+        <locationX>264</locationX>
+        <locationY>350</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>AccountId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>accountId</elementReference>
+            </value>
+        </filters>
+        <object>Contact</object>
+        <outputReference>primaryContactRecord</outputReference>
+        <queriedFields>Id</queriedFields>
+        <sortField>CreatedDate</sortField>
+        <sortOrder>Asc</sortOrder>
+    </recordLookups>
+    <recordLookups>
+        <description>PGP-0028 - Get Primary Contact Record For Selected Account Id and Account Role</description>
+        <name>Get_Primary_Contact_Record</name>
+        <label>Get Primary Contact Record</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Validate_Primary_Contact_Object</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>AccountId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>accountId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Account_Role__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>accountRoles</elementReference>
+            </value>
+        </filters>
+        <object>Contact</object>
+        <outputReference>primaryContactRecord</outputReference>
+        <queriedFields>Id</queriedFields>
+    </recordLookups>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Primary_Contact_Record</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>PGP-0028 - Account Id to select primary contact from Contact Name for the selected Account Roles/</description>
+        <name>accountId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>PGP-0028 - Stores account roles field value to return the primary contact field value.</description>
+        <name>accountRoles</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>PGP-0028 - Stores Primary Contact Id value</description>
+        <name>primaryContactRecord</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Contact</objectType>
+    </variables>
+</Flow>
