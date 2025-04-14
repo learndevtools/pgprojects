@@ -82,7 +82,7 @@
 		<members>Transplant_Patient__c-Transplant Patient Layout</members>
 		<members>Task-Task Layout</members>
 	  	<members>Account-Account Layout</members>
-		<members>Opportunity-Opportunity Layout</members>
+		<!--<members>Opportunity-Opportunity Layout</members>-->
 		<members>Automation_Analytics__c-Automation Analytics Layout</members>
 		<members>Certification__c-Certification Layout</members>
 		<members>Case-Case Layout</members>
