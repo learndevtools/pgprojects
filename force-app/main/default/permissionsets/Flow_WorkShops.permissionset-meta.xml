@@ -8,6 +8,10 @@
         <enabled>true</enabled>
         <name>Assigned_Case_To_Perimary_Role_Contact</name>
     </customPermissions>
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>Flow_Automation</name>
+    </customPermissions>
     <description>PGP-0019 - This permission set is created only for flow related tasks.</description>
     <fieldPermissions>
         <editable>true</editable>
@@ -127,6 +131,21 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Task.Assigned_Coordinator__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.Shipping_Address__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.Shipping_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.Shipping_Priority__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>

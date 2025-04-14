@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <description>PGP-0028 - Validate vGroup Type either User or Queue</description>
+        <name>Validate_Group_Type</name>
+        <label>Validate Group Type</label>
+        <locationX>891</locationX>
+        <locationY>134</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Queue</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varT_GroupType</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Queue</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Validate_Queue_Name</targetReference>
+            </connector>
+            <label>Queue</label>
+        </rules>
+        <rules>
+            <name>User</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varT_GroupType</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>User</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Validate_User_Name</targetReference>
+            </connector>
+            <label>User</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>PGP-0028 - Validate Queue Name Input Parameter value</description>
+        <name>Validate_Queue_Name</name>
+        <label>Validate Queue Name</label>
+        <locationX>501</locationX>
+        <locationY>242</locationY>
+        <defaultConnectorLabel>Queue Name - Null</defaultConnectorLabel>
+        <rules>
+            <name>Queue_Name_Not_Null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varT_QueueName</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varT_QueueName</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Queue_ID_Of_Selected_Queue_Name</targetReference>
+            </connector>
+            <label>Queue Name - Not Null</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>PGP-0028 - Validated varT_QueueRecordId variable value</description>
+        <name>Validate_Returned_Queue_Id_Value</name>
+        <label>Validate Returned Queue Id Value</label>
+        <locationX>336</locationX>
+        <locationY>458</locationY>
+        <defaultConnectorLabel>Queue Id - Not Matched</defaultConnectorLabel>
+        <rules>
+            <name>Queue_Id_Matched</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varT_QueueRecordId</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varT_QueueRecordId</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Validate_SObject_Name</targetReference>
+            </connector>
+            <label>Queue Id - Matched</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>PGP-0028 - Validate SObject Name to get the queue Id for Selected Object Name</description>
+        <name>Validate_SObject_Name</name>
+        <label>Validate SObject Name</label>
+        <locationX>182</locationX>
+        <locationY>566</locationY>
+        <defaultConnectorLabel>SObject - Null</defaultConnectorLabel>
+        <rules>
+            <name>SObject_Not_Null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varT_SObjectName</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varT_SObjectName</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Queue_From_QueuesObject</targetReference>
+            </connector>
+            <label>SObject - Not Null</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>PGP-0028 0- Validate User Name to return the User Id</description>
+        <name>Validate_User_Name</name>
+        <label>Validate User Name</label>
+        <locationX>974</locationX>
+        <locationY>242</locationY>
+        <defaultConnectorLabel>User Name - Null</defaultConnectorLabel>
+        <rules>
+            <name>User_Name_Not_Null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varT_UserName</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varT_UserName</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_User_Record_For_Selected_User_Name</targetReference>
+            </connector>
+            <label>User Name - Not Null</label>
+        </rules>
+    </decisions>
+    <description>PGP-0028 - This flow returns Queue or User Id</description>
+    <environments>Default</environments>
+    <interviewLabel>ALF-Get Owner ID For Queue Or User {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>ALF-Get Owner ID For Queue Or User</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>PGP-0028 - Get queue from QueuesObject for Selected SObject Name</description>
+        <name>Get_Queue_From_QueuesObject</name>
+        <label>Get Queue From QueuesObject</label>
+        <locationX>50</locationX>
+        <locationY>674</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>QueueId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>varT_QueueRecordId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>SobjectType</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>varT_SObjectName</elementReference>
+            </value>
+        </filters>
+        <object>QueueSobject</object>
+        <outputAssignments>
+            <assignToReference>varT_Output_AssignOwner</assignToReference>
+            <field>QueueId</field>
+        </outputAssignments>
+    </recordLookups>
+    <recordLookups>
+        <description>PGP-0028 - Get Queue Id for the selected Group Name</description>
+        <name>Get_Queue_ID_Of_Selected_Queue_Name</name>
+        <label>Get Queue ID Of Selected Queue Name</label>
+        <locationX>336</locationX>
+        <locationY>350</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Validate_Returned_Queue_Id_Value</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Name</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>varT_QueueName</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Type</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>varT_GroupType</elementReference>
+            </value>
+        </filters>
+        <object>Group</object>
+        <outputAssignments>
+            <assignToReference>varT_QueueRecordId</assignToReference>
+            <field>Id</field>
+        </outputAssignments>
+    </recordLookups>
+    <recordLookups>
+        <description>PGP-0028 - Selected User Id For Selected user Name</description>
+        <name>Get_User_Record_For_Selected_User_Name</name>
+        <label>Get User Record For Selected User Name</label>
+        <locationX>842</locationX>
+        <locationY>350</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Username</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>varT_UserName</elementReference>
+            </value>
+        </filters>
+        <object>User</object>
+        <outputAssignments>
+            <assignToReference>varT_Output_AssignOwner</assignToReference>
+            <field>Id</field>
+        </outputAssignments>
+    </recordLookups>
+    <start>
+        <locationX>765</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Validate_Group_Type</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>PGP-0028 - Stores Group Type - Queue or User</description>
+        <name>varT_GroupType</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>PGP-0028 - Stores User or Queue ID to assign to Owner field.</description>
+        <name>varT_Output_AssignOwner</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>PGP-0028 - Stores Queue Name</description>
+        <name>varT_QueueName</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>PGP-0028 - Stores Queue Id of selected Queue Name.</description>
+        <name>varT_QueueRecordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>PGP-0028 - Stores SObject Name to return QueueId for the SObject Type.</description>
+        <name>varT_SObjectName</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>PGP-0028 - Store User Name to get the User record id</description>
+        <name>varT_UserName</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>
