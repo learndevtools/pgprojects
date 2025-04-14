@@ -5,7 +5,7 @@
         <name>Send_an_Email_to_Operational_Manager</name>
         <label>Send an Email to Operational Manager</label>
         <locationX>50</locationX>
-        <locationY>539</locationY>
+        <locationY>1139</locationY>
         <actionName>emailSimple</actionName>
         <actionType>emailSimple</actionType>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
@@ -33,17 +33,72 @@
                 <booleanValue>true</booleanValue>
             </value>
         </inputParameters>
+        <inputParameters>
+            <name>attachmentId</name>
+            <value>
+                <elementReference>storeAllDocumentIds</elementReference>
+            </value>
+        </inputParameters>
         <nameSegment>emailSimple</nameSegment>
         <offset>0</offset>
     </actionCalls>
     <apiVersion>63.0</apiVersion>
-    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <description>PGP-0029 - Store all document Id in String variable with comma separator sign</description>
+        <name>Store_All_Document_Ids</name>
+        <label>Store All Document Ids</label>
+        <locationX>162</locationX>
+        <locationY>755</locationY>
+        <assignmentItems>
+            <assignToReference>storeAllDocumentIds</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Get_All_Document_Ids.ContentDocument.LatestPublishedVersionId</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>storeAllDocumentIds</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>,</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_All_Document_Ids</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <description>PGP-0029 - Document Ids for Opportunity Record</description>
+        <name>Get_Document_Ids_For_Opportunity_Record</name>
+        <label>Get Document Ids For Opportunity Record</label>
+        <locationX>182</locationX>
+        <locationY>539</locationY>
+        <defaultConnector>
+            <targetReference>Validate_Operation_Email</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Document ID -  Null</defaultConnectorLabel>
+        <rules>
+            <name>Document_ID_Not_Null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Document_Record_Ids</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_All_Document_Ids</targetReference>
+            </connector>
+            <label>Document ID - Not Null</label>
+        </rules>
+    </decisions>
     <decisions>
         <description>PGP-0027 - Validate Operation Email Field Value. If this value is blank then flow will exit from here.</description>
         <name>Validate_Operation_Email</name>
         <label>Validate Operation Email</label>
         <locationX>182</locationX>
-        <locationY>431</locationY>
+        <locationY>1031</locationY>
         <defaultConnectorLabel>Operation Manager Email - No</defaultConnectorLabel>
         <rules>
             <name>Operation_Manager_Email_Yes</name>
@@ -72,6 +127,21 @@
     <environments>Default</environments>
     <interviewLabel>RTF-Opportunity-Send Email On File Upload {!$Flow.CurrentDateTime}</interviewLabel>
     <label>RTF-Opportunity-Send Email On File Upload</label>
+    <loops>
+        <description>PGP-0029 - Reading Latest Publish Document Id</description>
+        <name>Get_All_Document_Ids</name>
+        <label>Get All Document Ids</label>
+        <locationX>74</locationX>
+        <locationY>647</locationY>
+        <collectionReference>Get_Document_Record_Ids</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Store_All_Document_Ids</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Validate_Operation_Email</targetReference>
+        </noMoreValuesConnector>
+    </loops>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -92,6 +162,28 @@
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <recordLookups>
+        <description>PGP-0028 - Get Document Record Ids</description>
+        <name>Get_Document_Record_Ids</name>
+        <label>Get Document Record Ids</label>
+        <locationX>182</locationX>
+        <locationY>431</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Document_Ids_For_Opportunity_Record</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>LinkedEntityId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>ContentDocumentLink</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
         <description>PGP-0027 - Get Operation Manager User Email Record</description>
         <name>Get_Operational_Manager_Email_Id</name>
         <label>Get Operational Manager Email Id</label>
@@ -99,7 +191,7 @@
         <locationY>323</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Validate_Operation_Email</targetReference>
+            <targetReference>Get_Document_Record_Ids</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -148,6 +240,14 @@
         <text>&lt;p&gt; Hi ,&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;This opportunity has a shipping document for you to look over.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Thanks for all that you do at Universal Containers.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Link to Opportunity - &lt;a href=&quot;{!$Record.Opportunity_Record__c}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;Click Here&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Best,&lt;/p&gt;</text>
     </textTemplates>
     <variables>
+        <description>PGP-0028 - Stores Content Document Ids</description>
+        <name>contentDocumentIds</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
         <description>PGP-0027 - Stores Operational Manager in variable</description>
         <name>operationalManager</name>
         <dataType>String</dataType>
@@ -161,6 +261,14 @@
     <variables>
         <description>PGP-0027 - Stores Operational Manager Email Id</description>
         <name>operationalManagerEmail</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>PGP-0029 - Stores all document Ids</description>
+        <name>storeAllDocumentIds</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
