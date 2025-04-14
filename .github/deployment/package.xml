@@ -44,6 +44,7 @@
 		<members>ContactChangeEventsHandler</members>
 		<members>SystemFacadeTest</members>
 		<members>ContactChangeEventsHandlerTest</members>
+		<members>dlrs_ContentDocumentLinkTest</members>
 		<name>ApexClass</name>
 	</types>
      <types>
@@ -60,6 +61,7 @@
 	<types>
       <members>EvaluationComponentTrigger</members>
 	  <members>ContactChangeEventTrigger</members>
+	  <members>dlrs_ContentDocumentLinkTrigger</members>
       <name>ApexTrigger</name>
    </types>
     <types>
@@ -102,6 +104,8 @@
 		<members>Activity.Display_Subject__c</members>
 		<members>Activity.WhoName__c</members>
         <members>Activity.Display_Name__c</members>
+		<members>Opportunity.File_Count__c</members>
+		<members>Opportunity.Opportunity_Record__c</members>
 		<name>CustomField</name>
 	</types>
 	<types>
@@ -181,6 +185,7 @@
 		<members>RTF_Update_Total_Number_OF_Task_On_Case</members>
 		<members>RTF_Update_WhoName_Field_In_Task_Record</members>
 		<members>SF_Display_Associated_Task_Records_With_Case</members>
+		<members>RTF_Opportunity_Send_Email_On_File_Upload</members>
 		<name>Flow</name>
 	</types>
 	<types>
@@ -353,5 +358,5 @@
 		<members>unfiled$public</members>
 		<name>EmailTemplateFolder</name>
 	</types>-->
-	<version>62.0</version>
+	<version>63.0</version>
 </Package>
