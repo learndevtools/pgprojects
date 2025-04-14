@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Opportunity_Record__c</fullName>
+    <externalId>false</externalId>
+    <formula>LEFT($Api.Partner_Server_URL_630, FIND(&quot;/services/&quot;, $Api.Partner_Server_URL_630))&amp;Id</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Opportunity Record</label>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
