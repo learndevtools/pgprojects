@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <description>PGP-0031 - Assign Primary Contact details in Contact Variable</description>
+        <name>Update_Contact_Record_With_Primary_Contact</name>
+        <label>Update Contact Record With Primary Contact</label>
+        <locationX>693</locationX>
+        <locationY>710</locationY>
+        <assignmentItems>
+            <assignToReference>PrimaryContactRecord.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_First_Contact_Record.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PrimaryContactRecord.Account_Role__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Primary Contact</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Validate_Primary_Contact_Record</targetReference>
+        </connector>
+    </assignments>
+    <collectionProcessors>
+        <description>PGP-0031 - Get the primary Contact Record</description>
+        <name>Filter_Primary_Contact_Record</name>
+        <elementSubtype>FilterCollectionProcessor</elementSubtype>
+        <label>Filter Primary Contact Record</label>
+        <locationX>407</locationX>
+        <locationY>386</locationY>
+        <assignNextValueToReference>currentItem_Filter_Primary_Contact_Record</assignNextValueToReference>
+        <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
+        <collectionReference>Get_Primary_Contact_Record</collectionReference>
+        <conditionLogic>and</conditionLogic>
+        <conditions>
+            <leftValueReference>currentItem_Filter_Primary_Contact_Record.Account_Role__c</leftValueReference>
+            <operator>EqualTo</operator>
+            <rightValue>
+                <stringValue>Primary Contact</stringValue>
+            </rightValue>
+        </conditions>
+        <connector>
+            <targetReference>Get_Primary_Contact_Filtered_Records</targetReference>
+        </connector>
+    </collectionProcessors>
+    <decisions>
+        <description>PGP-0031 - Primary Contact Record Match</description>
+        <name>Get_Primary_Contact_Filtered_Records</name>
+        <label>Get Primary Contact Filtered Records</label>
+        <locationX>407</locationX>
+        <locationY>494</locationY>
+        <defaultConnector>
+            <targetReference>Get_First_Contact_Record</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Matched Primary Contact - Not Found</defaultConnectorLabel>
+        <rules>
+            <name>Matched_Primary_Contact</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Filter_Primary_Contact_Record</leftValueReference>
+                <operator>IsEmpty</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>Matched Primary Contact</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>PGP-0031 - Validate Primary Contact Record Variable</description>
+        <name>Validate_Primary_Contact_Record</name>
+        <label>Validate Primary Contact Record</label>
+        <locationX>605</locationX>
+        <locationY>968</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Primary_Contact_Not_Null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>PrimaryContactRecord</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Contact_Record</targetReference>
+            </connector>
+            <label>Primary Contact - Not Null</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>PGP-0031—Validate the Contact record for the selected Account ID. If this collection is blank, skip the process.</description>
+        <name>Validate_Selected_Contact_Record</name>
+        <label>Validate Selected Contact Record</label>
+        <locationX>176</locationX>
+        <locationY>278</locationY>
+        <defaultConnector>
+            <targetReference>Filter_Primary_Contact_Record</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Contact Record Collection - Not Blank</defaultConnectorLabel>
+        <rules>
+            <name>Contact_Record_Collection_Blank</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Primary_Contact_Record</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>Contact Record Collection - Blank</label>
+        </rules>
+    </decisions>
+    <description>PGP-0031 - This platform events update the Primary Contact field value asynchronously.</description>
+    <environments>Default</environments>
+    <interviewLabel>PETE - {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>PETF - Update Primary Contact Asynchronously</label>
+    <loops>
+        <description>PGP-0031 - Get First Contact Record To Update With Primary Contact</description>
+        <name>Get_First_Contact_Record</name>
+        <label>Get First Contact Record</label>
+        <locationX>605</locationX>
+        <locationY>602</locationY>
+        <collectionReference>Get_Primary_Contact_Record</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Update_Contact_Record_With_Primary_Contact</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Validate_Primary_Contact_Record</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>PGP-0031 - Get the primary contact field value</description>
+        <name>Get_Primary_Contact_Record</name>
+        <label>Get Primary Contact Record</label>
+        <locationX>176</locationX>
+        <locationY>170</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Validate_Selected_Contact_Record</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>AccountId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Account_Id__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Contact</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Account_Role__c</queriedFields>
+        <sortField>CreatedDate</sortField>
+        <sortOrder>Asc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <description>PGP-0031 - Update Contact Record With Primary Contact</description>
+        <name>Update_Contact_Record</name>
+        <label>Update Contact Record</label>
+        <locationX>473</locationX>
+        <locationY>1076</locationY>
+        <inputReference>PrimaryContactRecord</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Primary_Contact_Record</targetReference>
+        </connector>
+        <flowRunAsUser>DefaultWorkflowUser</flowRunAsUser>
+        <object>Primary_Contact_Uploads__e</object>
+        <triggerType>PlatformEvent</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>PGP-0031 - Read Account Id from Platform Event custom field i.e, Account Id</description>
+        <name>AccountId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>PGP-0031 - Store Account Role as Primary Contact</description>
+        <name>AccountRole</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>currentItem_Filter_Primary_Contact_Record</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Contact</objectType>
+    </variables>
+    <variables>
+        <name>currentItemFromSourceCollection</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Contact</objectType>
+    </variables>
+    <variables>
+        <description>PGP-0031 - Create Primary Contact Record</description>
+        <name>PrimaryContactRecord</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Contact</objectType>
+    </variables>
+    <variables>
+        <description>PGP-0031 - Stores Primary Contact Record Id</description>
+        <name>PrimaryContactRecordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>
