@@ -130,6 +130,7 @@
 		<members>Lightning_Component_Refresh__e</members>
 		<members>Automation_Analytics__c</members>
 		<members>Certification__c</members>
+		<members>Primary_Contact_Uploads__e</members>
 		<name>CustomObject</name>
 	</types>
 	<types>
@@ -197,6 +198,8 @@
 		<members>ALF_Get_Owner_ID_For_Queue_Or_User</members>
 		<members>ALF_Get_Primary_Contact_For_Selected_Account_Id_field</members>
 		<members>SF_Create_a_Shipping_Case_On_Opportunity</members>
+		<members>PETF_Update_Primary_Contact_Asynchronously</members>
+		<members>RTF_Account_After_Update_Contact_Role_With_Primary_Contact</members>
 		<name>Flow</name>
 	</types>
 	<types>
