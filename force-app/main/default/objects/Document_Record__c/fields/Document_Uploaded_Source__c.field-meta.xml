@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Document_Uploaded_Source__c</fullName>
+    <description>This field stores the source of the document upload</description>
+    <label>Document Uploaded Source</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Community Users</fullName>
+                <default>false</default>
+                <label>Community Users</label>
+            </value>
+            <value>
+                <fullName>Salesforce Core</fullName>
+                <default>false</default>
+                <label>Salesforce Core</label>
+            </value>
+            <value>
+                <fullName>Backend Process</fullName>
+                <default>false</default>
+                <label>Backend Process</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
