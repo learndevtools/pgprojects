@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Content_Download_Document__c</fullName>
+    <description>The formula generates a hyperlink for downloading a document if a URL is available; otherwise, it returns an empty string.</description>
+    <externalId>false</externalId>
+    <formula>If(ISBLANK(Content_Download_Url__c),&quot;&quot;,HYPERLINK(Content_Download_Url__c,&quot;Download Document&quot;,&quot;_blank&quot;))</formula>
+    <label>Content Download Document</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
