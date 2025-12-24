@@ -242,6 +242,7 @@
 		<members>HRSA_App_Access</members>
 		<members>Integration_Learning</members>
 		<members>Flow_WorkShops</members>
+		<members>System_Admin_Permission</members>
 		<name>PermissionSet</name>
 	</types>
 	<types>
